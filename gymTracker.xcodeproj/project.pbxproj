@@ -1,0 +1,519 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F38DD81718C58D8F004860C2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F38DD81618C58D8F004860C2 /* Foundation.framework */; };
+		F38DD81918C58D8F004860C2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F38DD81818C58D8F004860C2 /* CoreGraphics.framework */; };
+		F38DD81B18C58D8F004860C2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F38DD81A18C58D8F004860C2 /* UIKit.framework */; };
+		F38DD81D18C58D8F004860C2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F38DD81C18C58D8F004860C2 /* CoreData.framework */; };
+		F38DD82318C58D8F004860C2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F38DD82118C58D8F004860C2 /* InfoPlist.strings */; };
+		F38DD82518C58D8F004860C2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F38DD82418C58D8F004860C2 /* main.m */; };
+		F38DD82918C58D8F004860C2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F38DD82818C58D8F004860C2 /* AppDelegate.m */; };
+		F38DD82C18C58D8F004860C2 /* gymTracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F38DD82A18C58D8F004860C2 /* gymTracker.xcdatamodeld */; };
+		F38DD82E18C58D8F004860C2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F38DD82D18C58D8F004860C2 /* Images.xcassets */; };
+		F38DD83518C58D8F004860C2 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F38DD83418C58D8F004860C2 /* XCTest.framework */; };
+		F38DD83618C58D8F004860C2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F38DD81618C58D8F004860C2 /* Foundation.framework */; };
+		F38DD83718C58D8F004860C2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F38DD81A18C58D8F004860C2 /* UIKit.framework */; };
+		F38DD83818C58D8F004860C2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F38DD81C18C58D8F004860C2 /* CoreData.framework */; };
+		F38DD84018C58D8F004860C2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F38DD83E18C58D8F004860C2 /* InfoPlist.strings */; };
+		F38DD84218C58D8F004860C2 /* gymTrackerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F38DD84118C58D8F004860C2 /* gymTrackerTests.m */; };
+		F38DD84C18C58DEC004860C2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F38DD84B18C58DEC004860C2 /* Main.storyboard */; };
+		F38DD84F18C58FBB004860C2 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F38DD84E18C58FBB004860C2 /* MainViewController.m */; };
+		F38DD85318C59B39004860C2 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = F38DD85218C59B39004860C2 /* Utility.m */; };
+		F38DD85A18C59D10004860C2 /* Image.m in Sources */ = {isa = PBXBuildFile; fileRef = F38DD85918C59D10004860C2 /* Image.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F38DD83918C58D8F004860C2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F38DD80B18C58D8F004860C2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F38DD81218C58D8F004860C2;
+			remoteInfo = gymTracker;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F38DD81318C58D8F004860C2 /* gymTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gymTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F38DD81618C58D8F004860C2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		F38DD81818C58D8F004860C2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		F38DD81A18C58D8F004860C2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		F38DD81C18C58D8F004860C2 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		F38DD82018C58D8F004860C2 /* gymTracker-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "gymTracker-Info.plist"; sourceTree = "<group>"; };
+		F38DD82218C58D8F004860C2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F38DD82418C58D8F004860C2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F38DD82618C58D8F004860C2 /* gymTracker-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "gymTracker-Prefix.pch"; sourceTree = "<group>"; };
+		F38DD82718C58D8F004860C2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		F38DD82818C58D8F004860C2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		F38DD82B18C58D8F004860C2 /* gymTracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = gymTracker.xcdatamodel; sourceTree = "<group>"; };
+		F38DD82D18C58D8F004860C2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		F38DD83318C58D8F004860C2 /* gymTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = gymTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F38DD83418C58D8F004860C2 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		F38DD83D18C58D8F004860C2 /* gymTrackerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "gymTrackerTests-Info.plist"; sourceTree = "<group>"; };
+		F38DD83F18C58D8F004860C2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F38DD84118C58D8F004860C2 /* gymTrackerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = gymTrackerTests.m; sourceTree = "<group>"; };
+		F38DD84B18C58DEC004860C2 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		F38DD84D18C58FBB004860C2 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		F38DD84E18C58FBB004860C2 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		F38DD85118C59B39004860C2 /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
+		F38DD85218C59B39004860C2 /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
+		F38DD85818C59D10004860C2 /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Image.h; sourceTree = "<group>"; };
+		F38DD85918C59D10004860C2 /* Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Image.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F38DD81018C58D8F004860C2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F38DD81918C58D8F004860C2 /* CoreGraphics.framework in Frameworks */,
+				F38DD81D18C58D8F004860C2 /* CoreData.framework in Frameworks */,
+				F38DD81B18C58D8F004860C2 /* UIKit.framework in Frameworks */,
+				F38DD81718C58D8F004860C2 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F38DD83018C58D8F004860C2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F38DD83518C58D8F004860C2 /* XCTest.framework in Frameworks */,
+				F38DD83818C58D8F004860C2 /* CoreData.framework in Frameworks */,
+				F38DD83718C58D8F004860C2 /* UIKit.framework in Frameworks */,
+				F38DD83618C58D8F004860C2 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F38DD80A18C58D8F004860C2 = {
+			isa = PBXGroup;
+			children = (
+				F38DD81E18C58D8F004860C2 /* gymTracker */,
+				F38DD83B18C58D8F004860C2 /* gymTrackerTests */,
+				F38DD81518C58D8F004860C2 /* Frameworks */,
+				F38DD81418C58D8F004860C2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F38DD81418C58D8F004860C2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F38DD81318C58D8F004860C2 /* gymTracker.app */,
+				F38DD83318C58D8F004860C2 /* gymTrackerTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F38DD81518C58D8F004860C2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F38DD81618C58D8F004860C2 /* Foundation.framework */,
+				F38DD81818C58D8F004860C2 /* CoreGraphics.framework */,
+				F38DD81A18C58D8F004860C2 /* UIKit.framework */,
+				F38DD81C18C58D8F004860C2 /* CoreData.framework */,
+				F38DD83418C58D8F004860C2 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F38DD81E18C58D8F004860C2 /* gymTracker */ = {
+			isa = PBXGroup;
+			children = (
+				F38DD85718C59D10004860C2 /* db */,
+				F38DD85018C59B39004860C2 /* utils */,
+				F38DD82718C58D8F004860C2 /* AppDelegate.h */,
+				F38DD82818C58D8F004860C2 /* AppDelegate.m */,
+				F38DD84D18C58FBB004860C2 /* MainViewController.h */,
+				F38DD84E18C58FBB004860C2 /* MainViewController.m */,
+				F38DD84B18C58DEC004860C2 /* Main.storyboard */,
+				F38DD82D18C58D8F004860C2 /* Images.xcassets */,
+				F38DD82A18C58D8F004860C2 /* gymTracker.xcdatamodeld */,
+				F38DD81F18C58D8F004860C2 /* Supporting Files */,
+			);
+			path = gymTracker;
+			sourceTree = "<group>";
+		};
+		F38DD81F18C58D8F004860C2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F38DD82018C58D8F004860C2 /* gymTracker-Info.plist */,
+				F38DD82118C58D8F004860C2 /* InfoPlist.strings */,
+				F38DD82418C58D8F004860C2 /* main.m */,
+				F38DD82618C58D8F004860C2 /* gymTracker-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F38DD83B18C58D8F004860C2 /* gymTrackerTests */ = {
+			isa = PBXGroup;
+			children = (
+				F38DD84118C58D8F004860C2 /* gymTrackerTests.m */,
+				F38DD83C18C58D8F004860C2 /* Supporting Files */,
+			);
+			path = gymTrackerTests;
+			sourceTree = "<group>";
+		};
+		F38DD83C18C58D8F004860C2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F38DD83D18C58D8F004860C2 /* gymTrackerTests-Info.plist */,
+				F38DD83E18C58D8F004860C2 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F38DD85018C59B39004860C2 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				F38DD85118C59B39004860C2 /* Utility.h */,
+				F38DD85218C59B39004860C2 /* Utility.m */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
+		F38DD85718C59D10004860C2 /* db */ = {
+			isa = PBXGroup;
+			children = (
+				F38DD85818C59D10004860C2 /* Image.h */,
+				F38DD85918C59D10004860C2 /* Image.m */,
+			);
+			path = db;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F38DD81218C58D8F004860C2 /* gymTracker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F38DD84518C58D8F004860C2 /* Build configuration list for PBXNativeTarget "gymTracker" */;
+			buildPhases = (
+				F38DD80F18C58D8F004860C2 /* Sources */,
+				F38DD81018C58D8F004860C2 /* Frameworks */,
+				F38DD81118C58D8F004860C2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = gymTracker;
+			productName = gymTracker;
+			productReference = F38DD81318C58D8F004860C2 /* gymTracker.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F38DD83218C58D8F004860C2 /* gymTrackerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F38DD84818C58D8F004860C2 /* Build configuration list for PBXNativeTarget "gymTrackerTests" */;
+			buildPhases = (
+				F38DD82F18C58D8F004860C2 /* Sources */,
+				F38DD83018C58D8F004860C2 /* Frameworks */,
+				F38DD83118C58D8F004860C2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F38DD83A18C58D8F004860C2 /* PBXTargetDependency */,
+			);
+			name = gymTrackerTests;
+			productName = gymTrackerTests;
+			productReference = F38DD83318C58D8F004860C2 /* gymTrackerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F38DD80B18C58D8F004860C2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = "Third Bit";
+				TargetAttributes = {
+					F38DD83218C58D8F004860C2 = {
+						TestTargetID = F38DD81218C58D8F004860C2;
+					};
+				};
+			};
+			buildConfigurationList = F38DD80E18C58D8F004860C2 /* Build configuration list for PBXProject "gymTracker" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = F38DD80A18C58D8F004860C2;
+			productRefGroup = F38DD81418C58D8F004860C2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F38DD81218C58D8F004860C2 /* gymTracker */,
+				F38DD83218C58D8F004860C2 /* gymTrackerTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F38DD81118C58D8F004860C2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F38DD84C18C58DEC004860C2 /* Main.storyboard in Resources */,
+				F38DD82318C58D8F004860C2 /* InfoPlist.strings in Resources */,
+				F38DD82E18C58D8F004860C2 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F38DD83118C58D8F004860C2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F38DD84018C58D8F004860C2 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F38DD80F18C58D8F004860C2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F38DD82918C58D8F004860C2 /* AppDelegate.m in Sources */,
+				F38DD82C18C58D8F004860C2 /* gymTracker.xcdatamodeld in Sources */,
+				F38DD85318C59B39004860C2 /* Utility.m in Sources */,
+				F38DD85A18C59D10004860C2 /* Image.m in Sources */,
+				F38DD82518C58D8F004860C2 /* main.m in Sources */,
+				F38DD84F18C58FBB004860C2 /* MainViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F38DD82F18C58D8F004860C2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F38DD84218C58D8F004860C2 /* gymTrackerTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F38DD83A18C58D8F004860C2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F38DD81218C58D8F004860C2 /* gymTracker */;
+			targetProxy = F38DD83918C58D8F004860C2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F38DD82118C58D8F004860C2 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F38DD82218C58D8F004860C2 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		F38DD83E18C58D8F004860C2 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F38DD83F18C58D8F004860C2 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F38DD84318C58D8F004860C2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		F38DD84418C58D8F004860C2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F38DD84618C58D8F004860C2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "gymTracker/gymTracker-Prefix.pch";
+				INFOPLIST_FILE = "gymTracker/gymTracker-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		F38DD84718C58D8F004860C2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "gymTracker/gymTracker-Prefix.pch";
+				INFOPLIST_FILE = "gymTracker/gymTracker-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		F38DD84918C58D8F004860C2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/gymTracker.app/gymTracker";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "gymTracker/gymTracker-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "gymTrackerTests/gymTrackerTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		F38DD84A18C58D8F004860C2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/gymTracker.app/gymTracker";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "gymTracker/gymTracker-Prefix.pch";
+				INFOPLIST_FILE = "gymTrackerTests/gymTrackerTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F38DD80E18C58D8F004860C2 /* Build configuration list for PBXProject "gymTracker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F38DD84318C58D8F004860C2 /* Debug */,
+				F38DD84418C58D8F004860C2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F38DD84518C58D8F004860C2 /* Build configuration list for PBXNativeTarget "gymTracker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F38DD84618C58D8F004860C2 /* Debug */,
+				F38DD84718C58D8F004860C2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F38DD84818C58D8F004860C2 /* Build configuration list for PBXNativeTarget "gymTrackerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F38DD84918C58D8F004860C2 /* Debug */,
+				F38DD84A18C58D8F004860C2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		F38DD82A18C58D8F004860C2 /* gymTracker.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F38DD82B18C58D8F004860C2 /* gymTracker.xcdatamodel */,
+			);
+			currentVersion = F38DD82B18C58D8F004860C2 /* gymTracker.xcdatamodel */;
+			path = gymTracker.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = F38DD80B18C58D8F004860C2 /* Project object */;
+}
