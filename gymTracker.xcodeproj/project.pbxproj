@@ -14,7 +14,6 @@
 		F38DD82318C58D8F004860C2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F38DD82118C58D8F004860C2 /* InfoPlist.strings */; };
 		F38DD82518C58D8F004860C2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F38DD82418C58D8F004860C2 /* main.m */; };
 		F38DD82918C58D8F004860C2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F38DD82818C58D8F004860C2 /* AppDelegate.m */; };
-		F38DD82C18C58D8F004860C2 /* gymTracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F38DD82A18C58D8F004860C2 /* gymTracker.xcdatamodeld */; };
 		F38DD82E18C58D8F004860C2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F38DD82D18C58D8F004860C2 /* Images.xcassets */; };
 		F38DD83518C58D8F004860C2 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F38DD83418C58D8F004860C2 /* XCTest.framework */; };
 		F38DD83618C58D8F004860C2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F38DD81618C58D8F004860C2 /* Foundation.framework */; };
@@ -25,7 +24,16 @@
 		F38DD84C18C58DEC004860C2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F38DD84B18C58DEC004860C2 /* Main.storyboard */; };
 		F38DD84F18C58FBB004860C2 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F38DD84E18C58FBB004860C2 /* MainViewController.m */; };
 		F38DD85318C59B39004860C2 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = F38DD85218C59B39004860C2 /* Utility.m */; };
-		F38DD85A18C59D10004860C2 /* Image.m in Sources */ = {isa = PBXBuildFile; fileRef = F38DD85918C59D10004860C2 /* Image.m */; };
+		F3E3A8F818C726410022F068 /* WorkoutMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E3A8F718C726410022F068 /* WorkoutMainViewController.m */; };
+		F3E3A8FB18C726920022F068 /* WorkoutTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E3A8FA18C726920022F068 /* WorkoutTableCell.m */; };
+		F3E3A90118C727840022F068 /* WorkoutDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E3A90018C727840022F068 /* WorkoutDetailsViewController.m */; };
+		F3E3A90F18C72D070022F068 /* Equipment.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E3A90C18C72D070022F068 /* Equipment.m */; };
+		F3E3A91018C72D070022F068 /* Workout.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E3A90E18C72D070022F068 /* Workout.m */; };
+		F3E3A91118C72F720022F068 /* gymTracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F3E3A90218C72B5E0022F068 /* gymTracker.xcdatamodeld */; };
+		F3E3A91418C731030022F068 /* ReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E3A91318C731030022F068 /* ReportViewController.m */; };
+		F3E3A91718C731A80022F068 /* EquipmentMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E3A91618C731A80022F068 /* EquipmentMainViewController.m */; };
+		F3E3A91A18C731C80022F068 /* EquipmentDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E3A91918C731C80022F068 /* EquipmentDetailsViewController.m */; };
+		F3E3A91D18C734190022F068 /* EquipmentTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E3A91C18C734190022F068 /* EquipmentTableCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,7 +58,6 @@
 		F38DD82618C58D8F004860C2 /* gymTracker-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "gymTracker-Prefix.pch"; sourceTree = "<group>"; };
 		F38DD82718C58D8F004860C2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		F38DD82818C58D8F004860C2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		F38DD82B18C58D8F004860C2 /* gymTracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = gymTracker.xcdatamodel; sourceTree = "<group>"; };
 		F38DD82D18C58D8F004860C2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F38DD83318C58D8F004860C2 /* gymTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = gymTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F38DD83418C58D8F004860C2 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -62,8 +69,25 @@
 		F38DD84E18C58FBB004860C2 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		F38DD85118C59B39004860C2 /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
 		F38DD85218C59B39004860C2 /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
-		F38DD85818C59D10004860C2 /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Image.h; sourceTree = "<group>"; };
-		F38DD85918C59D10004860C2 /* Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Image.m; sourceTree = "<group>"; };
+		F3E3A8F618C726410022F068 /* WorkoutMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkoutMainViewController.h; sourceTree = "<group>"; };
+		F3E3A8F718C726410022F068 /* WorkoutMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkoutMainViewController.m; sourceTree = "<group>"; };
+		F3E3A8F918C726920022F068 /* WorkoutTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkoutTableCell.h; sourceTree = "<group>"; };
+		F3E3A8FA18C726920022F068 /* WorkoutTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkoutTableCell.m; sourceTree = "<group>"; };
+		F3E3A8FF18C727840022F068 /* WorkoutDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkoutDetailsViewController.h; sourceTree = "<group>"; };
+		F3E3A90018C727840022F068 /* WorkoutDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkoutDetailsViewController.m; sourceTree = "<group>"; };
+		F3E3A90318C72B5E0022F068 /* gymTracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = gymTracker.xcdatamodel; sourceTree = "<group>"; };
+		F3E3A90B18C72D070022F068 /* Equipment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Equipment.h; sourceTree = "<group>"; };
+		F3E3A90C18C72D070022F068 /* Equipment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Equipment.m; sourceTree = "<group>"; };
+		F3E3A90D18C72D070022F068 /* Workout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Workout.h; sourceTree = "<group>"; };
+		F3E3A90E18C72D070022F068 /* Workout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Workout.m; sourceTree = "<group>"; };
+		F3E3A91218C731030022F068 /* ReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportViewController.h; sourceTree = "<group>"; };
+		F3E3A91318C731030022F068 /* ReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportViewController.m; sourceTree = "<group>"; };
+		F3E3A91518C731A80022F068 /* EquipmentMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EquipmentMainViewController.h; sourceTree = "<group>"; };
+		F3E3A91618C731A80022F068 /* EquipmentMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EquipmentMainViewController.m; sourceTree = "<group>"; };
+		F3E3A91818C731C80022F068 /* EquipmentDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EquipmentDetailsViewController.h; sourceTree = "<group>"; };
+		F3E3A91918C731C80022F068 /* EquipmentDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EquipmentDetailsViewController.m; sourceTree = "<group>"; };
+		F3E3A91B18C734190022F068 /* EquipmentTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EquipmentTableCell.h; sourceTree = "<group>"; };
+		F3E3A91C18C734190022F068 /* EquipmentTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EquipmentTableCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,8 +157,22 @@
 				F38DD84D18C58FBB004860C2 /* MainViewController.h */,
 				F38DD84E18C58FBB004860C2 /* MainViewController.m */,
 				F38DD84B18C58DEC004860C2 /* Main.storyboard */,
+				F3E3A8F618C726410022F068 /* WorkoutMainViewController.h */,
+				F3E3A8F718C726410022F068 /* WorkoutMainViewController.m */,
+				F3E3A8F918C726920022F068 /* WorkoutTableCell.h */,
+				F3E3A8FA18C726920022F068 /* WorkoutTableCell.m */,
+				F3E3A8FF18C727840022F068 /* WorkoutDetailsViewController.h */,
+				F3E3A90018C727840022F068 /* WorkoutDetailsViewController.m */,
+				F3E3A91218C731030022F068 /* ReportViewController.h */,
+				F3E3A91318C731030022F068 /* ReportViewController.m */,
+				F3E3A91518C731A80022F068 /* EquipmentMainViewController.h */,
+				F3E3A91618C731A80022F068 /* EquipmentMainViewController.m */,
+				F3E3A91818C731C80022F068 /* EquipmentDetailsViewController.h */,
+				F3E3A91918C731C80022F068 /* EquipmentDetailsViewController.m */,
+				F3E3A91B18C734190022F068 /* EquipmentTableCell.h */,
+				F3E3A91C18C734190022F068 /* EquipmentTableCell.m */,
+				F3E3A90218C72B5E0022F068 /* gymTracker.xcdatamodeld */,
 				F38DD82D18C58D8F004860C2 /* Images.xcassets */,
-				F38DD82A18C58D8F004860C2 /* gymTracker.xcdatamodeld */,
 				F38DD81F18C58D8F004860C2 /* Supporting Files */,
 			);
 			path = gymTracker;
@@ -181,8 +219,10 @@
 		F38DD85718C59D10004860C2 /* db */ = {
 			isa = PBXGroup;
 			children = (
-				F38DD85818C59D10004860C2 /* Image.h */,
-				F38DD85918C59D10004860C2 /* Image.m */,
+				F3E3A90B18C72D070022F068 /* Equipment.h */,
+				F3E3A90C18C72D070022F068 /* Equipment.m */,
+				F3E3A90D18C72D070022F068 /* Workout.h */,
+				F3E3A90E18C72D070022F068 /* Workout.m */,
 			);
 			path = db;
 			sourceTree = "<group>";
@@ -283,12 +323,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3E3A91118C72F720022F068 /* gymTracker.xcdatamodeld in Sources */,
+				F3E3A91A18C731C80022F068 /* EquipmentDetailsViewController.m in Sources */,
+				F3E3A8FB18C726920022F068 /* WorkoutTableCell.m in Sources */,
 				F38DD82918C58D8F004860C2 /* AppDelegate.m in Sources */,
-				F38DD82C18C58D8F004860C2 /* gymTracker.xcdatamodeld in Sources */,
+				F3E3A91418C731030022F068 /* ReportViewController.m in Sources */,
 				F38DD85318C59B39004860C2 /* Utility.m in Sources */,
-				F38DD85A18C59D10004860C2 /* Image.m in Sources */,
+				F3E3A8F818C726410022F068 /* WorkoutMainViewController.m in Sources */,
+				F3E3A91D18C734190022F068 /* EquipmentTableCell.m in Sources */,
 				F38DD82518C58D8F004860C2 /* main.m in Sources */,
+				F3E3A90F18C72D070022F068 /* Equipment.m in Sources */,
+				F3E3A91718C731A80022F068 /* EquipmentMainViewController.m in Sources */,
+				F3E3A91018C72D070022F068 /* Workout.m in Sources */,
 				F38DD84F18C58FBB004860C2 /* MainViewController.m in Sources */,
+				F3E3A90118C727840022F068 /* WorkoutDetailsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -503,12 +551,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		F38DD82A18C58D8F004860C2 /* gymTracker.xcdatamodeld */ = {
+		F3E3A90218C72B5E0022F068 /* gymTracker.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				F38DD82B18C58D8F004860C2 /* gymTracker.xcdatamodel */,
+				F3E3A90318C72B5E0022F068 /* gymTracker.xcdatamodel */,
 			);
-			currentVersion = F38DD82B18C58D8F004860C2 /* gymTracker.xcdatamodel */;
+			currentVersion = F3E3A90318C72B5E0022F068 /* gymTracker.xcdatamodel */;
 			path = gymTracker.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

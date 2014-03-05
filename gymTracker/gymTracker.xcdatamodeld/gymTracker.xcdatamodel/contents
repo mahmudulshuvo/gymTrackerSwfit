@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="12F45" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Image" representedClassName="Image" syncable="YES">
-        <attribute name="imageData" optional="YES" attributeType="Binary" syncable="YES"/>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="12F45" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Equipment" representedClassName="Equipment" syncable="YES">
+        <attribute name="equipmentName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="imageName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="workout" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Workout" inverseName="equipment" inverseEntity="Workout" syncable="YES"/>
+    </entity>
+    <entity name="Workout" representedClassName="Workout" syncable="YES">
+        <attribute name="workoutDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="workoutSet1" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="workoutSet2" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="workoutSet3" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="equipment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Equipment" inverseName="workout" inverseEntity="Equipment" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Image" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Equipment" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Workout" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>
