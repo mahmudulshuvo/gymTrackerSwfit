@@ -1,13 +1,6 @@
-//
-//  EquipmentMainViewController.m
-//  gymTracker
-//
-//  Created by Third Bit on 3/5/14.
-//  Copyright (c) 2014 Third Bit. All rights reserved.
-//
-
 #import "EquipmentMainViewController.h"
 #import "AppDelegate.h"
+#import "EquipmentDetailsViewController.h"
 
 @interface EquipmentMainViewController ()
 
@@ -82,6 +75,28 @@
     return cell;
 }
 
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"EquipmentDetailsNewView"])
+    {
+        EquipmentDetailsViewController *equipmentDetailsView = [segue destinationViewController];
+        equipmentDetailsView.selectedEquipment = nil;
+        equipmentDetailsView.equipments = self.equipmentsList;
+        equipmentDetailsView.title = @"New Equipment";
+    }
+    
+    else if([segue.identifier isEqualToString:@"EquipmentDetailsEditView"])
+    {
+        EquipmentDetailsViewController *equipmentDetailsView = [segue destinationViewController];
+        NSIndexPath *myIndexPath = [self.tableView indexPathForSelectedRow];
+        int row = [myIndexPath row];
+        equipmentDetailsView.selectedEquipment = self.equipmentsList[row];
+        equipmentDetailsView.equipments = self.equipmentsList;
+        equipmentDetailsView.title = @"Edit Equipment";
+    }
+}
+
+
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -120,17 +135,5 @@
     return YES;
 }
 */
-
-/*
-#pragma mark - Navigation
-
-// In a story board-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-
- */
 
 @end

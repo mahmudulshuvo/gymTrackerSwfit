@@ -1,15 +1,8 @@
-//
-//  WorkoutMainViewController.m
-//  gymTracker
-//
-//  Created by Third Bit on 3/5/14.
-//  Copyright (c) 2014 Third Bit. All rights reserved.
-//
-
 #import "WorkoutMainViewController.h"
 #import "WorkoutTableCell.h"
 #import "AppDelegate.h"
 #import "Equipment.h"
+#import "WorkoutDetailsViewController.h"
 
 @interface WorkoutMainViewController ()
 
@@ -92,6 +85,16 @@
 
 }
 
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"WorkOutDetails"])
+    {
+        WorkoutDetailsViewController *workoutDetailsView = [segue destinationViewController];
+        NSIndexPath *myIndexPath = [self.tableView indexPathForSelectedRow];
+        int row = [myIndexPath row];
+        workoutDetailsView.selectedEquipment = self.equipmentsList[row];
+    }
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -130,17 +133,5 @@
     return YES;
 }
 */
-
-/*
-#pragma mark - Navigation
-
-// In a story board-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-
- */
 
 @end

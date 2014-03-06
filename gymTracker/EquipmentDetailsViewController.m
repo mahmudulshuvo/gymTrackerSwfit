@@ -1,15 +1,10 @@
-//
-//  EquipmentDetailsViewController.m
-//  gymTracker
-//
-//  Created by Third Bit on 3/5/14.
-//  Copyright (c) 2014 Third Bit. All rights reserved.
-//
-
 #import "EquipmentDetailsViewController.h"
 #import "Utility.h"
+#import "AppDelegate.h"
 
 @interface EquipmentDetailsViewController ()
+
+@property (nonatomic, readonly) NSManagedObjectContext *managedObjectContext;
 
 @end
 
@@ -27,7 +22,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+	self.equipmentNameTextField.delegate = self;
+}
+
+- (NSManagedObjectContext *)managedObjectContext
+{
+    return [(AppDelegate *) [[UIApplication sharedApplication] delegate] managedObjectContext];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
 }
 
 - (void)didReceiveMemoryWarning
@@ -38,7 +44,38 @@
 
 - (IBAction)saveBtn:(id)sender
 {
+    NSString *strEquipmentName = [self.equipmentNameTextField.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
+    if(strEquipmentName.length == 0)
+    {
+        [Utility showAlert:@"Error" message:@"Equipment name is required"];
+        return;
+    }
     
+    if(_selectedEquipment == nil)
+    {
+        int totalEquipmentsCount = self.equipments.count;
+        for(int i=0;i<totalEquipmentsCount;i++)
+        {
+            Equipment *equipmentFromArray = [self.equipments objectAtIndex:i];
+            if([[equipmentFromArray.equipmentName lowercaseString] isEqualToString:[strEquipmentName lowercaseString]])
+            {
+                [Utility showAlert:@"Error" message:@"The specified shop name already exists"];
+                return;
+            }
+        }
+
+        _selectedEquipment = [NSEntityDescription insertNewObjectForEntityForName:@"Equipment" inManagedObjectContext:self.managedObjectContext];
+    }
+    
+    _selectedEquipment.equipmentName = strEquipmentName;
+    
+    NSError *error;
+    if (![self.managedObjectContext save:&error])
+    {
+        NSLog(@"Unable to save! %@ %@", error, [error localizedDescription]);
+    }
+    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)takePhoto:(id)sender

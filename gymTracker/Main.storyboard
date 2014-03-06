@@ -281,7 +281,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="imageNameTextField" destination="Gt7-7a-xVu" id="12U-zs-gzg"/>
+                        <outlet property="equipmentNameTextField" destination="Gt7-7a-xVu" id="SBB-5P-Hwj"/>
                         <outlet property="imageView" destination="abt-yU-cPq" id="XnL-Ov-R7m"/>
                     </connections>
                 </viewController>
@@ -315,6 +315,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="9qr-kR-hNI"/>
+        <segue reference="4kU-ls-Xda"/>
     </inferredMetricsTieBreakers>
 </document>
