@@ -27,6 +27,26 @@
 	self.set1TextField.delegate = self;
     self.set2TextField.delegate = self;
     self.set3TextField.delegate = self;
+    
+    NSDate *today = [NSDate date];
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Workout"];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"equipment == %@, workoutDate = %@", _selectedEquipment, today];
+    [fetchRequest setPredicate:predicate];
+    
+    NSArray *array = [self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
+    if(array == nil || array.count < 1)
+    {
+        self.workout = [NSEntityDescription insertNewObjectForEntityForName:@"Workout" inManagedObjectContext:self.managedObjectContext];
+        self.workout.equipment = _selectedEquipment;
+        self.workout.workoutDate = today;
+    }
+    else
+    {
+        self.workout = array[0];
+        self.set1TextField.text = [NSString stringWithFormat:@"%@", self.workout.workoutSet1];
+        self.set2TextField.text = [NSString stringWithFormat:@"%@", self.workout.workoutSet2];
+        self.set3TextField.text = [NSString stringWithFormat:@"%@", self.workout.workoutSet3];
+    }
 }
 
 - (NSManagedObjectContext *)managedObjectContext
@@ -93,13 +113,9 @@
         return;
     }
     
-    Workout *workout = [NSEntityDescription insertNewObjectForEntityForName:@"Workout" inManagedObjectContext:self.managedObjectContext];
-    workout.equipment = _selectedEquipment;
-    workout.workoutSet1 = set1;
-    workout.workoutSet2 = set2;
-    workout.workoutSet3 = set3;
-    NSDate *today = [NSDate date];
-    workout.workoutDate = today;
+    self.workout.workoutSet1 = set1;
+    self.workout.workoutSet2 = set2;
+    self.workout.workoutSet3 = set3;
 
     NSError *error;
     if (![self.managedObjectContext save:&error])

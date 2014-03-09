@@ -151,7 +151,7 @@
         <scene sceneID="RV6-d6-6Jh">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="b4K-Ln-SHB" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Workout" id="bA2-Xf-n4a"/>
+                    <tabBarItem key="tabBarItem" title="Workout" image="workout.png" id="bA2-Xf-n4a"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="5l9-ST-opK">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -179,7 +179,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Report" id="wRE-2B-Sii"/>
+                    <tabBarItem key="tabBarItem" title="Report" image="report.png" id="wRE-2B-Sii"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y6y-Xc-3zD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -194,7 +194,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="70" id="vv7-ZW-sln" customClass="EquipmentTableCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="EquipmentTableCell" rowHeight="70" id="vv7-ZW-sln" customClass="EquipmentTableCell">
                                 <rect key="frame" x="0.0" y="86" width="320" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vv7-ZW-sln" id="ogJ-OM-WDK">
@@ -293,7 +293,7 @@
         <scene sceneID="Q4d-5Z-2Dd">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Wzn-ha-Xh4" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Add Equipments" id="71x-KB-bTM"/>
+                    <tabBarItem key="tabBarItem" title="Add Equipments" image="addIcon.png" id="71x-KB-bTM"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="1P2-cm-97J">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -309,6 +309,11 @@
             <point key="canvasLocation" x="580" y="1406"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="addIcon.png" width="30" height="30"/>
+        <image name="report.png" width="30" height="30"/>
+        <image name="workout.png" width="30" height="30"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

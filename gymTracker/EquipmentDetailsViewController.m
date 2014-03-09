@@ -23,6 +23,14 @@
 {
     [super viewDidLoad];
 	self.equipmentNameTextField.delegate = self;
+    if(_selectedEquipment != nil)
+    {
+        self.equipmentNameTextField.text = [NSString stringWithFormat:@"%@", _selectedEquipment.equipmentName];
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentsDir = [paths objectAtIndex:0];
+        NSString *filePath = [NSString stringWithFormat:@"%@/%@", documentsDir, _selectedEquipment.imageName];
+        [self.imageView setImage:[UIImage imageWithContentsOfFile:filePath]];
+    }
 }
 
 - (NSManagedObjectContext *)managedObjectContext
@@ -45,6 +53,7 @@
 - (IBAction)saveBtn:(id)sender
 {
     NSString *strEquipmentName = [self.equipmentNameTextField.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
+    
     if(strEquipmentName.length == 0)
     {
         [Utility showAlert:@"Error" message:@"Equipment name is required"];
@@ -67,7 +76,23 @@
         _selectedEquipment = [NSEntityDescription insertNewObjectForEntityForName:@"Equipment" inManagedObjectContext:self.managedObjectContext];
     }
     
+    if(self.imageView.image == nil)
+    {
+        [Utility showAlert:@"Error" message:@"Please take a photo of the equipment"];
+        return;
+    }
+    
     _selectedEquipment.equipmentName = strEquipmentName;
+    _selectedEquipment.imageName = [NSString stringWithFormat:@"%@.png", strEquipmentName];
+    
+    [[NSUserDefaults standardUserDefaults]setValue:_selectedEquipment.imageName forKey:@"imageName"];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    
+    NSString *savedImagePath = [documentsDirectory stringByAppendingPathComponent:_selectedEquipment.imageName];
+    UIImage *image = self.imageView.image;
+    NSData *imageData = UIImagePNGRepresentation(image);
+    [imageData writeToFile:savedImagePath atomically:NO];
     
     NSError *error;
     if (![self.managedObjectContext save:&error])
