@@ -3,6 +3,7 @@
 #import "AppDelegate.h"
 #import "Equipment.h"
 #import "WorkoutDetailsViewController.h"
+#import "Utility.h"
 
 @interface WorkoutMainViewController ()
 
@@ -79,7 +80,13 @@
     
     Equipment *equipment = [self.equipmentsList objectAtIndex:[indexPath row]];
     cell.equipmentNameLabel.text = equipment.equipmentName;
-    [cell.imageView setImage:[UIImage imageNamed:equipment.imageName]];
+    UIImage *image;
+    if(equipment.imageName == nil)
+        image = [UIImage imageNamed:@"no_image.jpg"];
+    else
+        image = [UIImage imageNamed:equipment.imageName];
+    [cell.imageView setImage:image];
+    //[cell.imageView setImage:[Utility scaleImage:image toSize:cell.imageView.frame.size]];
     
     return cell;
 

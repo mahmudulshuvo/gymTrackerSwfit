@@ -28,9 +28,9 @@
     self.set2TextField.delegate = self;
     self.set3TextField.delegate = self;
     
-    NSDate *today = [NSDate date];
+    NSDate *now = [NSDate date];
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Workout"];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"equipment == %@, workoutDate = %@", _selectedEquipment, today];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"equipment = %@ and (workoutDate >= %@) AND (workoutDate < %@)", _selectedEquipment, [Utility dateAtBeginningOfDayForDate:now], now, nil];
     [fetchRequest setPredicate:predicate];
     
     NSArray *array = [self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
@@ -38,7 +38,7 @@
     {
         self.workout = [NSEntityDescription insertNewObjectForEntityForName:@"Workout" inManagedObjectContext:self.managedObjectContext];
         self.workout.equipment = _selectedEquipment;
-        self.workout.workoutDate = today;
+        self.workout.workoutDate = now;
     }
     else
     {
@@ -83,7 +83,7 @@
         return;
     }
     
-    NSString *strSet2 = [self.set1TextField.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
+    NSString *strSet2 = [self.set2TextField.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
     
     if(strSet2.length == 0)
     {
@@ -98,7 +98,7 @@
         return;
     }
 
-    NSString *strSet3 = [self.set1TextField.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
+    NSString *strSet3 = [self.set3TextField.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
     
     if(strSet3.length == 0)
     {

@@ -14,7 +14,8 @@
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
-    if (self) {
+    if (self)
+    {
         // Custom initialization
     }
     return self;
@@ -75,10 +76,15 @@
     {
         cell = [[EquipmentTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    
+
     Equipment *equipment = [self.equipmentsList objectAtIndex:[indexPath row]];
     cell.equipmentNameLabel.text = [NSString stringWithFormat:@"%@", equipment.equipmentName];
-    UIImage *image = [UIImage imageNamed:equipment.equipmentName];
+    
+    UIImage *image;
+    if(equipment.imageName == nil)
+        image = [UIImage imageNamed:@"no_image.jpg"];
+    else
+        image = [UIImage imageNamed:equipment.imageName];
     [cell.imageView setImage:image];
     
     return cell;
@@ -119,14 +125,17 @@
     {
         Equipment *equipment = [self.equipmentsList objectAtIndex:[indexPath row]];
         
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *documentsDir = [paths objectAtIndex:0];
-        NSString *filePath = [NSString stringWithFormat:@"%@/%@", documentsDir, equipment.imageName];
-        NSFileManager *fileManager = [NSFileManager defaultManager];
-        
-        if ([fileManager fileExistsAtPath:filePath] == YES)
+        if(equipment.imageName != nil)
         {
-            [fileManager removeItemAtPath:filePath error: NULL];
+            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+            NSString *documentsDir = [paths objectAtIndex:0];
+            NSString *filePath = [NSString stringWithFormat:@"%@/%@", documentsDir, equipment.imageName];
+            NSFileManager *fileManager = [NSFileManager defaultManager];
+        
+            if ([fileManager fileExistsAtPath:filePath] == YES)
+            {
+                [fileManager removeItemAtPath:filePath error: NULL];
+            }
         }
         
         [self.managedObjectContext deleteObject:equipment];

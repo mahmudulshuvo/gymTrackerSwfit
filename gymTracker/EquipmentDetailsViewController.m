@@ -10,6 +10,8 @@
 
 @implementation EquipmentDetailsViewController
 
+bool hasChosenImage;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -22,14 +24,22 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    hasChosenImage = false;
 	self.equipmentNameTextField.delegate = self;
     if(_selectedEquipment != nil)
     {
         self.equipmentNameTextField.text = [NSString stringWithFormat:@"%@", _selectedEquipment.equipmentName];
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *documentsDir = [paths objectAtIndex:0];
-        NSString *filePath = [NSString stringWithFormat:@"%@/%@", documentsDir, _selectedEquipment.imageName];
-        [self.imageView setImage:[UIImage imageWithContentsOfFile:filePath]];
+        if(_selectedEquipment.imageName != nil)
+        {
+            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+            NSString *documentsDir = [paths objectAtIndex:0];
+            NSString *filePath = [NSString stringWithFormat:@"%@/%@", documentsDir, _selectedEquipment.imageName];
+            [self.imageView setImage:[UIImage imageWithContentsOfFile:filePath]];
+        }
+        else
+        {
+            [self.imageView setImage:[UIImage imageNamed:@"no_image.jpg"]];
+        }
     }
 }
 
@@ -68,31 +78,29 @@
             Equipment *equipmentFromArray = [self.equipments objectAtIndex:i];
             if([[equipmentFromArray.equipmentName lowercaseString] isEqualToString:[strEquipmentName lowercaseString]])
             {
-                [Utility showAlert:@"Error" message:@"The specified shop name already exists"];
+                [Utility showAlert:@"Error" message:@"The specified Equipment name already exists"];
                 return;
             }
         }
 
         _selectedEquipment = [NSEntityDescription insertNewObjectForEntityForName:@"Equipment" inManagedObjectContext:self.managedObjectContext];
-    }
-    
-    if(self.imageView.image == nil)
-    {
-        [Utility showAlert:@"Error" message:@"Please take a photo of the equipment"];
-        return;
+        if(self.imageView.image != nil)
+            _selectedEquipment.imageName = [NSString stringWithFormat:@"%@.png", strEquipmentName];
     }
     
     _selectedEquipment.equipmentName = strEquipmentName;
-    _selectedEquipment.imageName = [NSString stringWithFormat:@"%@.png", strEquipmentName];
     
-    [[NSUserDefaults standardUserDefaults]setValue:_selectedEquipment.imageName forKey:@"imageName"];
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
+    if(hasChosenImage)
+    {
+        [[NSUserDefaults standardUserDefaults]setValue:_selectedEquipment.imageName forKey:@"imageName"];
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentsDirectory = [paths objectAtIndex:0];
     
-    NSString *savedImagePath = [documentsDirectory stringByAppendingPathComponent:_selectedEquipment.imageName];
-    UIImage *image = self.imageView.image;
-    NSData *imageData = UIImagePNGRepresentation(image);
-    [imageData writeToFile:savedImagePath atomically:NO];
+        NSString *savedImagePath = [documentsDirectory stringByAppendingPathComponent:_selectedEquipment.imageName];
+        UIImage *image = self.imageView.image;
+        NSData *imageData = UIImagePNGRepresentation(image);
+        [imageData writeToFile:savedImagePath atomically:NO];
+    }
     
     NSError *error;
     if (![self.managedObjectContext save:&error])
@@ -121,6 +129,7 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     [self.imageView setImage:[info objectForKey:UIImagePickerControllerOriginalImage]];
+    hasChosenImage = true;
 }
 
 /*- (IBAction)browseBtn:(id)sender

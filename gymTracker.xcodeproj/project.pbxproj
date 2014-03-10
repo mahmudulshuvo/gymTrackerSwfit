@@ -32,6 +32,7 @@
 		F3D915D818CC176800CF1B9A /* workout@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F3D915D218CC176800CF1B9A /* workout@2x.png */; };
 		F3D915E318CC223700CF1B9A /* Equipment.m in Sources */ = {isa = PBXBuildFile; fileRef = F3D915E018CC223700CF1B9A /* Equipment.m */; };
 		F3D915E418CC223700CF1B9A /* Workout.m in Sources */ = {isa = PBXBuildFile; fileRef = F3D915E218CC223700CF1B9A /* Workout.m */; };
+		F3E174B618CDD189003BECBA /* no_image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F3E174B518CDD189003BECBA /* no_image.jpg */; };
 		F3E3A8F818C726410022F068 /* WorkoutMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E3A8F718C726410022F068 /* WorkoutMainViewController.m */; };
 		F3E3A8FB18C726920022F068 /* WorkoutTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E3A8FA18C726920022F068 /* WorkoutTableCell.m */; };
 		F3E3A90118C727840022F068 /* WorkoutDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E3A90018C727840022F068 /* WorkoutDetailsViewController.m */; };
@@ -85,6 +86,7 @@
 		F3D915E018CC223700CF1B9A /* Equipment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Equipment.m; sourceTree = "<group>"; };
 		F3D915E118CC223700CF1B9A /* Workout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Workout.h; sourceTree = "<group>"; };
 		F3D915E218CC223700CF1B9A /* Workout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Workout.m; sourceTree = "<group>"; };
+		F3E174B518CDD189003BECBA /* no_image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = no_image.jpg; sourceTree = "<group>"; };
 		F3E3A8F618C726410022F068 /* WorkoutMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkoutMainViewController.h; sourceTree = "<group>"; };
 		F3E3A8F718C726410022F068 /* WorkoutMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkoutMainViewController.m; sourceTree = "<group>"; };
 		F3E3A8F918C726920022F068 /* WorkoutTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkoutTableCell.h; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 		F3D915CC18CC176800CF1B9A /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				F3E174B518CDD189003BECBA /* no_image.jpg */,
 				F3D915CD18CC176800CF1B9A /* addIcon.png */,
 				F3D915CE18CC176800CF1B9A /* addIcon@2x.png */,
 				F3D915CF18CC176800CF1B9A /* report.png */,
@@ -332,6 +335,7 @@
 				F3D915D718CC176800CF1B9A /* workout.png in Resources */,
 				F3D915D318CC176800CF1B9A /* addIcon.png in Resources */,
 				F38DD84C18C58DEC004860C2 /* Main.storyboard in Resources */,
+				F3E174B618CDD189003BECBA /* no_image.jpg in Resources */,
 				F3D915D618CC176800CF1B9A /* report@2x.png in Resources */,
 				F38DD82318C58D8F004860C2 /* InfoPlist.strings in Resources */,
 				F38DD82E18C58D8F004860C2 /* Images.xcassets in Resources */,
