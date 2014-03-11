@@ -24,6 +24,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    NSString *weightLabelValue = ((AppDelegate *) [[UIApplication sharedApplication] delegate]).settings.weight;
+    if(![self.weightLabel1.text isEqualToString:weightLabelValue])
+    {
+        self.weightLabel1.text = weightLabelValue;
+        self.weightLabel2.text = weightLabelValue;
+        self.weightLabel3.text = weightLabelValue;
+    }
+    
 	self.set1TextField.delegate = self;
     self.set2TextField.delegate = self;
     self.set3TextField.delegate = self;
@@ -85,37 +94,31 @@
     
     NSString *strSet2 = [self.set2TextField.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
     
-    if(strSet2.length == 0)
+    if(strSet2.length > 0)
     {
-        [Utility showAlert:@"Error" message:@"Set 2 field is required"];
-        return;
-    }
-    
-    NSNumber *set2 = [[[NSNumberFormatter alloc] init] numberFromString:strSet2];
-    if(!set2 || [set2 floatValue] < 1)
-    {
-        [Utility showAlert:@"Error" message:@"Please insert a valid number in Set 2 field"];
-        return;
+        NSNumber *set2 = [[[NSNumberFormatter alloc] init] numberFromString:strSet2];
+        if(!set2 || [set2 floatValue] < 0)
+        {
+            [Utility showAlert:@"Error" message:@"Please insert a valid number in Set 2 field"];
+            return;
+        }
+        self.workout.workoutSet2 = set2;
     }
 
     NSString *strSet3 = [self.set3TextField.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
     
-    if(strSet3.length == 0)
+    if(strSet3.length > 0)
     {
-        [Utility showAlert:@"Error" message:@"Set 3 field is required"];
-        return;
-    }
-    
-    NSNumber *set3 = [[[NSNumberFormatter alloc] init] numberFromString:strSet3];
-    if(!set3 || [set3 floatValue] < 1)
-    {
-        [Utility showAlert:@"Error" message:@"Please insert a valid number in Set 3 field"];
-        return;
+        NSNumber *set3 = [[[NSNumberFormatter alloc] init] numberFromString:strSet3];
+        if(!set3 || [set3 floatValue] < 0)
+        {
+            [Utility showAlert:@"Error" message:@"Please insert a valid number in Set 3 field"];
+            return;
+        }
+        self.workout.workoutSet3 = set3;
     }
     
     self.workout.workoutSet1 = set1;
-    self.workout.workoutSet2 = set2;
-    self.workout.workoutSet3 = set3;
 
     NSError *error;
     if (![self.managedObjectContext save:&error])

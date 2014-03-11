@@ -1,4 +1,6 @@
 #import "AppDelegate.h"
+#import "Settings.h"
+#import "Utility.h"
 
 @implementation AppDelegate
 
@@ -8,6 +10,23 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Settings"];
+    NSArray *array = [self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
+    
+    if(array == nil || array.count < 1)
+    {
+        self.settings = [NSEntityDescription insertNewObjectForEntityForName:@"Settings" inManagedObjectContext:self.managedObjectContext];
+        self.settings.weight = @"lbs";
+        NSError *error;
+        if (![self.managedObjectContext save:&error])
+        {
+            NSLog(@"Unable to save! %@ %@", error, [error localizedDescription]);
+        }
+    }
+    else
+    {
+        self.settings = array[0];
+    }
     return YES;
 }
 

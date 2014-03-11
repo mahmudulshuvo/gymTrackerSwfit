@@ -5,6 +5,9 @@
         <attribute name="imageName" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="workout" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Workout" inverseName="equipment" inverseEntity="Workout" syncable="YES"/>
     </entity>
+    <entity name="Settings" representedClassName="Settings" syncable="YES">
+        <attribute name="weight" attributeType="String" defaultValueString="lbs" syncable="YES"/>
+    </entity>
     <entity name="Workout" representedClassName="Workout" syncable="YES">
         <attribute name="workoutDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="workoutSet1" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
@@ -15,5 +18,6 @@
     <elements>
         <element name="Equipment" positionX="0" positionY="0" width="0" height="0"/>
         <element name="Workout" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Settings" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

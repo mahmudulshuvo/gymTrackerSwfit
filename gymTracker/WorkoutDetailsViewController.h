@@ -10,6 +10,12 @@
 
 @property (strong, nonatomic) IBOutlet UITextField *set3TextField;
 
+@property (strong, nonatomic) IBOutlet UILabel *weightLabel1;
+
+@property (strong, nonatomic) IBOutlet UILabel *weightLabel2;
+
+@property (strong, nonatomic) IBOutlet UILabel *weightLabel3;
+
 @property (retain, nonatomic) Equipment *selectedEquipment;
 @property (retain, nonatomic) Workout *workout;
 
