@@ -1,5 +1,6 @@
 #import "SettingsViewController.h"
 #import "AppDelegate.h"
+#import "Utility.h"
 
 @interface SettingsViewController ()
 
@@ -44,8 +45,13 @@
     NSString *strWeight;
     if(self.lbsSwitch.isOn)
         strWeight = @"lbs";
-    else
+    else if(self.kgSwitch.isOn)
         strWeight = @"kg";
+    else
+    {
+        [Utility showAlert:@"Error" message:@"Please select a weight type"];
+        return;
+    }
     ((AppDelegate *) [[UIApplication sharedApplication] delegate]).settings.weight = strWeight;
     
     NSError *error;

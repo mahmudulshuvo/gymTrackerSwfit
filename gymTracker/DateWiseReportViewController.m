@@ -1,17 +1,19 @@
-#import "WorkoutMainViewController.h"
-#import "WorkoutTableCell.h"
+#import "DateWiseReportViewController.h"
 #import "AppDelegate.h"
-#import "Equipment.h"
-#import "WorkoutDetailsViewController.h"
 #import "Utility.h"
+#import "Workout.h"
+#import "Equipment.h"
+#import "DateWiseReportCell.h"
 
-@interface WorkoutMainViewController ()
+@interface DateWiseReportViewController ()
 
 @property (nonatomic, readonly) NSManagedObjectContext *managedObjectContext;
 
 @end
 
-@implementation WorkoutMainViewController
+@implementation DateWiseReportViewController
+
+NSString *weightLabelValue;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -36,12 +38,13 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [super viewDidAppear:animated];
+    [super viewDidAppear:YES];
+    weightLabelValue = ((AppDelegate *) [[UIApplication sharedApplication] delegate]).settings.weight;
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Workout"];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(workoutDate >= %@) AND (workoutDate < %@)",[Utility dateAtBeginningOfDayForDate:self.selectedDate], self.selectedDate, nil];
+    [fetchRequest setPredicate:predicate];
     
-    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Equipment"];
-    fetchRequest.sortDescriptors = [NSArray arrayWithObjects:[NSSortDescriptor sortDescriptorWithKey:@"equipmentName" ascending:YES], nil];
-    
-    self.equipmentsList = [NSMutableArray arrayWithArray:[self.managedObjectContext executeFetchRequest:fetchRequest error:nil]];
+    self.workoutList = [self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
     
     [self.tableView reloadData];
 }
@@ -61,26 +64,32 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.equipmentsList.count;
+    // Return the number of rows in the section.
+    return self.workoutList.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"WorkoutTableCell";
-    WorkoutTableCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    static NSString *CellIdentifier = @"DateWiseReportCell";
+    DateWiseReportCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     if(cell == nil)
     {
-        cell = [[WorkoutTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[DateWiseReportCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    Equipment *equipment = [self.equipmentsList objectAtIndex:[indexPath row]];
+    Workout *workout = [self.workoutList objectAtIndex:[indexPath row]];
+    Equipment *equipment = workout.equipment;
     cell.equipmentNameLabel.text = equipment.equipmentName;
+    cell.set1ValueLabel.text = [NSString stringWithFormat:@"%@ %@", workout.workoutSet1, weightLabelValue];
+    cell.set2ValueLabel.text = [NSString stringWithFormat:@"%@ %@", workout.workoutSet2, weightLabelValue];
+    cell.set3ValueLabel.text = [NSString stringWithFormat:@"%@ %@", workout.workoutSet3, weightLabelValue];
     UIImage *image;
     if(equipment.imageName == nil)
         image = [UIImage imageNamed:@"no_image.jpg"];
@@ -89,19 +98,8 @@
     [cell.equipmentImageView setImage:image];
     
     return cell;
-
 }
 
-- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if([segue.identifier isEqualToString:@"WorkOutDetails"])
-    {
-        WorkoutDetailsViewController *workoutDetailsView = [segue destinationViewController];
-        NSIndexPath *myIndexPath = [self.tableView indexPathForSelectedRow];
-        NSInteger row = [myIndexPath row];
-        workoutDetailsView.selectedEquipment = self.equipmentsList[row];
-    }
-}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -140,5 +138,17 @@
     return YES;
 }
 */
+
+/*
+#pragma mark - Navigation
+
+// In a story board-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+
+ */
 
 @end

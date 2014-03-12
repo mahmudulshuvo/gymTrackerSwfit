@@ -2,7 +2,7 @@
 
 @interface EquipmentTableCell : UITableViewCell
 
-@property (strong, nonatomic) IBOutlet UIImageView *imageView;
+@property (strong, nonatomic) IBOutlet UIImageView *equipmentImageView;
 
 @property (strong, nonatomic) IBOutlet UILabel *equipmentNameLabel;
 

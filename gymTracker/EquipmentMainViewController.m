@@ -85,7 +85,7 @@
         image = [UIImage imageNamed:@"no_image.jpg"];
     else
         image = [UIImage imageNamed:equipment.imageName];
-    [cell.imageView setImage:image];
+    [cell.equipmentImageView setImage:image];
     
     return cell;
 }
@@ -104,7 +104,7 @@
     {
         EquipmentDetailsViewController *equipmentDetailsView = [segue destinationViewController];
         NSIndexPath *myIndexPath = [self.tableView indexPathForSelectedRow];
-        int row = [myIndexPath row];
+        NSInteger row = [myIndexPath row];
         equipmentDetailsView.selectedEquipment = self.equipmentsList[row];
         equipmentDetailsView.equipments = self.equipmentsList;
         equipmentDetailsView.title = @"Edit Equipment";

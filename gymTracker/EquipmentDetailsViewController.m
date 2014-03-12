@@ -15,7 +15,8 @@ bool hasChosenImage;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
+    if (self)
+    {
         // Custom initialization
     }
     return self;
@@ -34,11 +35,11 @@ bool hasChosenImage;
             NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
             NSString *documentsDir = [paths objectAtIndex:0];
             NSString *filePath = [NSString stringWithFormat:@"%@/%@", documentsDir, _selectedEquipment.imageName];
-            [self.imageView setImage:[UIImage imageWithContentsOfFile:filePath]];
+            [self.equipmentImageView setImage:[UIImage imageWithContentsOfFile:filePath]];
         }
         else
         {
-            [self.imageView setImage:[UIImage imageNamed:@"no_image.jpg"]];
+            [self.equipmentImageView setImage:[UIImage imageNamed:@"no_image.jpg"]];
         }
     }
 }
@@ -72,7 +73,7 @@ bool hasChosenImage;
     
     if(_selectedEquipment == nil)
     {
-        int totalEquipmentsCount = self.equipments.count;
+        NSUInteger totalEquipmentsCount = self.equipments.count;
         for(int i=0;i<totalEquipmentsCount;i++)
         {
             Equipment *equipmentFromArray = [self.equipments objectAtIndex:i];
@@ -84,7 +85,7 @@ bool hasChosenImage;
         }
 
         _selectedEquipment = [NSEntityDescription insertNewObjectForEntityForName:@"Equipment" inManagedObjectContext:self.managedObjectContext];
-        if(self.imageView.image != nil)
+        if(self.equipmentImageView.image != nil)
             _selectedEquipment.imageName = [NSString stringWithFormat:@"%@.png", strEquipmentName];
     }
     
@@ -97,7 +98,7 @@ bool hasChosenImage;
         NSString *documentsDirectory = [paths objectAtIndex:0];
     
         NSString *savedImagePath = [documentsDirectory stringByAppendingPathComponent:_selectedEquipment.imageName];
-        UIImage *image = self.imageView.image;
+        UIImage *image = self.equipmentImageView.image;
         NSData *imageData = UIImagePNGRepresentation(image);
         [imageData writeToFile:savedImagePath atomically:NO];
     }
@@ -128,7 +129,7 @@ bool hasChosenImage;
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    [self.imageView setImage:[info objectForKey:UIImagePickerControllerOriginalImage]];
+    [self.equipmentImageView setImage:[info objectForKey:UIImagePickerControllerOriginalImage]];
     hasChosenImage = true;
 }
 

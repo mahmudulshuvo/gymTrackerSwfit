@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F30F4F7418D018EA00110719 /* DateWiseReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F30F4F7318D018EA00110719 /* DateWiseReportViewController.m */; };
+		F30F4F7718D01EC100110719 /* EquipmentWiseReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F30F4F7618D01EC100110719 /* EquipmentWiseReportViewController.m */; };
+		F30F4F8018D025F500110719 /* DateWiseReportCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F30F4F7F18D025F500110719 /* DateWiseReportCell.m */; };
 		F38DD81718C58D8F004860C2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F38DD81618C58D8F004860C2 /* Foundation.framework */; };
 		F38DD81918C58D8F004860C2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F38DD81818C58D8F004860C2 /* CoreGraphics.framework */; };
 		F38DD81B18C58D8F004860C2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F38DD81A18C58D8F004860C2 /* UIKit.framework */; };
@@ -58,6 +61,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F30F4F7218D018EA00110719 /* DateWiseReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateWiseReportViewController.h; sourceTree = "<group>"; };
+		F30F4F7318D018EA00110719 /* DateWiseReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateWiseReportViewController.m; sourceTree = "<group>"; };
+		F30F4F7518D01EC100110719 /* EquipmentWiseReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EquipmentWiseReportViewController.h; sourceTree = "<group>"; };
+		F30F4F7618D01EC100110719 /* EquipmentWiseReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EquipmentWiseReportViewController.m; sourceTree = "<group>"; };
+		F30F4F7E18D025F500110719 /* DateWiseReportCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateWiseReportCell.h; sourceTree = "<group>"; };
+		F30F4F7F18D025F500110719 /* DateWiseReportCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateWiseReportCell.m; sourceTree = "<group>"; };
 		F38DD81318C58D8F004860C2 /* gymTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gymTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F38DD81618C58D8F004860C2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F38DD81818C58D8F004860C2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -189,6 +198,12 @@
 				F3E3A90018C727840022F068 /* WorkoutDetailsViewController.m */,
 				F3E3A91218C731030022F068 /* ReportViewController.h */,
 				F3E3A91318C731030022F068 /* ReportViewController.m */,
+				F30F4F7218D018EA00110719 /* DateWiseReportViewController.h */,
+				F30F4F7318D018EA00110719 /* DateWiseReportViewController.m */,
+				F30F4F7E18D025F500110719 /* DateWiseReportCell.h */,
+				F30F4F7F18D025F500110719 /* DateWiseReportCell.m */,
+				F30F4F7518D01EC100110719 /* EquipmentWiseReportViewController.h */,
+				F30F4F7618D01EC100110719 /* EquipmentWiseReportViewController.m */,
 				F3E3A91518C731A80022F068 /* EquipmentMainViewController.h */,
 				F3E3A91618C731A80022F068 /* EquipmentMainViewController.m */,
 				F3E3A91818C731C80022F068 /* EquipmentDetailsViewController.h */,
@@ -316,7 +331,7 @@
 		F38DD80B18C58D8F004860C2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Third Bit";
 				TargetAttributes = {
 					F38DD83218C58D8F004860C2 = {
@@ -384,9 +399,12 @@
 				F3E3A91418C731030022F068 /* ReportViewController.m in Sources */,
 				F38DD85318C59B39004860C2 /* Utility.m in Sources */,
 				F3D5D5B118CEC5C6009317E3 /* Settings.m in Sources */,
+				F30F4F7718D01EC100110719 /* EquipmentWiseReportViewController.m in Sources */,
+				F30F4F8018D025F500110719 /* DateWiseReportCell.m in Sources */,
 				F3E3A8F818C726410022F068 /* WorkoutMainViewController.m in Sources */,
 				F3E3A91D18C734190022F068 /* EquipmentTableCell.m in Sources */,
 				F3D915E318CC223700CF1B9A /* Equipment.m in Sources */,
+				F30F4F7418D018EA00110719 /* DateWiseReportViewController.m in Sources */,
 				F3D915E418CC223700CF1B9A /* Workout.m in Sources */,
 				F38DD82518C58D8F004860C2 /* main.m in Sources */,
 				F3E3A91718C731A80022F068 /* EquipmentMainViewController.m in Sources */,
@@ -438,7 +456,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -477,7 +494,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -535,7 +551,6 @@
 		F38DD84918C58D8F004860C2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/gymTracker.app/gymTracker";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -558,7 +573,6 @@
 		F38DD84A18C58D8F004860C2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/gymTracker.app/gymTracker";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
