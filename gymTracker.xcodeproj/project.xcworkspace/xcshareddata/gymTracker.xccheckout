@@ -5,34 +5,34 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>58596573-B175-4B4B-8457-2F0CE191A4F2</string>
+	<string>F671C850-7C19-4CBC-908F-F8068B9C605E</string>
 	<key>IDESourceControlProjectName</key>
 	<string>gymTracker</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>7E270AFA-F2A2-40DD-9B56-3EA5B7B5DB0F</key>
-		<string>https://github.com/3rd-bit/gymTracker</string>
+		<key>6EB5817C-0053-439F-863E-1983CE6DCD27</key>
+		<string>https://github.com/3rd-bit/gymTracker.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>gymTracker.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>7E270AFA-F2A2-40DD-9B56-3EA5B7B5DB0F</key>
+		<key>6EB5817C-0053-439F-863E-1983CE6DCD27</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/3rd-bit/gymTracker</string>
+	<string>https://github.com/3rd-bit/gymTracker.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>7E270AFA-F2A2-40DD-9B56-3EA5B7B5DB0F</string>
+	<string>6EB5817C-0053-439F-863E-1983CE6DCD27</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>7E270AFA-F2A2-40DD-9B56-3EA5B7B5DB0F</string>
+			<string>6EB5817C-0053-439F-863E-1983CE6DCD27</string>
 			<key>IDESourceControlWCCName</key>
 			<string>gymTracker</string>
 		</dict>

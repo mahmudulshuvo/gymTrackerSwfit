@@ -3,6 +3,10 @@
 #import "Utility.h"
 
 @interface SettingsViewController ()
+{
+    BOOL lbsChecked;
+    BOOL kgChecked;
+}
 
 @property (nonatomic, readonly) NSManagedObjectContext *managedObjectContext;
 
@@ -24,9 +28,15 @@
 {
     [super viewDidLoad];
     if([((AppDelegate *) [[UIApplication sharedApplication] delegate]).settings.weight isEqualToString:@"lbs"])
-        self.lbsSwitch.on = YES;
+    {
+        [self.lbsCheckBox setImage:[UIImage imageNamed:@"checkBoxMarked.png"] forState:UIControlStateNormal];
+        lbsChecked = YES;
+    }
     else
-        self.kgSwitch.on = YES;
+    {
+        [self.kgCheckBox setImage:[UIImage imageNamed:@"checkBoxMarked.png"] forState:UIControlStateNormal];
+        kgChecked = YES;
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -43,15 +53,11 @@
 - (IBAction)saveBtn:(id)sender
 {
     NSString *strWeight;
-    if(self.lbsSwitch.isOn)
+    if(lbsChecked)
         strWeight = @"lbs";
-    else if(self.kgSwitch.isOn)
+    else if(kgChecked)
         strWeight = @"kg";
-    else
-    {
-        [Utility showAlert:@"Error" message:@"Please select a weight type"];
-        return;
-    }
+    
     ((AppDelegate *) [[UIApplication sharedApplication] delegate]).settings.weight = strWeight;
     
     NSError *error;
@@ -61,15 +67,32 @@
     }
 }
 
-- (IBAction)kgSwitchValueChange:(id)sender
+- (IBAction)lbsCheckBoxClick:(id)sender
 {
-    if(self.kgSwitch.isOn)
-        self.lbsSwitch.on = NO;
+    if(!lbsChecked)
+    {
+        [self.lbsCheckBox setImage:[UIImage imageNamed:@"checkBoxMarked.png"] forState:UIControlStateNormal];
+        lbsChecked = YES;
+        if(kgChecked)
+        {
+            [self.kgCheckBox setImage:[UIImage imageNamed:@"checkBox.png"] forState:UIControlStateNormal];
+            kgChecked = NO;
+        }
+    }
 }
 
-- (IBAction)lbsSwitchValueChange:(id)sender
+- (IBAction)kgCheckBoxClick:(id)sender
 {
-    if(self.lbsSwitch.isOn)
-        self.kgSwitch.on = NO;
+    if(!kgChecked)
+    {
+        [self.kgCheckBox setImage:[UIImage imageNamed:@"checkBoxMarked.png"] forState:UIControlStateNormal];
+        kgChecked = YES;
+        if(lbsChecked)
+        {
+            [self.lbsCheckBox setImage:[UIImage imageNamed:@"checkBox.png"] forState:UIControlStateNormal];
+            lbsChecked = NO;
+        }
+    }
 }
+
 @end

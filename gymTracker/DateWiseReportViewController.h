@@ -4,6 +4,6 @@
 
 @property (nonatomic, strong) NSArray *workoutList;
 
-@property (retain, nonatomic) NSDate *selectedDate;
+@property (retain, nonatomic) NSString *strSelectedDate;
 
 @end

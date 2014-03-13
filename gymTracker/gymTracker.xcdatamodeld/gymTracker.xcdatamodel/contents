@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="12F45" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5063" systemVersion="12F45" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Equipment" representedClassName="Equipment" syncable="YES">
         <attribute name="equipmentName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="imageName" optional="YES" attributeType="String" syncable="YES"/>
@@ -9,15 +9,15 @@
         <attribute name="weight" attributeType="String" defaultValueString="lbs" syncable="YES"/>
     </entity>
     <entity name="Workout" representedClassName="Workout" syncable="YES">
-        <attribute name="workoutDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="workoutDate" attributeType="String" syncable="YES"/>
         <attribute name="workoutSet1" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="workoutSet2" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="workoutSet3" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <relationship name="equipment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Equipment" inverseName="workout" inverseEntity="Equipment" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Equipment" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Workout" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Settings" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Equipment" positionX="0" positionY="0" width="128" height="90"/>
+        <element name="Settings" positionX="0" positionY="0" width="128" height="60"/>
+        <element name="Workout" positionX="0" positionY="0" width="128" height="120"/>
     </elements>
 </model>

@@ -28,12 +28,6 @@ NSString *weightLabelValue;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -41,12 +35,17 @@ NSString *weightLabelValue;
     [super viewDidAppear:YES];
     weightLabelValue = ((AppDelegate *) [[UIApplication sharedApplication] delegate]).settings.weight;
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Workout"];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(workoutDate >= %@) AND (workoutDate < %@)",[Utility dateAtBeginningOfDayForDate:self.selectedDate], self.selectedDate, nil];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"workoutDate = %@", self.strSelectedDate, nil];
     [fetchRequest setPredicate:predicate];
-    
     self.workoutList = [self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
-    
     [self.tableView reloadData];
+    
+    if(self.workoutList.count < 1)
+    {
+        [self.navigationController popViewControllerAnimated:NO];
+        [Utility showAlert:@"No Data" message:@"No data found"];
+        return;
+    }
 }
 
 - (NSManagedObjectContext *)managedObjectContext

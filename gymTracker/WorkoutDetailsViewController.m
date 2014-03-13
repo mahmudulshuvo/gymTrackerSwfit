@@ -37,9 +37,11 @@
     self.set2TextField.delegate = self;
     self.set3TextField.delegate = self;
     
-    NSDate *now = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    dateFormatter.dateFormat = @"yyyy-MM-dd";
+    NSString *strToday = [dateFormatter stringFromDate:[NSDate date]];
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Workout"];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"equipment = %@ and (workoutDate >= %@) AND (workoutDate < %@)", _selectedEquipment, [Utility dateAtBeginningOfDayForDate:now], now, nil];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"equipment = %@ and workoutDate LIKE %@", _selectedEquipment, strToday, nil];
     [fetchRequest setPredicate:predicate];
     
     NSArray *array = [self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
@@ -47,7 +49,7 @@
     {
         self.workout = [NSEntityDescription insertNewObjectForEntityForName:@"Workout" inManagedObjectContext:self.managedObjectContext];
         self.workout.equipment = _selectedEquipment;
-        self.workout.workoutDate = now;
+        self.workout.workoutDate = strToday;
     }
     else
     {

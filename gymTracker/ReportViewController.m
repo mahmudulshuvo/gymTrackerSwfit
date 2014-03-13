@@ -5,7 +5,12 @@
 #import "DateWiseReportViewController.h"
 #import "EquipmentWiseReportViewController.h"
 
-@interface ReportViewController ()
+@interface ReportViewController () <DSLCalendarViewDelegate>
+{
+    BOOL dateWiseReportChecked;
+    BOOL equipmentiseReportChecked;
+    NSDate *selectedDate;
+}
 
 @property (nonatomic, readonly) NSManagedObjectContext *managedObjectContext;
 
@@ -26,10 +31,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	self.datePicker.hidden = YES;
+	[self.dateWiseReportCheckBox setImage:[UIImage imageNamed:@"checkBoxMarked.png"] forState:UIControlStateNormal];
+    dateWiseReportChecked = YES;
     self.equipmentPicker.hidden = YES;
-    self.dateWiseReportBtn.hidden = YES;
     self.equipmentWiseReportBtn.hidden = YES;
+    self.dateCalenderView.delegate = self;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -68,15 +74,23 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (DSLCalendarRange*)calendarView:(DSLCalendarView *)calendarView didDragToDay:(NSDateComponents *)day selectingRange:(DSLCalendarRange *)range
+{
+    return [[DSLCalendarRange alloc] initWithStartDay:day endDay:day];
+}
+
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if([segue.identifier isEqualToString:@"ViewDateWiseReport"])
     {
         DateWiseReportViewController *dateWiseReportView = [segue destinationViewController];
-        dateWiseReportView.selectedDate = self.datePicker.date;
+        
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+        dateFormatter.dateFormat = @"yyyy-MM-dd";
+        dateWiseReportView.strSelectedDate = [dateFormatter stringFromDate:selectedDate];
+        
         dateFormatter.dateFormat = @"dd MMMM yyyy";
-        dateWiseReportView.title = [dateFormatter stringFromDate:dateWiseReportView.selectedDate];
+        dateWiseReportView.title = [dateFormatter stringFromDate:selectedDate];
     }
     
     else if([segue.identifier isEqualToString:@"EquipmentWiseReportView"])
@@ -88,37 +102,53 @@
     }
 }
 
-- (IBAction)dateSwitchValueChange:(id)sender
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
-    if(self.dateSwitch.isOn)
+    if([identifier isEqualToString:@"ViewDateWiseReport"])
     {
-        self.equipmentSwitch.on = NO;
-        self.datePicker.hidden = NO;
+        selectedDate = self.dateCalenderView.selectedRange.startDay.date;
+        if(selectedDate == nil)
+        {
+            [Utility showAlert:@"Error" message:@"Please select a date"];
+            return NO;
+        }
+    }
+    return YES;
+}
+
+- (IBAction)dateWiseReportCheckBoxClick:(id)sender
+{
+    if(!dateWiseReportChecked)
+    {
+        [self.dateWiseReportCheckBox setImage:[UIImage imageNamed:@"checkBoxMarked.png"] forState:UIControlStateNormal];
+        dateWiseReportChecked = YES;
+        if(equipmentiseReportChecked)
+        {
+            [self.equipmentWiseReportCheckBox setImage:[UIImage imageNamed:@"checkBox.png"] forState:UIControlStateNormal];
+            equipmentiseReportChecked = NO;
+        }
+        self.dateCalenderView.hidden = NO;
         self.equipmentPicker.hidden = YES;
         self.equipmentWiseReportBtn.hidden = YES;
         self.dateWiseReportBtn.hidden = NO;
     }
-    else
-    {
-        self.datePicker.hidden = YES;
-        self.dateWiseReportBtn.hidden = YES;
-    }
 }
 
-- (IBAction)equipmentSwitchValueChange:(id)sender
+- (IBAction)equipmentWiseReportCheckBoxClick:(id)sender
 {
-    if(self.equipmentSwitch.isOn)
+    if(!equipmentiseReportChecked)
     {
-        self.dateSwitch.on = NO;
+        [self.equipmentWiseReportCheckBox setImage:[UIImage imageNamed:@"checkBoxMarked.png"] forState:UIControlStateNormal];
+        equipmentiseReportChecked = YES;
+        if(dateWiseReportChecked)
+        {
+            [self.dateWiseReportCheckBox setImage:[UIImage imageNamed:@"checkBox.png"] forState:UIControlStateNormal];
+            dateWiseReportChecked = NO;
+        }
         self.equipmentPicker.hidden = NO;
-        self.datePicker.hidden = YES;
+        self.dateCalenderView.hidden = YES;
         self.dateWiseReportBtn.hidden = YES;
         self.equipmentWiseReportBtn.hidden = NO;
-    }
-    else
-    {
-        self.equipmentPicker.hidden = YES;
-        self.equipmentWiseReportBtn.hidden = YES;
     }
 }
 
