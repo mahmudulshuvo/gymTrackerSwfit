@@ -1,6 +1,7 @@
 #import "SettingsViewController.h"
 #import "AppDelegate.h"
 #import "Utility.h"
+#import "FMDBDataAccess.h"
 
 @interface SettingsViewController ()
 {
@@ -8,7 +9,7 @@
     BOOL kgChecked;
 }
 
-@property (nonatomic, readonly) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, readonly) Settings *settings;
 
 @end
 
@@ -45,9 +46,9 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (NSManagedObjectContext *)managedObjectContext
+- (Settings *)settings
 {
-    return [(AppDelegate *) [[UIApplication sharedApplication] delegate] managedObjectContext];
+    return [(AppDelegate *) [[UIApplication sharedApplication] delegate] settings];
 }
 
 - (IBAction)saveBtn:(id)sender
@@ -59,12 +60,9 @@
         strWeight = @"kg";
     
     ((AppDelegate *) [[UIApplication sharedApplication] delegate]).settings.weight = strWeight;
+    self.settings.weight = strWeight;
     
-    NSError *error;
-    if (![self.managedObjectContext save:&error])
-    {
-        NSLog(@"Unable to save! %@ %@", error, [error localizedDescription]);
-    }
+    [FMDBDataAccess updateSettings:self.settings];
 }
 
 - (IBAction)lbsCheckBoxClick:(id)sender

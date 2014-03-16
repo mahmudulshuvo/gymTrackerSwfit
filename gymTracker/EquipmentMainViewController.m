@@ -1,11 +1,9 @@
 #import "EquipmentMainViewController.h"
-#import "AppDelegate.h"
 #import "EquipmentDetailsViewController.h"
 #import "EquipmentTableCell.h"
+#import "FMDBDataAccess.h"
 
 @interface EquipmentMainViewController ()
-
-@property (nonatomic, readonly) NSManagedObjectContext *managedObjectContext;
 
 @end
 
@@ -36,17 +34,9 @@
 {
     [super viewDidAppear:animated];
     
-    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Equipment"];
-    fetchRequest.sortDescriptors = [NSArray arrayWithObjects:[NSSortDescriptor sortDescriptorWithKey:@"equipmentName" ascending:YES], nil];
-    
-    self.equipmentsList = [NSMutableArray arrayWithArray:[self.managedObjectContext executeFetchRequest:fetchRequest error:nil]];
+    self.equipmentsList = [FMDBDataAccess getEquipments];
     
     [self.tableView reloadData];
-}
-
-- (NSManagedObjectContext *)managedObjectContext
-{
-    return [(AppDelegate *) [[UIApplication sharedApplication] delegate] managedObjectContext];
 }
 
 - (void)didReceiveMemoryWarning
@@ -81,10 +71,11 @@
     cell.equipmentNameLabel.text = [NSString stringWithFormat:@"%@", equipment.equipmentName];
     
     UIImage *image;
-    if(equipment.imageName == nil)
+    if(equipment.imageName == nil || [equipment.imageName isEqualToString:@"(null)"])
         image = [UIImage imageNamed:@"no_image.jpg"];
     else
         image = [UIImage imageNamed:equipment.imageName];
+    
     [cell.equipmentImageView setImage:image];
     
     return cell;
@@ -138,8 +129,7 @@
             }
         }
         
-        [self.managedObjectContext deleteObject:equipment];
-        [self.managedObjectContext save:nil];
+        [FMDBDataAccess deleteEquipment:equipment];
         
         [self.equipmentsList removeObjectAtIndex:indexPath.row];
         

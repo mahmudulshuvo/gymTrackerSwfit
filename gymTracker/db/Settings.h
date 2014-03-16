@@ -1,8 +1,9 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@interface Settings : NSManagedObject
+@interface Settings : NSObject
 
-@property (nonatomic, retain) NSString * weight;
+@property (nonatomic, strong) NSNumber * id;
+@property (nonatomic, strong) NSString * weight;
 
 @end

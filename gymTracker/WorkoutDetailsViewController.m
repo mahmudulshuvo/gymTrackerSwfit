@@ -2,14 +2,15 @@
 #import "AppDelegate.h"
 #import "Utility.h"
 #import "Workout.h"
+#import "FMDBDataAccess.h"
 
 @interface WorkoutDetailsViewController ()
-
-@property (nonatomic, readonly) NSManagedObjectContext *managedObjectContext;
 
 @end
 
 @implementation WorkoutDetailsViewController
+
+BOOL newEntry;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -40,29 +41,22 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
     dateFormatter.dateFormat = @"yyyy-MM-dd";
     NSString *strToday = [dateFormatter stringFromDate:[NSDate date]];
-    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Workout"];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"equipment = %@ and workoutDate LIKE %@", _selectedEquipment, strToday, nil];
-    [fetchRequest setPredicate:predicate];
     
-    NSArray *array = [self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
-    if(array == nil || array.count < 1)
+    self.workout = [FMDBDataAccess loadWorkoutByEquipmentIdAndDate:self.selectedEquipment.id date:strToday];
+    if(self.workout == nil || self.workout.id == nil)
     {
-        self.workout = [NSEntityDescription insertNewObjectForEntityForName:@"Workout" inManagedObjectContext:self.managedObjectContext];
-        self.workout.equipment = _selectedEquipment;
+        newEntry = YES;
+        self.workout = [[Workout alloc]init];
+        self.workout.equipmentId = self.selectedEquipment.id;
         self.workout.workoutDate = strToday;
     }
     else
     {
-        self.workout = array[0];
+        newEntry = NO;
         self.set1TextField.text = [NSString stringWithFormat:@"%@", self.workout.workoutSet1];
         self.set2TextField.text = [NSString stringWithFormat:@"%@", self.workout.workoutSet2];
         self.set3TextField.text = [NSString stringWithFormat:@"%@", self.workout.workoutSet3];
     }
-}
-
-- (NSManagedObjectContext *)managedObjectContext
-{
-    return [(AppDelegate *) [[UIApplication sharedApplication] delegate] managedObjectContext];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -122,11 +116,10 @@
     
     self.workout.workoutSet1 = set1;
 
-    NSError *error;
-    if (![self.managedObjectContext save:&error])
-    {
-        NSLog(@"Unable to save! %@ %@", error, [error localizedDescription]);
-    }
+    if(newEntry)
+        [FMDBDataAccess createWorkout:self.workout];
+    else
+        [FMDBDataAccess updateWorkout:self.workout];
     
     [self.navigationController popViewControllerAnimated:YES];
 }

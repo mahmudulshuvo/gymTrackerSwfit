@@ -1,9 +1,9 @@
 #import "ReportViewController.h"
 #import "Equipment.h"
-#import "AppDelegate.h"
 #import "Utility.h"
 #import "DateWiseReportViewController.h"
 #import "EquipmentWiseReportViewController.h"
+#import "FMDBDataAccess.h"
 
 @interface ReportViewController () <DSLCalendarViewDelegate>
 {
@@ -11,8 +11,6 @@
     BOOL equipmentiseReportChecked;
     NSDate *selectedDate;
 }
-
-@property (nonatomic, readonly) NSManagedObjectContext *managedObjectContext;
 
 @end
 
@@ -42,10 +40,7 @@
 {
     [super viewDidAppear:animated];
     
-    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Equipment"];
-    fetchRequest.sortDescriptors = [NSArray arrayWithObjects:[NSSortDescriptor sortDescriptorWithKey:@"equipmentName" ascending:YES], nil];
-    
-    self.equipmentsList = [NSMutableArray arrayWithArray:[self.managedObjectContext executeFetchRequest:fetchRequest error:nil]];
+    self.equipmentsList = [FMDBDataAccess getEquipments];
     
     [self.equipmentPicker reloadAllComponents];
     
@@ -61,11 +56,6 @@
         self.dateWiseReportBtn.enabled = YES;
         self.equipmentWiseReportBtn.enabled = YES;
     }
-}
-
-- (NSManagedObjectContext *)managedObjectContext
-{
-    return [(AppDelegate *) [[UIApplication sharedApplication] delegate] managedObjectContext];
 }
 
 - (void)didReceiveMemoryWarning

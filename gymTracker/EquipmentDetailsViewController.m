@@ -1,10 +1,8 @@
 #import "EquipmentDetailsViewController.h"
 #import "Utility.h"
-#import "AppDelegate.h"
+#import "FMDBDataAccess.h"
 
 @interface EquipmentDetailsViewController ()
-
-@property (nonatomic, readonly) NSManagedObjectContext *managedObjectContext;
 
 @end
 
@@ -44,11 +42,6 @@ bool hasChosenImage;
     }
 }
 
-- (NSManagedObjectContext *)managedObjectContext
-{
-    return [(AppDelegate *) [[UIApplication sharedApplication] delegate] managedObjectContext];
-}
-
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
@@ -71,6 +64,8 @@ bool hasChosenImage;
         return;
     }
     
+    BOOL newEntry = NO;
+    
     if(_selectedEquipment == nil)
     {
         NSUInteger totalEquipmentsCount = self.equipments.count;
@@ -84,9 +79,10 @@ bool hasChosenImage;
             }
         }
 
-        _selectedEquipment = [NSEntityDescription insertNewObjectForEntityForName:@"Equipment" inManagedObjectContext:self.managedObjectContext];
+        _selectedEquipment = [[Equipment alloc]init];
         if(self.equipmentImageView.image != nil)
             _selectedEquipment.imageName = [NSString stringWithFormat:@"%@.png", strEquipmentName];
+        newEntry = YES;
     }
     
     _selectedEquipment.equipmentName = strEquipmentName;
@@ -103,11 +99,10 @@ bool hasChosenImage;
         [imageData writeToFile:savedImagePath atomically:NO];
     }
     
-    NSError *error;
-    if (![self.managedObjectContext save:&error])
-    {
-        NSLog(@"Unable to save! %@ %@", error, [error localizedDescription]);
-    }
+    if(newEntry)
+        [FMDBDataAccess createEquipment:_selectedEquipment];
+    else
+        [FMDBDataAccess updateEquipment:_selectedEquipment];
     
     [self.navigationController popViewControllerAnimated:YES];
 }

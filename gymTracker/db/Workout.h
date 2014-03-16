@@ -1,14 +1,15 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Equipment;
+@interface Workout : NSObject
 
-@interface Workout : NSManagedObject
-
-@property (nonatomic, retain) NSString * workoutDate;
-@property (nonatomic, retain) NSNumber * workoutSet1;
-@property (nonatomic, retain) NSNumber * workoutSet2;
-@property (nonatomic, retain) NSNumber * workoutSet3;
-@property (nonatomic, retain) Equipment *equipment;
+@property (nonatomic, strong) NSNumber * id;
+@property (nonatomic, strong) NSNumber * workoutSet1;
+@property (nonatomic, strong) NSNumber * workoutSet2;
+@property (nonatomic, strong) NSNumber * workoutSet3;
+@property (nonatomic, strong) NSString * workoutDate;
+@property (nonatomic, strong) NSNumber * equipmentId;
+@property (nonatomic, strong) NSString * equipmentName;
+@property (nonatomic, strong) NSString * equipmentImageName;
 
 @end

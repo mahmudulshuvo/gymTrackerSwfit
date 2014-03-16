@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F38DD81218C58D8F004860C2"
+               BlueprintIdentifier = "F32327ED18D56D2D006C7E64"
                BuildableName = "gymTracker.app"
                BlueprintName = "gymTracker"
                ReferencedContainer = "container:gymTracker.xcodeproj">
@@ -32,7 +32,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F38DD83218C58D8F004860C2"
+               BlueprintIdentifier = "F323280818D56D2D006C7E64"
                BuildableName = "gymTrackerTests.xctest"
                BlueprintName = "gymTrackerTests"
                ReferencedContainer = "container:gymTracker.xcodeproj">
@@ -42,7 +42,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F38DD81218C58D8F004860C2"
+            BlueprintIdentifier = "F32327ED18D56D2D006C7E64"
             BuildableName = "gymTracker.app"
             BlueprintName = "gymTracker"
             ReferencedContainer = "container:gymTracker.xcodeproj">
@@ -61,7 +61,7 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F38DD81218C58D8F004860C2"
+            BlueprintIdentifier = "F32327ED18D56D2D006C7E64"
             BuildableName = "gymTracker.app"
             BlueprintName = "gymTracker"
             ReferencedContainer = "container:gymTracker.xcodeproj">
@@ -79,7 +79,7 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F38DD81218C58D8F004860C2"
+            BlueprintIdentifier = "F32327ED18D56D2D006C7E64"
             BuildableName = "gymTracker.app"
             BlueprintName = "gymTracker"
             ReferencedContainer = "container:gymTracker.xcodeproj">

@@ -1,13 +1,11 @@
 #import "WorkoutMainViewController.h"
 #import "WorkoutTableCell.h"
-#import "AppDelegate.h"
 #import "Equipment.h"
 #import "WorkoutDetailsViewController.h"
 #import "Utility.h"
+#import "FMDBDataAccess.h"
 
 @interface WorkoutMainViewController ()
-
-@property (nonatomic, readonly) NSManagedObjectContext *managedObjectContext;
 
 @end
 
@@ -38,17 +36,9 @@
 {
     [super viewDidAppear:animated];
     
-    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Equipment"];
-    fetchRequest.sortDescriptors = [NSArray arrayWithObjects:[NSSortDescriptor sortDescriptorWithKey:@"equipmentName" ascending:YES], nil];
-    
-    self.equipmentsList = [NSMutableArray arrayWithArray:[self.managedObjectContext executeFetchRequest:fetchRequest error:nil]];
+    self.equipmentsList = [FMDBDataAccess getEquipments];
     
     [self.tableView reloadData];
-}
-
-- (NSManagedObjectContext *)managedObjectContext
-{
-    return [(AppDelegate *) [[UIApplication sharedApplication] delegate] managedObjectContext];
 }
 
 - (void)didReceiveMemoryWarning
@@ -82,10 +72,11 @@
     Equipment *equipment = [self.equipmentsList objectAtIndex:[indexPath row]];
     cell.equipmentNameLabel.text = equipment.equipmentName;
     UIImage *image;
-    if(equipment.imageName == nil)
+    if(equipment.imageName == nil || [equipment.imageName isEqualToString:@"(null)"])
         image = [UIImage imageNamed:@"no_image.jpg"];
     else
         image = [UIImage imageNamed:equipment.imageName];
+   
     [cell.equipmentImageView setImage:image];
     
     return cell;
@@ -102,43 +93,5 @@
         workoutDetailsView.selectedEquipment = self.equipmentsList[row];
     }
 }
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 @end

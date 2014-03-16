@@ -1,6 +1,14 @@
 #import "Utility.h"
+#import "AppDelegate.h"
 
 @implementation Utility
+
++(NSString *) getDatabasePath
+{
+    NSString *databasePath = [(AppDelegate *)[[UIApplication sharedApplication] delegate] databasePath];
+    
+    return databasePath;
+}
 
 + (void) showAlert:(NSString *)title message:(NSString *)msg
 {

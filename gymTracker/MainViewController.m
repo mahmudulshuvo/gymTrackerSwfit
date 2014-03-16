@@ -1,10 +1,9 @@
 #import "MainViewController.h"
 #import "Utility.h"
-#import "AppDelegate.h"
 
 @interface MainViewController ()
 
-@property (nonatomic, readonly) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, readonly) Settings *settings;
 
 @end
 
@@ -18,11 +17,6 @@
         // Custom initialization
     }
     return self;
-}
-
-- (NSManagedObjectContext *)managedObjectContext
-{
-    return [(AppDelegate *) [[UIApplication sharedApplication] delegate] managedObjectContext];
 }
 
 - (void)viewDidLoad

@@ -2,6 +2,4 @@
 
 @implementation Settings
 
-@dynamic weight;
-
 @end
