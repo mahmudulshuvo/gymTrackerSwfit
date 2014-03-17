@@ -21,4 +21,6 @@
 + (Settings *) getSettings;
 + (BOOL) updateSettings:(Settings *) settings;
 
++ (NSArray *) getWorkoutDates;
+
 @end

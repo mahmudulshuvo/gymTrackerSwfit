@@ -1,5 +1,4 @@
 #import "SettingsViewController.h"
-#import "AppDelegate.h"
 #import "Utility.h"
 #import "FMDBDataAccess.h"
 
@@ -28,7 +27,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    if([((AppDelegate *) [[UIApplication sharedApplication] delegate]).settings.weight isEqualToString:@"lbs"])
+    if([[Utility sharedInstance].settings.weight isEqualToString:@"lbs"])
     {
         [self.lbsCheckBox setImage:[UIImage imageNamed:@"checkBoxMarked.png"] forState:UIControlStateNormal];
         lbsChecked = YES;
@@ -46,11 +45,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (Settings *)settings
-{
-    return [(AppDelegate *) [[UIApplication sharedApplication] delegate] settings];
-}
-
 - (IBAction)saveBtn:(id)sender
 {
     NSString *strWeight;
@@ -59,7 +53,7 @@
     else if(kgChecked)
         strWeight = @"kg";
     
-    ((AppDelegate *) [[UIApplication sharedApplication] delegate]).settings.weight = strWeight;
+    [Utility sharedInstance].settings.weight = strWeight;
     self.settings.weight = strWeight;
     
     [FMDBDataAccess updateSettings:self.settings];

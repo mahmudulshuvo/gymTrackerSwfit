@@ -8,7 +8,7 @@
 {
     NSMutableArray *equipments = [[NSMutableArray alloc] init];
     
-    FMDatabase *db = [FMDatabase databaseWithPath:[Utility getDatabasePath]];
+    FMDatabase *db = [FMDatabase databaseWithPath:[Utility sharedInstance].databasePath];
     
     [db open];
     
@@ -31,7 +31,7 @@
 
 + (BOOL) createEquipment:(Equipment *) equipment
 {
-    FMDatabase *db = [FMDatabase databaseWithPath:[Utility getDatabasePath]];
+    FMDatabase *db = [FMDatabase databaseWithPath:[Utility sharedInstance].databasePath];
     
     [db open];
     
@@ -45,7 +45,7 @@
 
 + (BOOL) updateEquipment:(Equipment *) equipment
 {
-    FMDatabase *db = [FMDatabase databaseWithPath:[Utility getDatabasePath]];
+    FMDatabase *db = [FMDatabase databaseWithPath:[Utility sharedInstance].databasePath];
     
     [db open];
     
@@ -58,7 +58,7 @@
 
 + (BOOL) deleteEquipment:(Equipment *) equipment
 {
-    FMDatabase *db = [FMDatabase databaseWithPath:[Utility getDatabasePath]];
+    FMDatabase *db = [FMDatabase databaseWithPath:[Utility sharedInstance].databasePath];
     
     [db open];
     
@@ -73,7 +73,7 @@
 {
     NSMutableArray *workouts = [[NSMutableArray alloc] init];
     
-    FMDatabase *db = [FMDatabase databaseWithPath:[Utility getDatabasePath]];
+    FMDatabase *db = [FMDatabase databaseWithPath:[Utility sharedInstance].databasePath];
     
     [db open];
     
@@ -100,7 +100,7 @@
 {
     NSMutableArray *workouts = [[NSMutableArray alloc] init];
     
-    FMDatabase *db = [FMDatabase databaseWithPath:[Utility getDatabasePath]];
+    FMDatabase *db = [FMDatabase databaseWithPath:[Utility sharedInstance].databasePath];
     
     [db open];
     
@@ -122,7 +122,7 @@
 
 + (Workout *) loadWorkoutByEquipmentIdAndDate:(NSNumber *) equipmentId date:(NSString *) date
 {
-    FMDatabase *db = [FMDatabase databaseWithPath:[Utility getDatabasePath]];
+    FMDatabase *db = [FMDatabase databaseWithPath:[Utility sharedInstance].databasePath];
     
     [db open];
     
@@ -146,7 +146,7 @@
 
 + (BOOL) createWorkout:(Workout *) workout
 {
-    FMDatabase *db = [FMDatabase databaseWithPath:[Utility getDatabasePath]];
+    FMDatabase *db = [FMDatabase databaseWithPath:[Utility sharedInstance].databasePath];
     
     [db open];
     
@@ -160,7 +160,7 @@
 
 + (BOOL) updateWorkout:(Workout *) workout
 {
-    FMDatabase *db = [FMDatabase databaseWithPath:[Utility getDatabasePath]];
+    FMDatabase *db = [FMDatabase databaseWithPath:[Utility sharedInstance].databasePath];
     
     [db open];
     
@@ -173,7 +173,7 @@
 
 + (BOOL) deleteWorkout:(Workout *) workout
 {
-    FMDatabase *db = [FMDatabase databaseWithPath:[Utility getDatabasePath]];
+    FMDatabase *db = [FMDatabase databaseWithPath:[Utility sharedInstance].databasePath];
     
     [db open];
     
@@ -186,7 +186,7 @@
 
 + (Settings *) getSettings
 {
-    FMDatabase *db = [FMDatabase databaseWithPath:[Utility getDatabasePath]];
+    FMDatabase *db = [FMDatabase databaseWithPath:[Utility sharedInstance].databasePath];
     
     [db open];
     
@@ -207,7 +207,7 @@
 
 + (BOOL) updateSettings:(Settings *) settings
 {
-    FMDatabase *db = [FMDatabase databaseWithPath:[Utility getDatabasePath]];
+    FMDatabase *db = [FMDatabase databaseWithPath:[Utility sharedInstance].databasePath];
     
     [db open];
     
@@ -216,6 +216,26 @@
     [db close];
     
     return success;
+}
+
++ (NSArray *) getWorkoutDates
+{
+    NSMutableArray *workouts = [[NSMutableArray alloc] init];
+    
+    FMDatabase *db = [FMDatabase databaseWithPath:[Utility sharedInstance].databasePath];
+    
+    [db open];
+    
+    FMResultSet *results = [db executeQuery:@"SELECT DISTINCT workout_date FROM workout order by workout_date ASC"];
+    
+    while([results next])
+    {
+        [workouts addObject:[results stringForColumn:@"workout_date"]];
+    }
+    
+    [db close];
+    
+    return workouts;
 }
 
 @end

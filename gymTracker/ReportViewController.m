@@ -4,8 +4,9 @@
 #import "DateWiseReportViewController.h"
 #import "EquipmentWiseReportViewController.h"
 #import "FMDBDataAccess.h"
+#import "NSDate+TKCategory.h"
 
-@interface ReportViewController () <DSLCalendarViewDelegate>
+@interface ReportViewController ()
 {
     BOOL dateWiseReportChecked;
     BOOL equipmentiseReportChecked;
@@ -33,7 +34,45 @@
     dateWiseReportChecked = YES;
     self.equipmentPicker.hidden = YES;
     self.equipmentWiseReportBtn.hidden = YES;
+    self.dateCalenderView = [[TKCalendarMonthView alloc]init];
     self.dateCalenderView.delegate = self;
+    self.dateCalenderView.dataSource = self;
+    [self.calendarContainer addSubview:self.dateCalenderView];
+}
+
+- (NSArray *)calendarMonthView:(TKCalendarMonthView *)monthView marksFromDate:(NSDate *)startDate toDate:(NSDate *)lastDate
+{
+    return [self populateCalendarThroughStartDate:startDate endDate:lastDate];
+}
+
+- (NSArray *) populateCalendarThroughStartDate:(NSDate*)start endDate:(NSDate*)end
+{
+	NSMutableArray *marks = [NSMutableArray array];
+    NSArray *workoutDates = [FMDBDataAccess getWorkoutDates];
+    
+    NSDate *d = start;
+    
+	while(YES)
+    {
+        NSString *simplifiedStart = [[Utility sharedInstance].dbDateFormat stringFromDate:d];
+        
+		if ([workoutDates containsObject:simplifiedStart])
+        {
+            [marks addObject:[NSNumber numberWithBool:YES]];
+        }
+        else
+        {
+            [marks addObject:[NSNumber numberWithBool:NO]];
+        }
+		
+		NSDateComponents *info = [d dateComponentsWithTimeZone:self.dateCalenderView.timeZone];
+		info.day++;
+		d = [NSDate dateWithDateComponents:info];
+		if([d compare:end] == NSOrderedDescending) break;
+	}
+    
+    return marks;
+	
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -48,7 +87,7 @@
     {
         self.dateWiseReportBtn.enabled = NO;
         self.equipmentWiseReportBtn.enabled = NO;
-        [Utility showAlert:@"Error" message:@"Please add an Equipment first"];
+        [[Utility sharedInstance] showAlert:@"Error" message:@"Please add an Equipment first"];
         return;
     }
     else
@@ -56,6 +95,8 @@
         self.dateWiseReportBtn.enabled = YES;
         self.equipmentWiseReportBtn.enabled = YES;
     }
+    
+    [self.dateCalenderView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -64,23 +105,15 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (DSLCalendarRange*)calendarView:(DSLCalendarView *)calendarView didDragToDay:(NSDateComponents *)day selectingRange:(DSLCalendarRange *)range
-{
-    return [[DSLCalendarRange alloc] initWithStartDay:day endDay:day];
-}
-
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if([segue.identifier isEqualToString:@"ViewDateWiseReport"])
     {
         DateWiseReportViewController *dateWiseReportView = [segue destinationViewController];
         
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-        dateFormatter.dateFormat = @"yyyy-MM-dd";
-        dateWiseReportView.strSelectedDate = [dateFormatter stringFromDate:selectedDate];
+        dateWiseReportView.strSelectedDate = [[Utility sharedInstance].dbDateFormat stringFromDate:selectedDate];
         
-        dateFormatter.dateFormat = @"dd MMMM yyyy";
-        dateWiseReportView.title = [dateFormatter stringFromDate:selectedDate];
+        dateWiseReportView.title = [[Utility sharedInstance].userFriendlyDateFormat stringFromDate:selectedDate];
     }
     
     else if([segue.identifier isEqualToString:@"EquipmentWiseReportView"])
@@ -96,10 +129,10 @@
 {
     if([identifier isEqualToString:@"ViewDateWiseReport"])
     {
-        selectedDate = self.dateCalenderView.selectedRange.startDay.date;
+        selectedDate = self.dateCalenderView.dateSelected;
         if(selectedDate == nil)
         {
-            [Utility showAlert:@"Error" message:@"Please select a date"];
+            [[Utility sharedInstance] showAlert:@"Error" message:@"Please select a date"];
             return NO;
         }
     }
@@ -117,7 +150,7 @@
             [self.equipmentWiseReportCheckBox setImage:[UIImage imageNamed:@"checkBox.png"] forState:UIControlStateNormal];
             equipmentiseReportChecked = NO;
         }
-        self.dateCalenderView.hidden = NO;
+        self.calendarContainer.hidden = NO;
         self.equipmentPicker.hidden = YES;
         self.equipmentWiseReportBtn.hidden = YES;
         self.dateWiseReportBtn.hidden = NO;
@@ -136,7 +169,7 @@
             dateWiseReportChecked = NO;
         }
         self.equipmentPicker.hidden = NO;
-        self.dateCalenderView.hidden = YES;
+        self.calendarContainer.hidden = YES;
         self.dateWiseReportBtn.hidden = YES;
         self.equipmentWiseReportBtn.hidden = NO;
     }

@@ -5,8 +5,4 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
-@property (nonatomic,strong) NSString *databaseName;
-@property (nonatomic,strong) NSString *databasePath;
-@property (nonatomic,strong) Settings *settings;
-
 @end

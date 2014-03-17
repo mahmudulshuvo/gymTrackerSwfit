@@ -40,8 +40,19 @@ NSArray *array;
     for(int i=0;i<arrayCount;i++)
     {
         LineChartVO *lineChartVO = array[i];
-        [chartXLabels addObject:lineChartVO.workoutDate];
+        //[chartXLabels addObject:lineChartVO.workoutDate];
+        [chartXLabels addObject:@"*"];
         [chartDatas addObject:lineChartVO.workoutSets];
+    }
+    NSDate *fromDate = [[Utility sharedInstance].dbDateFormat dateFromString:((LineChartVO *)array[0]).workoutDate];
+    if(array.count > 1)
+    {
+        NSDate *toDate = [[Utility sharedInstance].dbDateFormat dateFromString:((LineChartVO *)array[array.count - 1]).workoutDate];
+        self.chartHeader.text = [NSString stringWithFormat:@"%@ to %@", [[Utility sharedInstance].userFriendlyDateFormat stringFromDate:fromDate], [[Utility sharedInstance].userFriendlyDateFormat stringFromDate:toDate]];
+    }
+    else
+    {
+        self.chartHeader.text = [NSString stringWithFormat:@"%@", [[Utility sharedInstance].userFriendlyDateFormat stringFromDate:fromDate]];
     }
     
     [lineChart setXLabels:chartXLabels];
@@ -58,6 +69,7 @@ NSArray *array;
     [self.view addSubview:lineChart];
     
     [lineChart strokeChart];
+    self.yAxisLegendLabel.text = [NSString stringWithFormat:@"Y-Axis: Weight values in %@", [Utility sharedInstance].settings.weight];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -67,38 +79,9 @@ NSArray *array;
     if(array == nil || array.count < 1)
     {
         [self.navigationController popViewControllerAnimated:YES];
-        [Utility showAlert:@"No data" message:@"No data found"];
+        [[Utility sharedInstance] showAlert:@"No data" message:@"No data found"];
     }
 }
-
-/*- (void)showDummyChart
-{
-    PNLineChart * lineChart = [[PNLineChart alloc] initWithFrame:CGRectMake(0, 135.0, SCREEN_WIDTH, 200.0)];
-    [lineChart setXLabels:@[@"SEP 1",@"SEP 2",@"SEP 3",@"SEP 4",@"SEP 5"]];
-    
-    NSArray * data01Array = @[@60.1, @160.1, @126.4, @262.2, @186.2, @127.2, @176.2];
-    PNLineChartData *data01 = [PNLineChartData new];
-    data01.color = PNFreshGreen;
-    data01.itemCount = lineChart.xLabels.count;
-    data01.getData = ^(NSUInteger index) {
-        CGFloat yValue = [[data01Array objectAtIndex:index] floatValue];
-        return [PNLineChartDataItem dataItemWithY:yValue];
-    };
-    
-    NSArray * data02Array = @[@20.1, @180.1, @26.4, @202.2, @126.2, @167.2, @276.2];
-    PNLineChartData *data02 = [PNLineChartData new];
-    data02.color = PNTwitterColor;
-    data02.itemCount = lineChart.xLabels.count;
-    data02.getData = ^(NSUInteger index) {
-        CGFloat yValue = [[data02Array objectAtIndex:index] floatValue];
-        return [PNLineChartDataItem dataItemWithY:yValue];
-    };
-    
-    lineChart.chartData = @[data01, data02];
-    [self.view addSubview:lineChart];
-    
-    [lineChart strokeChart];
-}*/
 
 - (void)didReceiveMemoryWarning
 {

@@ -1,5 +1,4 @@
 #import "WorkoutDetailsViewController.h"
-#import "AppDelegate.h"
 #import "Utility.h"
 #import "Workout.h"
 #import "FMDBDataAccess.h"
@@ -26,7 +25,7 @@ BOOL newEntry;
 {
     [super viewDidLoad];
     
-    NSString *weightLabelValue = ((AppDelegate *) [[UIApplication sharedApplication] delegate]).settings.weight;
+    NSString *weightLabelValue = [Utility sharedInstance].settings.weight;
     if(![self.weightLabel1.text isEqualToString:weightLabelValue])
     {
         self.weightLabel1.text = weightLabelValue;
@@ -38,9 +37,7 @@ BOOL newEntry;
     self.set2TextField.delegate = self;
     self.set3TextField.delegate = self;
     
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-    dateFormatter.dateFormat = @"yyyy-MM-dd";
-    NSString *strToday = [dateFormatter stringFromDate:[NSDate date]];
+    NSString *strToday = [[Utility sharedInstance].dbDateFormat stringFromDate:[NSDate date]];
     
     self.workout = [FMDBDataAccess loadWorkoutByEquipmentIdAndDate:self.selectedEquipment.id date:strToday];
     if(self.workout == nil || self.workout.id == nil)
@@ -77,14 +74,14 @@ BOOL newEntry;
     
     if(strSet1.length == 0)
     {
-        [Utility showAlert:@"Error" message:@"Set 1 field is required"];
+        [[Utility sharedInstance] showAlert:@"Error" message:@"Set 1 field is required"];
         return;
     }
     
     NSNumber *set1 = [[[NSNumberFormatter alloc] init] numberFromString:strSet1];
     if(!set1 || [set1 floatValue] < 1)
     {
-        [Utility showAlert:@"Error" message:@"Please insert a valid number in Set 1 field"];
+        [[Utility sharedInstance] showAlert:@"Error" message:@"Please insert a valid number in Set 1 field"];
         return;
     }
     
@@ -95,7 +92,7 @@ BOOL newEntry;
         NSNumber *set2 = [[[NSNumberFormatter alloc] init] numberFromString:strSet2];
         if(!set2 || [set2 floatValue] < 0)
         {
-            [Utility showAlert:@"Error" message:@"Please insert a valid number in Set 2 field"];
+            [[Utility sharedInstance] showAlert:@"Error" message:@"Please insert a valid number in Set 2 field"];
             return;
         }
         self.workout.workoutSet2 = set2;
@@ -108,7 +105,7 @@ BOOL newEntry;
         NSNumber *set3 = [[[NSNumberFormatter alloc] init] numberFromString:strSet3];
         if(!set3 || [set3 floatValue] < 0)
         {
-            [Utility showAlert:@"Error" message:@"Please insert a valid number in Set 3 field"];
+            [[Utility sharedInstance] showAlert:@"Error" message:@"Please insert a valid number in Set 3 field"];
             return;
         }
         self.workout.workoutSet3 = set3;

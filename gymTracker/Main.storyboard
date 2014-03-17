@@ -206,6 +206,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Soh-fn-cqU">
+                                <rect key="frame" x="0.0" y="133" width="320" height="284"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lEQ-nJ-fl7">
                                 <rect key="frame" x="63" y="90" width="36" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -226,11 +231,6 @@
                                     <outlet property="delegate" destination="0Ni-Nh-979" id="XHv-iX-WIe"/>
                                 </connections>
                             </pickerView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xsi-7c-QZy" customClass="DSLCalendarView">
-                                <rect key="frame" x="0.0" y="119" width="320" height="330"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                            </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J6b-I6-FqK">
                                 <rect key="frame" x="267" y="457" width="33" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -276,7 +276,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Report" id="BRs-5s-hXW"/>
                     <connections>
-                        <outlet property="dateCalenderView" destination="xsi-7c-QZy" id="xeu-qn-IQs"/>
+                        <outlet property="calendarContainer" destination="Soh-fn-cqU" id="lqY-i4-tlx"/>
                         <outlet property="dateWiseReportBtn" destination="J6b-I6-FqK" id="ci6-E5-i0Q"/>
                         <outlet property="dateWiseReportCheckBox" destination="wcc-cN-znk" id="FEn-0h-8uG"/>
                         <outlet property="equipmentPicker" destination="JPe-Tm-EuD" id="tt2-0N-ZTW"/>
@@ -392,9 +392,37 @@
                     <view key="view" contentMode="scaleToFill" id="Ohm-ts-Wd1">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WIm-Dm-2Lf">
+                                <rect key="frame" x="20" y="86" width="280" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <color key="textColor" red="0.068928618708991668" green="0.063974930216365758" blue="0.35536260190217395" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="X-Axis: * as workout dates" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4nk-u1-8Mr">
+                                <rect key="frame" x="20" y="358" width="280" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="syc-aX-ZMo">
+                                <rect key="frame" x="20" y="376" width="280" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="7qe-h5-NuX"/>
+                    <connections>
+                        <outlet property="chartHeader" destination="WIm-Dm-2Lf" id="2V0-du-KID"/>
+                        <outlet property="xAxisLegendLabel" destination="4nk-u1-8Mr" id="ujz-ut-jaZ"/>
+                        <outlet property="yAxisLegendLabel" destination="syc-aX-ZMo" id="leU-AB-puT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5LS-xd-7yQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -17,6 +17,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *weightLabel3;
 
 @property (retain, nonatomic) Equipment *selectedEquipment;
+
 @property (retain, nonatomic) Workout *workout;
 
 - (IBAction)saveBtn:(id)sender;

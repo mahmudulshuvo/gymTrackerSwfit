@@ -2,6 +2,7 @@
 #import "EquipmentDetailsViewController.h"
 #import "EquipmentTableCell.h"
 #import "FMDBDataAccess.h"
+#import "Utility.h"
 
 @interface EquipmentMainViewController ()
 
@@ -118,9 +119,7 @@
         
         if(equipment.imageName != nil)
         {
-            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-            NSString *documentsDir = [paths objectAtIndex:0];
-            NSString *filePath = [NSString stringWithFormat:@"%@/%@", documentsDir, equipment.imageName];
+            NSString *filePath = [NSString stringWithFormat:@"%@/%@", [Utility sharedInstance].documentDir, equipment.imageName];
             NSFileManager *fileManager = [NSFileManager defaultManager];
         
             if ([fileManager fileExistsAtPath:filePath] == YES)

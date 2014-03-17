@@ -28,11 +28,9 @@ bool hasChosenImage;
     if(_selectedEquipment != nil)
     {
         self.equipmentNameTextField.text = [NSString stringWithFormat:@"%@", _selectedEquipment.equipmentName];
-        if(_selectedEquipment.imageName != nil)
+        if(_selectedEquipment.imageName != nil && ![_selectedEquipment.imageName isEqualToString:@"(null)"])
         {
-            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-            NSString *documentsDir = [paths objectAtIndex:0];
-            NSString *filePath = [NSString stringWithFormat:@"%@/%@", documentsDir, _selectedEquipment.imageName];
+            NSString *filePath = [NSString stringWithFormat:@"%@/%@", [Utility sharedInstance].documentDir, _selectedEquipment.imageName];
             [self.equipmentImageView setImage:[UIImage imageWithContentsOfFile:filePath]];
         }
         else
@@ -60,7 +58,7 @@ bool hasChosenImage;
     
     if(strEquipmentName.length == 0)
     {
-        [Utility showAlert:@"Error" message:@"Equipment name is required"];
+        [[Utility sharedInstance] showAlert:@"Error" message:@"Equipment name is required"];
         return;
     }
     
@@ -74,7 +72,7 @@ bool hasChosenImage;
             Equipment *equipmentFromArray = [self.equipments objectAtIndex:i];
             if([[equipmentFromArray.equipmentName lowercaseString] isEqualToString:[strEquipmentName lowercaseString]])
             {
-                [Utility showAlert:@"Error" message:@"The specified Equipment name already exists"];
+                [[Utility sharedInstance] showAlert:@"Error" message:@"The specified Equipment name already exists"];
                 return;
             }
         }
@@ -118,7 +116,7 @@ bool hasChosenImage;
     }
     @catch(NSException *exception)
     {
-        [Utility showAlert:@"Error" message:[NSString stringWithFormat:@"Unable to access the camera"]];
+        [[Utility sharedInstance] showAlert:@"Error" message:[NSString stringWithFormat:@"Unable to access the camera"]];
     }
 }
 

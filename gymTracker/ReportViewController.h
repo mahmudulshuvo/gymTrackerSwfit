@@ -1,13 +1,15 @@
 #import <UIKit/UIKit.h>
-#import "DSLCalendarView.h"
+#import "TKCalendarMonthView.h"
 
-@interface ReportViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate>
+@interface ReportViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate, TKCalendarMonthViewDelegate, TKCalendarMonthViewDataSource>
 
 @property (strong, nonatomic) IBOutlet UIButton *dateWiseReportCheckBox;
 
 @property (strong, nonatomic) IBOutlet UIButton *equipmentWiseReportCheckBox;
 
-@property (strong, nonatomic) IBOutlet DSLCalendarView *dateCalenderView;
+@property (strong, nonatomic) IBOutlet UIView *calendarContainer;
+
+@property (strong, nonatomic) IBOutlet TKCalendarMonthView *dateCalenderView;
 
 @property (strong, nonatomic) IBOutlet UIPickerView *equipmentPicker;
 

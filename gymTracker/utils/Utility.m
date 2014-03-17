@@ -3,21 +3,31 @@
 
 @implementation Utility
 
-+(NSString *) getDatabasePath
-{
-    NSString *databasePath = [(AppDelegate *)[[UIApplication sharedApplication] delegate] databasePath];
-    
-    return databasePath;
-}
-
-+ (void) showAlert:(NSString *)title message:(NSString *)msg
+- (void) showAlert:(NSString *)title message:(NSString *)msg
 {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:msg delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
 
     [alert show];
 }
 
-+ (NSDate *)dateAtBeginningOfDayForDate:(NSDate *)inputDate
++ (Utility *) sharedInstance
+{
+    static Utility *_sharedClient = nil;
+    
+    static dispatch_once_t oncePredicate;
+    dispatch_once(&oncePredicate, ^{
+        _sharedClient = [[self alloc] init];
+        _sharedClient.dbDateFormat = [[NSDateFormatter alloc]init];
+        _sharedClient.dbDateFormat.dateFormat = @"yyyy-MM-dd";
+        
+        _sharedClient.userFriendlyDateFormat = [[NSDateFormatter alloc]init];
+        _sharedClient.userFriendlyDateFormat.dateFormat = @"dd MMMM yyyy";
+    });
+    
+    return _sharedClient;
+}
+
+- (NSDate *)dateAtBeginningOfDayForDate:(NSDate *)inputDate
 {
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSTimeZone *timeZone = [NSTimeZone systemTimeZone];
@@ -33,7 +43,7 @@
     return beginningOfDay;
 }
 
-+ (UIImage *)scaleImage:(UIImage *)image toSize:(CGSize)newSize
+- (UIImage *)scaleImage:(UIImage *)image toSize:(CGSize)newSize
 {
     float width = newSize.width;
     float height = newSize.height;

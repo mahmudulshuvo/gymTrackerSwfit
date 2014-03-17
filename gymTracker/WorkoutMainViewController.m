@@ -80,7 +80,6 @@
     [cell.equipmentImageView setImage:image];
     
     return cell;
-
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

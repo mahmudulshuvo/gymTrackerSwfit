@@ -1,5 +1,4 @@
 #import "DateWiseReportViewController.h"
-#import "AppDelegate.h"
 #import "Utility.h"
 #import "Workout.h"
 #import "Equipment.h"
@@ -11,8 +10,6 @@
 @end
 
 @implementation DateWiseReportViewController
-
-NSString *weightLabelValue;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -33,7 +30,6 @@ NSString *weightLabelValue;
 {
     [super viewDidAppear:YES];
     
-    weightLabelValue = ((AppDelegate *) [[UIApplication sharedApplication] delegate]).settings.weight;
     self.workoutList = [FMDBDataAccess getWorkoutsByDate:self.strSelectedDate];
     
     [self.tableView reloadData];
@@ -41,7 +37,7 @@ NSString *weightLabelValue;
     if(self.workoutList.count < 1)
     {
         [self.navigationController popViewControllerAnimated:YES];
-        [Utility showAlert:@"No Data" message:@"No data found"];
+        [[Utility sharedInstance] showAlert:@"No Data" message:@"No data found"];
         return;
     }
 }
@@ -78,9 +74,9 @@ NSString *weightLabelValue;
     
     Workout *workout = [self.workoutList objectAtIndex:[indexPath row]];
     cell.equipmentNameLabel.text = workout.equipmentName;
-    cell.set1ValueLabel.text = [NSString stringWithFormat:@"%@ %@", workout.workoutSet1, weightLabelValue];
-    cell.set2ValueLabel.text = [NSString stringWithFormat:@"%@ %@", workout.workoutSet2, weightLabelValue];
-    cell.set3ValueLabel.text = [NSString stringWithFormat:@"%@ %@", workout.workoutSet3, weightLabelValue];
+    cell.set1ValueLabel.text = [NSString stringWithFormat:@"%@ %@", workout.workoutSet1, [Utility sharedInstance].settings.weight];
+    cell.set2ValueLabel.text = [NSString stringWithFormat:@"%@ %@", workout.workoutSet2, [Utility sharedInstance].settings.weight];
+    cell.set3ValueLabel.text = [NSString stringWithFormat:@"%@ %@", workout.workoutSet3, [Utility sharedInstance].settings.weight];
     UIImage *image;
     if(workout.equipmentImageName == nil || [workout.equipmentImageName isEqualToString:@"(null)"])
         image = [UIImage imageNamed:@"no_image.jpg"];
