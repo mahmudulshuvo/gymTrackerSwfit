@@ -9,10 +9,11 @@
 @property (nonatomic, strong) Settings *settings;
 @property (nonatomic, strong) NSDateFormatter *dbDateFormat;
 @property (nonatomic, strong) NSDateFormatter *userFriendlyDateFormat;
+@property (nonatomic, strong) NSDateFormatter *dateOnlyDateFormat;
 
-- (void) showAlert:(NSString *) title message:(NSString *) msg;
-- (NSDate *)dateAtBeginningOfDayForDate:(NSDate *)inputDate;
-- (UIImage *)scaleImage:(UIImage *)image toSize:(CGSize)newSize;
++ (void) showAlert:(NSString *) title message:(NSString *) msg;
++ (NSDate *)dateAtBeginningOfDayForDate:(NSDate *)inputDate;
++ (UIImage *)scaleImage:(UIImage *)image toSize:(CGSize)newSize;
 
 + (Utility *) sharedInstance;
 

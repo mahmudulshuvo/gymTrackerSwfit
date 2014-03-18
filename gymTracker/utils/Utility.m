@@ -3,7 +3,7 @@
 
 @implementation Utility
 
-- (void) showAlert:(NSString *)title message:(NSString *)msg
++ (void) showAlert:(NSString *)title message:(NSString *)msg
 {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:msg delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
 
@@ -16,18 +16,22 @@
     
     static dispatch_once_t oncePredicate;
     dispatch_once(&oncePredicate, ^{
-        _sharedClient = [[self alloc] init];
-        _sharedClient.dbDateFormat = [[NSDateFormatter alloc]init];
+        _sharedClient = [self new];
+        
+        _sharedClient.dateOnlyDateFormat = [NSDateFormatter new];
+        _sharedClient.dateOnlyDateFormat.dateFormat = @"dd";
+        
+        _sharedClient.dbDateFormat = [NSDateFormatter new];
         _sharedClient.dbDateFormat.dateFormat = @"yyyy-MM-dd";
         
-        _sharedClient.userFriendlyDateFormat = [[NSDateFormatter alloc]init];
-        _sharedClient.userFriendlyDateFormat.dateFormat = @"dd MMMM yyyy";
+        _sharedClient.userFriendlyDateFormat = [NSDateFormatter new];
+        _sharedClient.userFriendlyDateFormat.dateFormat = @"MMM/dd/yyyy";
     });
     
     return _sharedClient;
 }
 
-- (NSDate *)dateAtBeginningOfDayForDate:(NSDate *)inputDate
++ (NSDate *)dateAtBeginningOfDayForDate:(NSDate *)inputDate
 {
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSTimeZone *timeZone = [NSTimeZone systemTimeZone];
@@ -43,7 +47,7 @@
     return beginningOfDay;
 }
 
-- (UIImage *)scaleImage:(UIImage *)image toSize:(CGSize)newSize
++ (UIImage *)scaleImage:(UIImage *)image toSize:(CGSize)newSize
 {
     float width = newSize.width;
     float height = newSize.height;

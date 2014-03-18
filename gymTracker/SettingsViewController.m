@@ -8,8 +8,6 @@
     BOOL kgChecked;
 }
 
-@property (nonatomic, readonly) Settings *settings;
-
 @end
 
 @implementation SettingsViewController
@@ -37,6 +35,9 @@
         [self.kgCheckBox setImage:[UIImage imageNamed:@"checkBoxMarked.png"] forState:UIControlStateNormal];
         kgChecked = YES;
     }
+    int sets = [Utility sharedInstance].settings.sets.intValue;
+    self.setsStepper.value = sets;
+    self.setsTextField.text = [NSString stringWithFormat:@"%d", sets];
 }
 
 - (void)didReceiveMemoryWarning
@@ -54,9 +55,9 @@
         strWeight = @"kg";
     
     [Utility sharedInstance].settings.weight = strWeight;
-    self.settings.weight = strWeight;
+    [Utility sharedInstance].settings.sets = [NSNumber numberWithInt:self.setsStepper.value];
     
-    [FMDBDataAccess updateSettings:self.settings];
+    [FMDBDataAccess updateSettings:[Utility sharedInstance].settings];
 }
 
 - (IBAction)lbsCheckBoxClick:(id)sender
@@ -85,6 +86,11 @@
             lbsChecked = NO;
         }
     }
+}
+
+- (IBAction)setsStepperValueChanged:(id)sender
+{
+    self.setsTextField.text = [NSString stringWithFormat:@"%@", [NSNumber numberWithInt:self.setsStepper.value]];
 }
 
 @end

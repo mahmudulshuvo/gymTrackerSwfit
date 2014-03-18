@@ -11,6 +11,8 @@
 
 @implementation DateWiseReportViewController
 
+int sets;
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -24,6 +26,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    sets = [Utility sharedInstance].settings.sets.intValue;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -37,7 +41,7 @@
     if(self.workoutList.count < 1)
     {
         [self.navigationController popViewControllerAnimated:YES];
-        [[Utility sharedInstance] showAlert:@"No Data" message:@"No data found"];
+        [Utility  showAlert:@"No Data" message:@"No data found"];
         return;
     }
 }
@@ -77,6 +81,32 @@
     cell.set1ValueLabel.text = [NSString stringWithFormat:@"%@ %@", workout.workoutSet1, [Utility sharedInstance].settings.weight];
     cell.set2ValueLabel.text = [NSString stringWithFormat:@"%@ %@", workout.workoutSet2, [Utility sharedInstance].settings.weight];
     cell.set3ValueLabel.text = [NSString stringWithFormat:@"%@ %@", workout.workoutSet3, [Utility sharedInstance].settings.weight];
+    cell.set4ValueLabel.text = [NSString stringWithFormat:@"%@ %@", workout.workoutSet4, [Utility sharedInstance].settings.weight];
+    cell.set5ValueLabel.text = [NSString stringWithFormat:@"%@ %@", workout.workoutSet5, [Utility sharedInstance].settings.weight];
+    if(sets == 3)
+    {
+        cell.set4Label.hidden = YES;
+        cell.set4ValueLabel.hidden = YES;
+        
+        cell.set5Label.hidden = YES;
+        cell.set5ValueLabel.hidden = YES;
+    }
+    else if(sets == 4)
+    {
+        cell.set4Label.hidden = NO;
+        cell.set4ValueLabel.hidden = NO;
+        
+        cell.set5Label.hidden = YES;
+        cell.set5ValueLabel.hidden = YES;
+    }
+    else if(sets == 5)
+    {
+        cell.set4Label.hidden = NO;
+        cell.set4ValueLabel.hidden = NO;
+        
+        cell.set5Label.hidden = NO;
+        cell.set5ValueLabel.hidden = NO;
+    }
     UIImage *image;
     if(workout.equipmentImageName == nil || [workout.equipmentImageName isEqualToString:@"(null)"])
         image = [UIImage imageNamed:@"no_image.jpg"];

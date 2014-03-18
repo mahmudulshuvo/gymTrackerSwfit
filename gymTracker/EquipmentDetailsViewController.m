@@ -58,7 +58,7 @@ bool hasChosenImage;
     
     if(strEquipmentName.length == 0)
     {
-        [[Utility sharedInstance] showAlert:@"Error" message:@"Equipment name is required"];
+        [Utility  showAlert:@"Error" message:@"Equipment name is required"];
         return;
     }
     
@@ -72,12 +72,12 @@ bool hasChosenImage;
             Equipment *equipmentFromArray = [self.equipments objectAtIndex:i];
             if([[equipmentFromArray.equipmentName lowercaseString] isEqualToString:[strEquipmentName lowercaseString]])
             {
-                [[Utility sharedInstance] showAlert:@"Error" message:@"The specified Equipment name already exists"];
+                [Utility  showAlert:@"Error" message:@"The specified Equipment name already exists"];
                 return;
             }
         }
 
-        _selectedEquipment = [[Equipment alloc]init];
+        _selectedEquipment = [Equipment new];
         if(self.equipmentImageView.image != nil)
             _selectedEquipment.imageName = [NSString stringWithFormat:@"%@.png", strEquipmentName];
         newEntry = YES;
@@ -107,7 +107,7 @@ bool hasChosenImage;
 
 - (IBAction)takePhoto:(id)sender
 {
-    cameraPickerController = [[UIImagePickerController alloc] init];
+    cameraPickerController = [UIImagePickerController new];
     cameraPickerController.delegate = self;
     @try
     {
@@ -116,7 +116,7 @@ bool hasChosenImage;
     }
     @catch(NSException *exception)
     {
-        [[Utility sharedInstance] showAlert:@"Error" message:[NSString stringWithFormat:@"Unable to access the camera"]];
+        [Utility  showAlert:@"Error" message:[NSString stringWithFormat:@"Unable to access the camera"]];
     }
 }
 
@@ -128,7 +128,7 @@ bool hasChosenImage;
 
 /*- (IBAction)browseBtn:(id)sender
 {
-    existingImagePickerController = [[UIImagePickerController alloc] init];
+    existingImagePickerController = [UIImagePickerController new];
     existingImagePickerController.delegate = self;
     [existingImagePickerController setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
     [self presentViewController:existingImagePickerController animated:YES completion:NULL];

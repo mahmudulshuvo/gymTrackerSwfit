@@ -33,7 +33,7 @@
 
 - (IBAction)cameraBtn:(id)sender
 {
-    cameraPickerController = [[UIImagePickerController alloc] init];
+    cameraPickerController = [UIImagePickerController new];
     cameraPickerController.delegate = self;
     @try
     {
@@ -42,13 +42,13 @@
     }
     @catch(NSException *exception)
     {
-        [[Utility sharedInstance] showAlert:@"Error" message:[NSString stringWithFormat:@"Unable to access the camera"]];
+        [Utility  showAlert:@"Error" message:[NSString stringWithFormat:@"Unable to access the camera"]];
     }
 }
 
 - (IBAction)browseBtn:(id)sender
 {
-    existingImagePickerController = [[UIImagePickerController alloc] init];
+    existingImagePickerController = [UIImagePickerController new];
     existingImagePickerController.delegate = self;
     [existingImagePickerController setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
     [self presentViewController:existingImagePickerController animated:YES completion:NULL];

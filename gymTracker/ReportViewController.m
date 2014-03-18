@@ -34,7 +34,7 @@
     dateWiseReportChecked = YES;
     self.equipmentPicker.hidden = YES;
     self.equipmentWiseReportBtn.hidden = YES;
-    self.dateCalenderView = [[TKCalendarMonthView alloc]init];
+    self.dateCalenderView = [TKCalendarMonthView new];
     self.dateCalenderView.delegate = self;
     self.dateCalenderView.dataSource = self;
     [self.calendarContainer addSubview:self.dateCalenderView];
@@ -87,7 +87,7 @@
     {
         self.dateWiseReportBtn.enabled = NO;
         self.equipmentWiseReportBtn.enabled = NO;
-        [[Utility sharedInstance] showAlert:@"Error" message:@"Please add an Equipment first"];
+        [Utility  showAlert:@"Error" message:@"Please add an Equipment first"];
         return;
     }
     else
@@ -132,7 +132,7 @@
         selectedDate = self.dateCalenderView.dateSelected;
         if(selectedDate == nil)
         {
-            [[Utility sharedInstance] showAlert:@"Error" message:@"Please select a date"];
+            [Utility  showAlert:@"Error" message:@"Please select a date"];
             return NO;
         }
     }

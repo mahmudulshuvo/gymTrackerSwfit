@@ -6,7 +6,7 @@
 
 + (NSMutableArray *) getEquipments
 {
-    NSMutableArray *equipments = [[NSMutableArray alloc] init];
+    NSMutableArray *equipments = [NSMutableArray new];
     
     FMDatabase *db = [FMDatabase databaseWithPath:[Utility sharedInstance].databasePath];
     
@@ -16,7 +16,7 @@
     
     while([results next])
     {
-        Equipment *equipment = [[Equipment alloc] init];
+        Equipment *equipment = [Equipment new];
         equipment.id = [NSNumber numberWithInt:[results intForColumn:@"id"]];
         equipment.equipmentName = [results stringForColumn:@"equipment_name"];
         equipment.imageName = [results stringForColumn:@"image_name"];
@@ -71,20 +71,22 @@
 
 + (NSMutableArray *) getWorkoutsByDate:(NSString *)date
 {
-    NSMutableArray *workouts = [[NSMutableArray alloc] init];
+    NSMutableArray *workouts = [NSMutableArray new];
     
     FMDatabase *db = [FMDatabase databaseWithPath:[Utility sharedInstance].databasePath];
     
     [db open];
     
-    FMResultSet *results = [db executeQuery:[NSString stringWithFormat:@"SELECT workout_set_1, workout_set_2, workout_set_3, equipment_name, image_name FROM workout, equipment where workout_date = '%@' and workout.equipment_id = equipment.id order by equipment_name ASC", date]];
+    FMResultSet *results = [db executeQuery:[NSString stringWithFormat:@"SELECT workout_set_1, workout_set_2, workout_set_3, workout_set_4, workout_set_5, equipment_name, image_name FROM workout, equipment where workout_date = '%@' and workout.equipment_id = equipment.id order by equipment_name ASC", date]];
     
     while([results next])
     {
-        Workout *workout = [[Workout alloc] init];
+        Workout *workout = [Workout new];
         workout.workoutSet1 = [NSNumber numberWithDouble:[results doubleForColumn:@"workout_set_1"]];
         workout.workoutSet2 = [NSNumber numberWithDouble:[results doubleForColumn:@"workout_set_2"]];
         workout.workoutSet3 = [NSNumber numberWithDouble:[results doubleForColumn:@"workout_set_3"]];
+        workout.workoutSet4 = [NSNumber numberWithDouble:[results doubleForColumn:@"workout_set_4"]];
+        workout.workoutSet5 = [NSNumber numberWithDouble:[results doubleForColumn:@"workout_set_5"]];
         workout.equipmentName = [results stringForColumn:@"equipment_name"];
         workout.equipmentImageName = [results stringForColumn:@"image_name"];
         
@@ -96,19 +98,19 @@
     return workouts;
 }
 
-+ (NSMutableArray *) getWorkoutsByEquipmentId:(NSNumber *) equipmentId
++ (NSMutableArray *) getWorkoutsByEquipmentId:(NSNumber *) equipmentId fromDate:(NSString *)strFromdate toDate:(NSString *)strToDate;
 {
-    NSMutableArray *workouts = [[NSMutableArray alloc] init];
+    NSMutableArray *workouts = [NSMutableArray new];
     
     FMDatabase *db = [FMDatabase databaseWithPath:[Utility sharedInstance].databasePath];
     
     [db open];
     
-    FMResultSet *results = [db executeQuery:[NSString stringWithFormat:@"SELECT SUM(workout_set_1 + workout_set_2 + workout_set_3) as workout_sets, workout_date FROM workout where equipment_id = %@ group by workout_date order by workout_date ASC", equipmentId]];
+    FMResultSet *results = [db executeQuery:[NSString stringWithFormat:@"SELECT SUM(workout_set_1 + workout_set_2 + workout_set_3 + workout_set_4 + workout_set_5) as workout_sets, workout_date FROM workout where equipment_id = %@ AND workout_date BETWEEN '%@' and '%@' group by workout_date order by workout_date ASC", equipmentId, strFromdate, strToDate]];
     
     while([results next])
     {
-        LineChartVO *lineChartVO = [[LineChartVO alloc] init];
+        LineChartVO *lineChartVO = [LineChartVO new];
         lineChartVO.workoutSets = [NSNumber numberWithDouble:[results doubleForColumn:@"workout_sets"]];
         lineChartVO.workoutDate = [results stringForColumn:@"workout_date"];
         
@@ -131,11 +133,13 @@
     
     while([results next])
     {
-        workout = [[Workout alloc] init];
+        workout = [Workout new];
         workout.id = [NSNumber numberWithDouble:[results intForColumn:@"id"]];
         workout.workoutSet1 = [NSNumber numberWithDouble:[results doubleForColumn:@"workout_set_1"]];
         workout.workoutSet2 = [NSNumber numberWithDouble:[results doubleForColumn:@"workout_set_2"]];
         workout.workoutSet3 = [NSNumber numberWithDouble:[results doubleForColumn:@"workout_set_3"]];
+        workout.workoutSet4 = [NSNumber numberWithDouble:[results doubleForColumn:@"workout_set_4"]];
+        workout.workoutSet5 = [NSNumber numberWithDouble:[results doubleForColumn:@"workout_set_5"]];
         workout.workoutDate = [results stringForColumn:@"workout_date"];
         workout.equipmentId = [NSNumber numberWithDouble:[results intForColumn:@"equipment_id"]];
     }
@@ -150,8 +154,8 @@
     
     [db open];
     
-    BOOL success =  [db executeUpdate:@"INSERT INTO workout (workout_set_1, workout_set_2, workout_set_3, workout_date, equipment_id) VALUES (?,?, ?, ?, ?);",
-                     workout.workoutSet1, workout.workoutSet2, workout.workoutSet3, workout.workoutDate, workout.equipmentId, nil];
+    BOOL success =  [db executeUpdate:@"INSERT INTO workout (workout_set_1, workout_set_2, workout_set_3, workout_set_4, workout_set_5, workout_date, equipment_id) VALUES (?, ?, ?, ?, ?, ?, ?);",
+                     workout.workoutSet1, workout.workoutSet2, workout.workoutSet3, workout.workoutSet4, workout.workoutSet5, workout.workoutDate, workout.equipmentId, nil];
     
     [db close];
     
@@ -164,7 +168,7 @@
     
     [db open];
     
-    BOOL success = [db executeUpdate:[NSString stringWithFormat:@"UPDATE workout SET workout_set_1 = '%@', workout_set_2 = '%@', workout_set_3 = '%@' where id = %@", workout.workoutSet1, workout.workoutSet2, workout.workoutSet3, workout.id]];
+    BOOL success = [db executeUpdate:[NSString stringWithFormat:@"UPDATE workout SET workout_set_1 = %@, workout_set_2 = %@, workout_set_3 = %@, workout_set_4 = %@, workout_set_5 = %@ where id = %@", workout.workoutSet1, workout.workoutSet2, workout.workoutSet3, workout.workoutSet4, workout.workoutSet5, workout.id]];
     
     [db close];
     
@@ -195,9 +199,10 @@
     
     while([results next])
     {
-        settings = [[Settings alloc] init];
+        settings = [Settings new];
         settings.id = [NSNumber numberWithInt:[results intForColumn:@"id"]];
         settings.weight = [results stringForColumn:@"weight"];
+        settings.sets = [NSNumber numberWithInt:[results intForColumn:@"sets"]];
     }
     
     [db close];
@@ -211,7 +216,7 @@
     
     [db open];
     
-    BOOL success = [db executeUpdate:[NSString stringWithFormat:@"UPDATE settings SET weight = '%@' where id = %@", settings.weight, settings.id]];
+    BOOL success = [db executeUpdate:[NSString stringWithFormat:@"UPDATE settings SET weight = '%@', sets = %@ where id = %@", settings.weight, settings.sets, settings.id]];
     
     [db close];
     
@@ -220,7 +225,7 @@
 
 + (NSArray *) getWorkoutDates
 {
-    NSMutableArray *workouts = [[NSMutableArray alloc] init];
+    NSMutableArray *workouts = [NSMutableArray new];
     
     FMDatabase *db = [FMDatabase databaseWithPath:[Utility sharedInstance].databasePath];
     

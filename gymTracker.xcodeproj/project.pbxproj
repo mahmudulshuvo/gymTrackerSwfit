@@ -63,6 +63,21 @@
 		F32328C918D56DFB006C7E64 /* WorkoutTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F323288818D56DFB006C7E64 /* WorkoutTableCell.m */; };
 		F32328DF18D577B7006C7E64 /* FMDBDataAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = F32328DE18D577B7006C7E64 /* FMDBDataAccess.m */; };
 		F32328E118D58FA6006C7E64 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F32328E018D58FA6006C7E64 /* libsqlite3.dylib */; };
+		F3D2B65B18D7FE7800E85646 /* gymTracker.db in Resources */ = {isa = PBXBuildFile; fileRef = F3D2B65A18D7FE6B00E85646 /* gymTracker.db */; };
+		F3D2B68818D8273F00E85646 /* MyPMCalendarController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3D2B68718D8273F00E85646 /* MyPMCalendarController.m */; };
+		F3D2B6A818D8380300E85646 /* NSDate+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = F3D2B68F18D8380300E85646 /* NSDate+Helpers.m */; };
+		F3D2B6A918D8380300E85646 /* PMCalendarBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = F3D2B69118D8380300E85646 /* PMCalendarBackgroundView.m */; };
+		F3D2B6AA18D8380400E85646 /* PMCalendarController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3D2B69418D8380300E85646 /* PMCalendarController.m */; };
+		F3D2B6AB18D8380400E85646 /* PMCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = F3D2B69718D8380300E85646 /* PMCalendarView.m */; };
+		F3D2B6AC18D8380400E85646 /* PMDimmingView.m in Sources */ = {isa = PBXBuildFile; fileRef = F3D2B69918D8380300E85646 /* PMDimmingView.m */; };
+		F3D2B6AD18D8380400E85646 /* PMPeriod.m in Sources */ = {isa = PBXBuildFile; fileRef = F3D2B69B18D8380300E85646 /* PMPeriod.m */; };
+		F3D2B6AE18D8380400E85646 /* PMSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = F3D2B69D18D8380300E85646 /* PMSelectionView.m */; };
+		F3D2B6AF18D8380400E85646 /* PMThemeEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = F3D2B6A018D8380300E85646 /* PMThemeEngine.m */; };
+		F3D2B6B018D8380400E85646 /* PMThemeShadow.m in Sources */ = {isa = PBXBuildFile; fileRef = F3D2B6A218D8380300E85646 /* PMThemeShadow.m */; };
+		F3D2B6B118D8380400E85646 /* apple calendar.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3D2B6A418D8380300E85646 /* apple calendar.plist */; };
+		F3D2B6B218D8380400E85646 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = F3D2B6A518D8380300E85646 /* background.png */; };
+		F3D2B6B318D8380400E85646 /* background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F3D2B6A618D8380300E85646 /* background@2x.png */; };
+		F3D2B6B418D8380400E85646 /* default.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3D2B6A718D8380300E85646 /* default.plist */; };
 		F3E02BBA18D5AB8D00767921 /* LineChartVO.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E02BB918D5AB8D00767921 /* LineChartVO.m */; };
 		F3E07C3A18D69FA0000DA9C4 /* NSDate+CalendarGrid.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E07C2918D69FA0000DA9C4 /* NSDate+CalendarGrid.m */; };
 		F3E07C3B18D69FA0000DA9C4 /* NSDate+TKCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E07C2B18D69FA0000DA9C4 /* NSDate+TKCategory.m */; };
@@ -79,7 +94,6 @@
 		F3E07C5A18D6FF5E000DA9C4 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E07C5218D6FF5E000DA9C4 /* FMDatabasePool.m */; };
 		F3E07C5B18D6FF5E000DA9C4 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E07C5418D6FF5E000DA9C4 /* FMDatabaseQueue.m */; };
 		F3E07C5C18D6FF5E000DA9C4 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E07C5718D6FF5E000DA9C4 /* FMResultSet.m */; };
-		F3F9678418D593AE001E1739 /* gymTracker.db in Resources */ = {isa = PBXBuildFile; fileRef = F3F9678318D5939E001E1739 /* gymTracker.db */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -181,6 +195,35 @@
 		F32328DD18D577B7006C7E64 /* FMDBDataAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDBDataAccess.h; sourceTree = "<group>"; };
 		F32328DE18D577B7006C7E64 /* FMDBDataAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDBDataAccess.m; sourceTree = "<group>"; };
 		F32328E018D58FA6006C7E64 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		F3D2B65A18D7FE6B00E85646 /* gymTracker.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = gymTracker.db; sourceTree = "<group>"; };
+		F3D2B68618D8273F00E85646 /* MyPMCalendarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPMCalendarController.h; sourceTree = "<group>"; };
+		F3D2B68718D8273F00E85646 /* MyPMCalendarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPMCalendarController.m; sourceTree = "<group>"; };
+		F3D2B68C18D8380300E85646 /* PMCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMCalendar.h; sourceTree = "<group>"; };
+		F3D2B68E18D8380300E85646 /* NSDate+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Helpers.h"; sourceTree = "<group>"; };
+		F3D2B68F18D8380300E85646 /* NSDate+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Helpers.m"; sourceTree = "<group>"; };
+		F3D2B69018D8380300E85646 /* PMCalendarBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMCalendarBackgroundView.h; sourceTree = "<group>"; };
+		F3D2B69118D8380300E85646 /* PMCalendarBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMCalendarBackgroundView.m; sourceTree = "<group>"; };
+		F3D2B69218D8380300E85646 /* PMCalendarConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMCalendarConstants.h; sourceTree = "<group>"; };
+		F3D2B69318D8380300E85646 /* PMCalendarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMCalendarController.h; sourceTree = "<group>"; };
+		F3D2B69418D8380300E85646 /* PMCalendarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMCalendarController.m; sourceTree = "<group>"; };
+		F3D2B69518D8380300E85646 /* PMCalendarHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMCalendarHelpers.h; sourceTree = "<group>"; };
+		F3D2B69618D8380300E85646 /* PMCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMCalendarView.h; sourceTree = "<group>"; };
+		F3D2B69718D8380300E85646 /* PMCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMCalendarView.m; sourceTree = "<group>"; };
+		F3D2B69818D8380300E85646 /* PMDimmingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMDimmingView.h; sourceTree = "<group>"; };
+		F3D2B69918D8380300E85646 /* PMDimmingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMDimmingView.m; sourceTree = "<group>"; };
+		F3D2B69A18D8380300E85646 /* PMPeriod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMPeriod.h; sourceTree = "<group>"; };
+		F3D2B69B18D8380300E85646 /* PMPeriod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMPeriod.m; sourceTree = "<group>"; };
+		F3D2B69C18D8380300E85646 /* PMSelectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMSelectionView.h; sourceTree = "<group>"; };
+		F3D2B69D18D8380300E85646 /* PMSelectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMSelectionView.m; sourceTree = "<group>"; };
+		F3D2B69E18D8380300E85646 /* PMTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMTheme.h; sourceTree = "<group>"; };
+		F3D2B69F18D8380300E85646 /* PMThemeEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMThemeEngine.h; sourceTree = "<group>"; };
+		F3D2B6A018D8380300E85646 /* PMThemeEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMThemeEngine.m; sourceTree = "<group>"; };
+		F3D2B6A118D8380300E85646 /* PMThemeShadow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMThemeShadow.h; sourceTree = "<group>"; };
+		F3D2B6A218D8380300E85646 /* PMThemeShadow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMThemeShadow.m; sourceTree = "<group>"; };
+		F3D2B6A418D8380300E85646 /* apple calendar.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "apple calendar.plist"; sourceTree = "<group>"; };
+		F3D2B6A518D8380300E85646 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		F3D2B6A618D8380300E85646 /* background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background@2x.png"; sourceTree = "<group>"; };
+		F3D2B6A718D8380300E85646 /* default.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = default.plist; sourceTree = "<group>"; };
 		F3E02BB818D5AB8D00767921 /* LineChartVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineChartVO.h; sourceTree = "<group>"; };
 		F3E02BB918D5AB8D00767921 /* LineChartVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineChartVO.m; sourceTree = "<group>"; };
 		F3E07C2818D69FA0000DA9C4 /* NSDate+CalendarGrid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+CalendarGrid.h"; sourceTree = "<group>"; };
@@ -213,7 +256,6 @@
 		F3E07C5518D6FF5E000DA9C4 /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
 		F3E07C5618D6FF5E000DA9C4 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
 		F3E07C5718D6FF5E000DA9C4 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
-		F3F9678318D5939E001E1739 /* gymTracker.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = gymTracker.db; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -281,6 +323,7 @@
 				F323287E18D56DFB006C7E64 /* utils */,
 				F32328DC18D577B7006C7E64 /* services */,
 				F3E07C2718D69FA0000DA9C4 /* TapkuLibrary */,
+				F3D2B68B18D8380300E85646 /* PMCalendar */,
 				F323280018D56D2D006C7E64 /* AppDelegate.h */,
 				F323280118D56D2D006C7E64 /* AppDelegate.m */,
 				F323282018D56DFB006C7E64 /* DateWiseReportCell.h */,
@@ -295,6 +338,8 @@
 				F323285018D56DFB006C7E64 /* EquipmentTableCell.m */,
 				F323285118D56DFB006C7E64 /* EquipmentWiseReportViewController.h */,
 				F323285218D56DFB006C7E64 /* EquipmentWiseReportViewController.m */,
+				F3D2B68618D8273F00E85646 /* MyPMCalendarController.h */,
+				F3D2B68718D8273F00E85646 /* MyPMCalendarController.m */,
 				F323286418D56DFB006C7E64 /* Main.storyboard */,
 				F323286518D56DFB006C7E64 /* MainViewController.h */,
 				F323286618D56DFB006C7E64 /* MainViewController.m */,
@@ -317,8 +362,8 @@
 		F32327F818D56D2D006C7E64 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F3D2B65A18D7FE6B00E85646 /* gymTracker.db */,
 				F3E07C4418D6A172000DA9C4 /* TapkuLibrary.bundle */,
-				F3F9678318D5939E001E1739 /* gymTracker.db */,
 				F323285318D56DFB006C7E64 /* icons */,
 				F32327F918D56D2D006C7E64 /* gymTracker-Info.plist */,
 				F32327FA18D56D2D006C7E64 /* InfoPlist.strings */,
@@ -427,6 +472,55 @@
 				F32328DE18D577B7006C7E64 /* FMDBDataAccess.m */,
 			);
 			path = services;
+			sourceTree = "<group>";
+		};
+		F3D2B68B18D8380300E85646 /* PMCalendar */ = {
+			isa = PBXGroup;
+			children = (
+				F3D2B68C18D8380300E85646 /* PMCalendar.h */,
+				F3D2B68D18D8380300E85646 /* src */,
+				F3D2B6A318D8380300E85646 /* Theme */,
+			);
+			path = PMCalendar;
+			sourceTree = "<group>";
+		};
+		F3D2B68D18D8380300E85646 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				F3D2B68E18D8380300E85646 /* NSDate+Helpers.h */,
+				F3D2B68F18D8380300E85646 /* NSDate+Helpers.m */,
+				F3D2B69018D8380300E85646 /* PMCalendarBackgroundView.h */,
+				F3D2B69118D8380300E85646 /* PMCalendarBackgroundView.m */,
+				F3D2B69218D8380300E85646 /* PMCalendarConstants.h */,
+				F3D2B69318D8380300E85646 /* PMCalendarController.h */,
+				F3D2B69418D8380300E85646 /* PMCalendarController.m */,
+				F3D2B69518D8380300E85646 /* PMCalendarHelpers.h */,
+				F3D2B69618D8380300E85646 /* PMCalendarView.h */,
+				F3D2B69718D8380300E85646 /* PMCalendarView.m */,
+				F3D2B69818D8380300E85646 /* PMDimmingView.h */,
+				F3D2B69918D8380300E85646 /* PMDimmingView.m */,
+				F3D2B69A18D8380300E85646 /* PMPeriod.h */,
+				F3D2B69B18D8380300E85646 /* PMPeriod.m */,
+				F3D2B69C18D8380300E85646 /* PMSelectionView.h */,
+				F3D2B69D18D8380300E85646 /* PMSelectionView.m */,
+				F3D2B69E18D8380300E85646 /* PMTheme.h */,
+				F3D2B69F18D8380300E85646 /* PMThemeEngine.h */,
+				F3D2B6A018D8380300E85646 /* PMThemeEngine.m */,
+				F3D2B6A118D8380300E85646 /* PMThemeShadow.h */,
+				F3D2B6A218D8380300E85646 /* PMThemeShadow.m */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		F3D2B6A318D8380300E85646 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				F3D2B6A418D8380300E85646 /* apple calendar.plist */,
+				F3D2B6A518D8380300E85646 /* background.png */,
+				F3D2B6A618D8380300E85646 /* background@2x.png */,
+				F3D2B6A718D8380300E85646 /* default.plist */,
+			);
+			path = Theme;
 			sourceTree = "<group>";
 		};
 		F3E07C2718D69FA0000DA9C4 /* TapkuLibrary */ = {
@@ -547,7 +641,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F3F9678418D593AE001E1739 /* gymTracker.db in Resources */,
+				F3D2B65B18D7FE7800E85646 /* gymTracker.db in Resources */,
+				F3D2B6B418D8380400E85646 /* default.plist in Resources */,
 				F32328B418D56DFB006C7E64 /* report@2x.png in Resources */,
 				F32328AD18D56DFB006C7E64 /* appIcon60pt.png in Resources */,
 				F32328B318D56DFB006C7E64 /* report.png in Resources */,
@@ -563,11 +658,14 @@
 				F32328AF18D56DFB006C7E64 /* checkBox@2x.png in Resources */,
 				F3E07C4518D6A172000DA9C4 /* TapkuLibrary.bundle in Resources */,
 				F32328B518D56DFB006C7E64 /* settings.png in Resources */,
+				F3D2B6B118D8380400E85646 /* apple calendar.plist in Resources */,
 				F32327FC18D56D2D006C7E64 /* InfoPlist.strings in Resources */,
 				F32328B018D56DFB006C7E64 /* checkBoxMarked.png in Resources */,
 				F323280418D56D2D006C7E64 /* Images.xcassets in Resources */,
 				F32328AC18D56DFB006C7E64 /* appIcon40pt.png in Resources */,
 				F32328B618D56DFB006C7E64 /* settings@2x.png in Resources */,
+				F3D2B6B318D8380400E85646 /* background@2x.png in Resources */,
+				F3D2B6B218D8380400E85646 /* background.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -589,18 +687,24 @@
 				F32328A718D56DFB006C7E64 /* EquipmentTableCell.m in Sources */,
 				F3E07C5C18D6FF5E000DA9C4 /* FMResultSet.m in Sources */,
 				F32328BF18D56DFB006C7E64 /* PNColor.m in Sources */,
+				F3D2B6AD18D8380400E85646 /* PMPeriod.m in Sources */,
 				F32328BC18D56DFB006C7E64 /* PNBarChart.m in Sources */,
 				F3E07C4018D69FA0000DA9C4 /* UIImage+TKCategory.m in Sources */,
 				F323288B18D56DFB006C7E64 /* Equipment.m in Sources */,
 				F3E07C4118D69FA0000DA9C4 /* UIImageView+TKCategory.m in Sources */,
+				F3D2B68818D8273F00E85646 /* MyPMCalendarController.m in Sources */,
+				F3D2B6AE18D8380400E85646 /* PMSelectionView.m in Sources */,
 				F32328BB18D56DFB006C7E64 /* PNBar.m in Sources */,
 				F32328C218D56DFB006C7E64 /* PNLineChartDataItem.m in Sources */,
+				F3D2B6AF18D8380400E85646 /* PMThemeEngine.m in Sources */,
 				F32328A618D56DFB006C7E64 /* EquipmentMainViewController.m in Sources */,
 				F32328C418D56DFB006C7E64 /* SettingsViewController.m in Sources */,
 				F32328BA18D56DFB006C7E64 /* MainViewController.m in Sources */,
+				F3D2B6AB18D8380400E85646 /* PMCalendarView.m in Sources */,
 				F32328C618D56DFB006C7E64 /* Utility.m in Sources */,
 				F3E07C3B18D69FA0000DA9C4 /* NSDate+TKCategory.m in Sources */,
 				F323288918D56DFB006C7E64 /* DateWiseReportCell.m in Sources */,
+				F3D2B6AC18D8380400E85646 /* PMDimmingView.m in Sources */,
 				F3E07C3F18D69FA0000DA9C4 /* UIColor+TKCategory.m in Sources */,
 				F3E07C5818D6FF5E000DA9C4 /* FMDatabase.m in Sources */,
 				F32328A818D56DFB006C7E64 /* EquipmentWiseReportViewController.m in Sources */,
@@ -608,6 +712,7 @@
 				F323288D18D56DFB006C7E64 /* Workout.m in Sources */,
 				F3E07C4218D69FA0000DA9C4 /* UIView+TKCategory.m in Sources */,
 				F32328C918D56DFB006C7E64 /* WorkoutTableCell.m in Sources */,
+				F3D2B6AA18D8380400E85646 /* PMCalendarController.m in Sources */,
 				F323288C18D56DFB006C7E64 /* Settings.m in Sources */,
 				F323280218D56D2D006C7E64 /* AppDelegate.m in Sources */,
 				F32328C518D56DFB006C7E64 /* UICountingLabel.m in Sources */,
@@ -619,6 +724,9 @@
 				F3E07C3C18D69FA0000DA9C4 /* TKCalendarMonthView.m in Sources */,
 				F323288A18D56DFB006C7E64 /* DateWiseReportViewController.m in Sources */,
 				F3E07C5A18D6FF5E000DA9C4 /* FMDatabasePool.m in Sources */,
+				F3D2B6A818D8380300E85646 /* NSDate+Helpers.m in Sources */,
+				F3D2B6B018D8380400E85646 /* PMThemeShadow.m in Sources */,
+				F3D2B6A918D8380300E85646 /* PMCalendarBackgroundView.m in Sources */,
 				F32328C718D56DFB006C7E64 /* WorkoutDetailsViewController.m in Sources */,
 				F32327FE18D56D2D006C7E64 /* main.m in Sources */,
 				F32328C818D56DFB006C7E64 /* WorkoutMainViewController.m in Sources */,

@@ -12,7 +12,7 @@
 + (BOOL) deleteEquipment:(Equipment *) equipment;
 
 + (NSMutableArray *) getWorkoutsByDate:(NSString *)date;
-+ (NSMutableArray *) getWorkoutsByEquipmentId:(NSNumber *) equipmentId;
++ (NSMutableArray *) getWorkoutsByEquipmentId:(NSNumber *) equipmentId fromDate:(NSString *)strFromdate toDate:(NSString *)strToDate;
 + (Workout *) loadWorkoutByEquipmentIdAndDate:(NSNumber *) equipmentId date:(NSString *) date;
 + (BOOL) createWorkout:(Workout *) workout;
 + (BOOL) updateWorkout:(Workout *) workout;

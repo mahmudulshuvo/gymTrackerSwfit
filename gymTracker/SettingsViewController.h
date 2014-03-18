@@ -6,8 +6,13 @@
 
 @property (strong, nonatomic) IBOutlet UIButton *kgCheckBox;
 
+@property (strong, nonatomic) IBOutlet UITextField *setsTextField;
+
+@property (strong, nonatomic) IBOutlet UIStepper *setsStepper;
+
 - (IBAction)saveBtn:(id)sender;
 - (IBAction)lbsCheckBoxClick:(id)sender;
 - (IBAction)kgCheckBoxClick:(id)sender;
+- (IBAction)setsStepperValueChanged:(id)sender;
 
 @end
