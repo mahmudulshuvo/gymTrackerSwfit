@@ -106,12 +106,13 @@
     
     [db open];
     
-    FMResultSet *results = [db executeQuery:[NSString stringWithFormat:@"SELECT SUM(workout_set_1 + workout_set_2 + workout_set_3 + workout_set_4 + workout_set_5) as workout_sets, workout_date FROM workout where equipment_id = %@ AND workout_date BETWEEN '%@' and '%@' group by workout_date order by workout_date ASC", equipmentId, strFromdate, strToDate]];
+    FMResultSet *results = [db executeQuery:[NSString stringWithFormat:@"SELECT workout_set_1,  workout_set_2, workout_set_3, workout_set_4, workout_set_5, workout_date FROM workout where equipment_id = %@ AND workout_date BETWEEN '%@' and '%@' order by workout_date ASC", equipmentId, strFromdate, strToDate]];
     
     while([results next])
     {
         LineChartVO *lineChartVO = [LineChartVO new];
-        lineChartVO.workoutSets = [NSNumber numberWithDouble:[results doubleForColumn:@"workout_sets"]];
+        lineChartVO.workoutSets = [NSNumber numberWithDouble:[results doubleForColumn:@"workout_set_1"] +               [results doubleForColumn:@"workout_set_2"] + [results doubleForColumn:@"workout_set_3"] +
+                                   [results doubleForColumn:@"workout_set_4"] + [results doubleForColumn:@"workout_set_5"]];
         lineChartVO.workoutDate = [results stringForColumn:@"workout_date"];
         
         [workouts addObject:lineChartVO];

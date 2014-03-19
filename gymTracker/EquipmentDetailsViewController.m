@@ -38,6 +38,10 @@ bool hasChosenImage;
             [self.equipmentImageView setImage:[UIImage imageNamed:@"no_image.jpg"]];
         }
     }
+    else
+    {
+        [self.equipmentImageView setImage:[UIImage imageNamed:@"no_image.jpg"]];
+    }
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -58,7 +62,7 @@ bool hasChosenImage;
     
     if(strEquipmentName.length == 0)
     {
-        [Utility  showAlert:@"Error" message:@"Equipment name is required"];
+        [Utility showAlert:@"Error" message:@"Equipment name is required"];
         return;
     }
     
@@ -72,7 +76,7 @@ bool hasChosenImage;
             Equipment *equipmentFromArray = [self.equipments objectAtIndex:i];
             if([[equipmentFromArray.equipmentName lowercaseString] isEqualToString:[strEquipmentName lowercaseString]])
             {
-                [Utility  showAlert:@"Error" message:@"The specified Equipment name already exists"];
+                [Utility showAlert:@"Error" message:@"The specified Equipment name already exists"];
                 return;
             }
         }
@@ -116,7 +120,7 @@ bool hasChosenImage;
     }
     @catch(NSException *exception)
     {
-        [Utility  showAlert:@"Error" message:[NSString stringWithFormat:@"Unable to access the camera"]];
+        [Utility showAlert:@"Error" message:[NSString stringWithFormat:@"Unable to access the camera"]];
     }
 }
 

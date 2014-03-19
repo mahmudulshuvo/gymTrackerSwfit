@@ -14,6 +14,10 @@
 
 NSDate *selectedFromDate;
 NSDate *selectedToDate;
+NSArray *workoutDataArray;
+NSMutableArray *chartXLabels;
+NSMutableArray *chartDatas;
+PNLineChartData *data;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,8 +33,12 @@ NSDate *selectedToDate;
 {
     [super viewDidLoad];
     
-    selectedFromDate = nil;
-    selectedToDate = nil;
+    NSDate *today = [NSDate date];
+    selectedFromDate = [today dateByAddingDays:-15];
+    selectedToDate = today;
+    
+    self.fromDateTextField.text = [[Utility sharedInstance].userFriendlyDateFormat stringFromDate: selectedFromDate];
+    self.toDateTextField.text = [[Utility sharedInstance].userFriendlyDateFormat stringFromDate: selectedToDate];
     
     self.xAxisLegendLabel.hidden = YES;
     self.yAxisLegendLabel.hidden = YES;
@@ -38,11 +46,9 @@ NSDate *selectedToDate;
     self.fromDateTextField.delegate = self;
     self.toDateTextField.delegate = self;
     
-    self.lineChart = [[PNLineChart alloc] initWithFrame:CGRectMake(0, 220.0, SCREEN_WIDTH, 200.0)];
-    
-    [self.view addSubview:self.lineChart];
-    
     self.yAxisLegendLabel.text = [NSString stringWithFormat:@"Y-Axis: Weight values in %@", [Utility sharedInstance].settings.weight];
+    
+    [self viewBtn:nil];
 }
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
@@ -80,8 +86,9 @@ NSDate *selectedToDate;
     self.pmCalendarController = [[MyPMCalendarController alloc] initWithThemeName:@"default"];
     
     self.pmCalendarController.delegate = self;
+    self.pmCalendarController.allowedPeriod = [PMPeriod periodWithStartDate:nil endDate:[NSDate date]];
+    self.pmCalendarController.allowsLongPressMonthChange = YES;
     self.pmCalendarController.mondayFirstDayOfWeek = NO;
-    
     self.pmCalendarController.allowsPeriodSelection = NO;
 }
 
@@ -125,43 +132,66 @@ NSDate *selectedToDate;
     }
     if(selectedFromDate == nil)
     {
-        [Utility  showAlert:@"Info" message:@"Please select 'From date'"];
+        [Utility showAlert:@"Info" message:@"Please select 'From date'"];
         return;
     }
     else if(selectedToDate == nil)
     {
-        [Utility  showAlert:@"Info" message:@"Please select 'To date'"];
+        [Utility showAlert:@"Info" message:@"Please select 'To date'"];
         return;
     }
     else if([selectedToDate compare:selectedFromDate] == NSOrderedAscending)
     {
-        [Utility  showAlert:@"Warning" message:@"'To date' cannot be less than 'From date'"];
+        [Utility showAlert:@"Warning" message:@"'To date' cannot be less than 'From date'"];
         return;
     }
-
-    NSArray *array = [FMDBDataAccess getWorkoutsByEquipmentId:self.selectedEquipment.id fromDate:[[Utility sharedInstance].dbDateFormat stringFromDate:selectedFromDate] toDate:[[Utility sharedInstance].dbDateFormat stringFromDate:selectedToDate]];
+    /*else if([selectedFromDate compare:[NSDate date]] == NSOrderedDescending)
+    {
+        [Utility showAlert:@"Warning" message:@"'From date' should not be greater than current date"];
+        return;
+    }
+    else if([selectedToDate compare:[NSDate date]] == NSOrderedDescending)
+    {
+        [Utility showAlert:@"Warning" message:@"'To date' should not be greater than current date"];
+        return;
+    }*/
     
-    if(array == nil || array.count < 1)
+    workoutDataArray = [FMDBDataAccess getWorkoutsByEquipmentId:self.selectedEquipment.id fromDate:[[Utility sharedInstance].dbDateFormat stringFromDate:selectedFromDate] toDate:[[Utility sharedInstance].dbDateFormat stringFromDate:selectedToDate]];
+    
+    if(workoutDataArray == nil || workoutDataArray.count < 1)
     {
         self.xAxisLegendLabel.hidden = YES;
         self.yAxisLegendLabel.hidden = YES;
-        [Utility  showAlert:@"No data" message:@"No data found"];
+        [Utility showAlert:@"No data" message:@"No data found"];
         return;
     }
     
-    int arrayCount = array.count;
-    NSMutableArray *chartXLabels = [NSMutableArray new];
-    NSMutableArray *chartDatas = [NSMutableArray new];
-    for(int i=0;i<arrayCount;i++)
+    int arrayCount = workoutDataArray.count;
+    chartXLabels = [NSMutableArray new];
+    chartDatas = [NSMutableArray new];
+    if(arrayCount < 19)
     {
-        LineChartVO *lineChartVO = array[i];
-        [chartXLabels addObject:[lineChartVO.workoutDate substringWithRange:NSMakeRange(8, 2)]];
-        [chartDatas addObject:lineChartVO.workoutSets];
+        for(int i=0;i<arrayCount;i++)
+        {
+            LineChartVO *lineChartVO = workoutDataArray[i];
+            [chartXLabels addObject:[lineChartVO.workoutDate substringWithRange:NSMakeRange(8, 2)]];
+            [chartDatas addObject:lineChartVO.workoutSets];
+        }
     }
-    NSDate *dbFromDate = [[Utility sharedInstance].dbDateFormat dateFromString:((LineChartVO *)array[0]).workoutDate];
-    if(array.count > 1)
+    else
     {
-        NSDate *dbToDate = [[Utility sharedInstance].dbDateFormat dateFromString:((LineChartVO *)array[array.count - 1]).workoutDate];
+        for(int i=0;i<arrayCount;i++)
+        {
+            LineChartVO *lineChartVO = workoutDataArray[i];
+            [chartXLabels addObject:@""];
+            [chartDatas addObject:lineChartVO.workoutSets];
+        }
+    }
+    
+    NSDate *dbFromDate = [[Utility sharedInstance].dbDateFormat dateFromString:((LineChartVO *)workoutDataArray[0]).workoutDate];
+    if(arrayCount > 1)
+    {
+        NSDate *dbToDate = [[Utility sharedInstance].dbDateFormat dateFromString:((LineChartVO *)workoutDataArray[workoutDataArray.count - 1]).workoutDate];
         self.chartHeader.text = [NSString stringWithFormat:@"%@ to %@", [[Utility sharedInstance].userFriendlyDateFormat stringFromDate:dbFromDate], [[Utility sharedInstance].userFriendlyDateFormat stringFromDate:dbToDate]];
     }
     else
@@ -169,14 +199,23 @@ NSDate *selectedToDate;
         self.chartHeader.text = [NSString stringWithFormat:@"%@", [[Utility sharedInstance].userFriendlyDateFormat stringFromDate:dbFromDate]];
     }
     
+    if(self.lineChart != nil)
+    {
+        [self.lineChart removeFromSuperview];
+        self.lineChart = nil;
+    }
+    
+    self.lineChart = [[PNLineChart alloc] initWithFrame:CGRectMake(0, 220.0, SCREEN_WIDTH, 200.0)];
+    [self.view addSubview:self.lineChart];
+    
     [self.lineChart setXLabels:chartXLabels];
-    PNLineChartData *data = [PNLineChartData new];
+    
+    data = [PNLineChartData new];
     data.color = PNFreshGreen;
-    data.itemCount = self.lineChart.xLabels.count;
+    data.itemCount = chartXLabels.count;
     data.getData = ^(NSUInteger index)
     {
-        CGFloat yValue = [((LineChartVO *)[array objectAtIndex:index]).workoutSets floatValue];
-        return [PNLineChartDataItem dataItemWithY:yValue];
+        return [PNLineChartDataItem dataItemWithY:[[chartDatas objectAtIndex:index] floatValue]];
     };
     
     self.lineChart.chartData = @[data];

@@ -41,7 +41,7 @@ int sets;
     if(self.workoutList.count < 1)
     {
         [self.navigationController popViewControllerAnimated:YES];
-        [Utility  showAlert:@"No Data" message:@"No data found"];
+        [Utility showAlert:@"No Data" message:@"No data found"];
         return;
     }
 }

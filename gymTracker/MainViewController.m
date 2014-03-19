@@ -42,7 +42,7 @@
     }
     @catch(NSException *exception)
     {
-        [Utility  showAlert:@"Error" message:[NSString stringWithFormat:@"Unable to access the camera"]];
+        [Utility showAlert:@"Error" message:[NSString stringWithFormat:@"Unable to access the camera"]];
     }
 }
 

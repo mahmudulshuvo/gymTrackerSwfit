@@ -30,19 +30,42 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
 	[self.dateWiseReportCheckBox setImage:[UIImage imageNamed:@"checkBoxMarked.png"] forState:UIControlStateNormal];
     dateWiseReportChecked = YES;
+    
     self.equipmentPicker.hidden = YES;
     self.equipmentWiseReportBtn.hidden = YES;
     self.dateCalenderView = [TKCalendarMonthView new];
     self.dateCalenderView.delegate = self;
     self.dateCalenderView.dataSource = self;
+    
+    [self.dateCalenderView selectDate:[NSDate date]];
+    
     [self.calendarContainer addSubview:self.dateCalenderView];
 }
 
 - (NSArray *)calendarMonthView:(TKCalendarMonthView *)monthView marksFromDate:(NSDate *)startDate toDate:(NSDate *)lastDate
 {
     return [self populateCalendarThroughStartDate:startDate endDate:lastDate];
+}
+
+- (void) calendarMonthView:(TKCalendarMonthView*)monthView didSelectDate:(NSDate*)date
+{
+    NSDate *today = [NSDate date];
+    if([date compare:today] == NSOrderedDescending)
+    {
+        [monthView selectDate:[NSDate date]];
+    }
+}
+
+- (void) calendarMonthView:(TKCalendarMonthView*)monthView monthDidChange:(NSDate*)d animated:(BOOL)animated
+{
+    NSDate *today = [NSDate date];
+    if([d compare:today] == NSOrderedDescending)
+    {
+        [monthView selectDate:[NSDate date]];
+    }
 }
 
 - (NSArray *) populateCalendarThroughStartDate:(NSDate*)start endDate:(NSDate*)end
@@ -87,7 +110,7 @@
     {
         self.dateWiseReportBtn.enabled = NO;
         self.equipmentWiseReportBtn.enabled = NO;
-        [Utility  showAlert:@"Error" message:@"Please add an Equipment first"];
+        [Utility showAlert:@"Error" message:@"Please add an Equipment first"];
         return;
     }
     else
@@ -132,7 +155,7 @@
         selectedDate = self.dateCalenderView.dateSelected;
         if(selectedDate == nil)
         {
-            [Utility  showAlert:@"Error" message:@"Please select a date"];
+            [Utility showAlert:@"Error" message:@"Please select a date"];
             return NO;
         }
     }
