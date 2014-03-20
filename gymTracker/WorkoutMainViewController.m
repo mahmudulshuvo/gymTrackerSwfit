@@ -11,12 +11,14 @@
 
 @implementation WorkoutMainViewController
 
+Utility *utility;
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self)
     {
-        // Custom initialization
+        utility = [Utility sharedInstance];
     }
     return self;
 }
@@ -36,8 +38,6 @@
 {
     [super viewDidAppear:animated];
     
-    self.equipmentsList = [FMDBDataAccess getEquipments];
-    
     [self.tableView reloadData];
 }
 
@@ -56,7 +56,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.equipmentsList.count;
+    return utility.equipmentsList.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -69,15 +69,13 @@
         cell = [[WorkoutTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    Equipment *equipment = [self.equipmentsList objectAtIndex:[indexPath row]];
+    Equipment *equipment = [utility.equipmentsList objectAtIndex:[indexPath row]];
     cell.equipmentNameLabel.text = equipment.equipmentName;
-    UIImage *image;
+    
     if(equipment.imageName == nil || [equipment.imageName isEqualToString:@"(null)"])
-        image = [UIImage imageNamed:@"no_image.jpg"];
+        [cell.equipmentImageView setImage:utility.noImage];
     else
-        image = [UIImage imageNamed:equipment.imageName];
-   
-    [cell.equipmentImageView setImage:image];
+        [cell.equipmentImageView setImage:[UIImage imageNamed:equipment.imageName]];
     
     return cell;
 }
@@ -89,7 +87,7 @@
         WorkoutDetailsViewController *workoutDetailsView = [segue destinationViewController];
         NSIndexPath *myIndexPath = [self.tableView indexPathForSelectedRow];
         NSInteger row = [myIndexPath row];
-        workoutDetailsView.selectedEquipment = self.equipmentsList[row];
+        workoutDetailsView.selectedEquipment = utility.equipmentsList[row];
     }
 }
 

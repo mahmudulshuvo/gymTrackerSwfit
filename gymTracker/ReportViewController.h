@@ -13,8 +13,6 @@
 
 @property (strong, nonatomic) IBOutlet UIPickerView *equipmentPicker;
 
-@property (nonatomic, strong) NSMutableArray *equipmentsList;
-
 @property (strong, nonatomic) IBOutlet UIButton *dateWiseReportBtn;
 
 @property (strong, nonatomic) IBOutlet UIButton *equipmentWiseReportBtn;

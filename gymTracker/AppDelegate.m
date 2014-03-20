@@ -4,17 +4,22 @@
 
 @implementation AppDelegate
 
+Utility *utility;
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [Utility sharedInstance].databaseName = @"gymTracker.db";
+    utility = [Utility sharedInstance];
+    
+    utility.databaseName = @"gymTracker.db";
     
     NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    [Utility sharedInstance].documentDir = [documentPaths objectAtIndex:0];
-    [Utility sharedInstance].databasePath = [[Utility sharedInstance].documentDir stringByAppendingPathComponent:[Utility sharedInstance].databaseName];
+    utility.documentDir = [documentPaths objectAtIndex:0];
+    utility.databasePath = [utility.documentDir stringByAppendingPathComponent:utility.databaseName];
     
     [self createAndCheckDatabase];
     
-    [Utility sharedInstance].settings = [FMDBDataAccess getSettings];
+    utility.settings = [FMDBDataAccess getSettings];
+    utility.equipmentsList = [FMDBDataAccess getEquipments];
     
     return YES;
 }
@@ -24,13 +29,13 @@
     BOOL success;
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    success = [fileManager fileExistsAtPath:[Utility sharedInstance].databasePath];
+    success = [fileManager fileExistsAtPath:utility.databasePath];
     
     if(success) return;
     
-    NSString *databasePathFromApp = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:[Utility sharedInstance].databaseName];
+    NSString *databasePathFromApp = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:utility.databaseName];
     
-    [fileManager copyItemAtPath:databasePathFromApp toPath:[Utility sharedInstance].databasePath error:nil];
+    [fileManager copyItemAtPath:databasePathFromApp toPath:utility.databasePath error:nil];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

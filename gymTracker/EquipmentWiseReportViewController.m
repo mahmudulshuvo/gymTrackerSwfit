@@ -18,13 +18,14 @@ NSArray *workoutDataArray;
 NSMutableArray *chartXLabels;
 NSMutableArray *chartDatas;
 PNLineChartData *data;
+Utility *utility;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self)
     {
-        // Custom initialization
+        utility = [Utility sharedInstance];
     }
     return self;
 }
@@ -37,8 +38,8 @@ PNLineChartData *data;
     selectedFromDate = [today dateByAddingDays:-15];
     selectedToDate = today;
     
-    self.fromDateTextField.text = [[Utility sharedInstance].userFriendlyDateFormat stringFromDate: selectedFromDate];
-    self.toDateTextField.text = [[Utility sharedInstance].userFriendlyDateFormat stringFromDate: selectedToDate];
+    self.fromDateTextField.text = [utility.userFriendlyDateFormat stringFromDate: selectedFromDate];
+    self.toDateTextField.text = [utility.userFriendlyDateFormat stringFromDate: selectedToDate];
     
     self.xAxisLegendLabel.hidden = YES;
     self.yAxisLegendLabel.hidden = YES;
@@ -46,7 +47,7 @@ PNLineChartData *data;
     self.fromDateTextField.delegate = self;
     self.toDateTextField.delegate = self;
     
-    self.yAxisLegendLabel.text = [NSString stringWithFormat:@"Y-Axis: Weight values in %@", [Utility sharedInstance].settings.weight];
+    self.yAxisLegendLabel.text = [NSString stringWithFormat:@"Y-Axis: Weight values in %@", utility.settings.weight];
     
     [self viewBtn:nil];
 }
@@ -63,12 +64,12 @@ PNLineChartData *data;
         if(self.pmCalendarController.destinationComp == self.fromDateTextField)
         {
             selectedFromDate = self.pmCalendarController.period.startDate;
-            self.fromDateTextField.text = [[Utility sharedInstance].userFriendlyDateFormat stringFromDate: selectedFromDate];
+            self.fromDateTextField.text = [utility.userFriendlyDateFormat stringFromDate: selectedFromDate];
         }
         else if(self.pmCalendarController.destinationComp == self.toDateTextField)
         {
             selectedToDate = self.pmCalendarController.period.startDate;
-            self.toDateTextField.text = [[Utility sharedInstance].userFriendlyDateFormat stringFromDate: selectedToDate];
+            self.toDateTextField.text = [utility.userFriendlyDateFormat stringFromDate: selectedToDate];
         }
         
         [self.pmCalendarController dismissCalendarAnimated:YES];
@@ -156,7 +157,7 @@ PNLineChartData *data;
         return;
     }*/
     
-    workoutDataArray = [FMDBDataAccess getWorkoutsByEquipmentId:self.selectedEquipment.id fromDate:[[Utility sharedInstance].dbDateFormat stringFromDate:selectedFromDate] toDate:[[Utility sharedInstance].dbDateFormat stringFromDate:selectedToDate]];
+    workoutDataArray = [FMDBDataAccess getWorkoutsByEquipmentId:self.selectedEquipment.id fromDate:[utility.dbDateFormat stringFromDate:selectedFromDate] toDate:[utility.dbDateFormat stringFromDate:selectedToDate]];
     
     if(workoutDataArray == nil || workoutDataArray.count < 1)
     {
@@ -188,15 +189,15 @@ PNLineChartData *data;
         }
     }
     
-    NSDate *dbFromDate = [[Utility sharedInstance].dbDateFormat dateFromString:((LineChartVO *)workoutDataArray[0]).workoutDate];
+    NSDate *dbFromDate = [utility.dbDateFormat dateFromString:((LineChartVO *)workoutDataArray[0]).workoutDate];
     if(arrayCount > 1)
     {
-        NSDate *dbToDate = [[Utility sharedInstance].dbDateFormat dateFromString:((LineChartVO *)workoutDataArray[workoutDataArray.count - 1]).workoutDate];
-        self.chartHeader.text = [NSString stringWithFormat:@"%@ to %@", [[Utility sharedInstance].userFriendlyDateFormat stringFromDate:dbFromDate], [[Utility sharedInstance].userFriendlyDateFormat stringFromDate:dbToDate]];
+        NSDate *dbToDate = [utility.dbDateFormat dateFromString:((LineChartVO *)workoutDataArray[workoutDataArray.count - 1]).workoutDate];
+        self.chartHeader.text = [NSString stringWithFormat:@"%@ to %@", [utility.userFriendlyDateFormat stringFromDate:dbFromDate], [utility.userFriendlyDateFormat stringFromDate:dbToDate]];
     }
     else
     {
-        self.chartHeader.text = [NSString stringWithFormat:@"%@", [[Utility sharedInstance].userFriendlyDateFormat stringFromDate:dbFromDate]];
+        self.chartHeader.text = [NSString stringWithFormat:@"%@", [utility.userFriendlyDateFormat stringFromDate:dbFromDate]];
     }
     
     if(self.lineChart != nil)

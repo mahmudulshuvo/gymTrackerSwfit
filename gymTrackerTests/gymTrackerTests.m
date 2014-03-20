@@ -1,11 +1,3 @@
-//
-//  gymTrackerTests.m
-//  gymTrackerTests
-//
-//  Created by Third Bit on 3/16/14.
-//  Copyright (c) 2014 Third Bit. All rights reserved.
-//
-
 #import <XCTest/XCTest.h>
 
 @interface gymTrackerTests : XCTestCase

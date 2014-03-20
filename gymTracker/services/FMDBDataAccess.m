@@ -4,11 +4,13 @@
 
 @implementation FMDBDataAccess
 
+Utility *utility;
+
 + (NSMutableArray *) getEquipments
 {
     NSMutableArray *equipments = [NSMutableArray new];
     
-    FMDatabase *db = [FMDatabase databaseWithPath:[Utility sharedInstance].databasePath];
+    FMDatabase *db = [FMDatabase databaseWithPath:utility.databasePath];
     
     [db open];
     
@@ -31,7 +33,7 @@
 
 + (BOOL) createEquipment:(Equipment *) equipment
 {
-    FMDatabase *db = [FMDatabase databaseWithPath:[Utility sharedInstance].databasePath];
+    FMDatabase *db = [FMDatabase databaseWithPath:utility.databasePath];
     
     [db open];
     
@@ -45,7 +47,7 @@
 
 + (BOOL) updateEquipment:(Equipment *) equipment
 {
-    FMDatabase *db = [FMDatabase databaseWithPath:[Utility sharedInstance].databasePath];
+    FMDatabase *db = [FMDatabase databaseWithPath:utility.databasePath];
     
     [db open];
     
@@ -58,9 +60,11 @@
 
 + (BOOL) deleteEquipment:(Equipment *) equipment
 {
-    FMDatabase *db = [FMDatabase databaseWithPath:[Utility sharedInstance].databasePath];
+    FMDatabase *db = [FMDatabase databaseWithPath:utility.databasePath];
     
     [db open];
+    
+    [db executeUpdate:[NSString stringWithFormat:@"delete from workout where equipment_id = %@", equipment.id]];
     
     BOOL success = [db executeUpdate:[NSString stringWithFormat:@"delete from equipment where id = %@", equipment.id]];
     
@@ -73,7 +77,7 @@
 {
     NSMutableArray *workouts = [NSMutableArray new];
     
-    FMDatabase *db = [FMDatabase databaseWithPath:[Utility sharedInstance].databasePath];
+    FMDatabase *db = [FMDatabase databaseWithPath:utility.databasePath];
     
     [db open];
     
@@ -102,7 +106,7 @@
 {
     NSMutableArray *workouts = [NSMutableArray new];
     
-    FMDatabase *db = [FMDatabase databaseWithPath:[Utility sharedInstance].databasePath];
+    FMDatabase *db = [FMDatabase databaseWithPath:utility.databasePath];
     
     [db open];
     
@@ -125,7 +129,7 @@
 
 + (Workout *) loadWorkoutByEquipmentIdAndDate:(NSNumber *) equipmentId date:(NSString *) date
 {
-    FMDatabase *db = [FMDatabase databaseWithPath:[Utility sharedInstance].databasePath];
+    FMDatabase *db = [FMDatabase databaseWithPath:utility.databasePath];
     
     [db open];
     
@@ -151,7 +155,7 @@
 
 + (BOOL) createWorkout:(Workout *) workout
 {
-    FMDatabase *db = [FMDatabase databaseWithPath:[Utility sharedInstance].databasePath];
+    FMDatabase *db = [FMDatabase databaseWithPath:utility.databasePath];
     
     [db open];
     
@@ -165,7 +169,7 @@
 
 + (BOOL) updateWorkout:(Workout *) workout
 {
-    FMDatabase *db = [FMDatabase databaseWithPath:[Utility sharedInstance].databasePath];
+    FMDatabase *db = [FMDatabase databaseWithPath:utility.databasePath];
     
     [db open];
     
@@ -178,7 +182,7 @@
 
 + (BOOL) deleteWorkout:(Workout *) workout
 {
-    FMDatabase *db = [FMDatabase databaseWithPath:[Utility sharedInstance].databasePath];
+    FMDatabase *db = [FMDatabase databaseWithPath:utility.databasePath];
     
     [db open];
     
@@ -191,7 +195,7 @@
 
 + (Settings *) getSettings
 {
-    FMDatabase *db = [FMDatabase databaseWithPath:[Utility sharedInstance].databasePath];
+    FMDatabase *db = [FMDatabase databaseWithPath:utility.databasePath];
     
     [db open];
     
@@ -213,7 +217,7 @@
 
 + (BOOL) updateSettings:(Settings *) settings
 {
-    FMDatabase *db = [FMDatabase databaseWithPath:[Utility sharedInstance].databasePath];
+    FMDatabase *db = [FMDatabase databaseWithPath:utility.databasePath];
     
     [db open];
     
@@ -228,7 +232,7 @@
 {
     NSMutableArray *workouts = [NSMutableArray new];
     
-    FMDatabase *db = [FMDatabase databaseWithPath:[Utility sharedInstance].databasePath];
+    FMDatabase *db = [FMDatabase databaseWithPath:utility.databasePath];
     
     [db open];
     

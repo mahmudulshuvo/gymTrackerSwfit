@@ -10,12 +10,14 @@
 
 @implementation EquipmentMainViewController
 
+Utility *utility;
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self)
     {
-        // Custom initialization
+        utility = [Utility sharedInstance];
     }
     return self;
 }
@@ -35,7 +37,7 @@
 {
     [super viewDidAppear:animated];
     
-    self.equipmentsList = [FMDBDataAccess getEquipments];
+    utility.equipmentsList = [FMDBDataAccess getEquipments];
     
     [self.tableView reloadData];
 }
@@ -55,7 +57,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.equipmentsList.count;
+    return utility.equipmentsList.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -68,16 +70,13 @@
         cell = [[EquipmentTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
 
-    Equipment *equipment = [self.equipmentsList objectAtIndex:[indexPath row]];
+    Equipment *equipment = [utility.equipmentsList objectAtIndex:[indexPath row]];
     cell.equipmentNameLabel.text = [NSString stringWithFormat:@"%@", equipment.equipmentName];
     
-    UIImage *image;
     if(equipment.imageName == nil || [equipment.imageName isEqualToString:@"(null)"])
-        image = [UIImage imageNamed:@"no_image.jpg"];
+        [cell.equipmentImageView setImage:utility.noImage];
     else
-        image = [UIImage imageNamed:equipment.imageName];
-    
-    [cell.equipmentImageView setImage:image];
+        [cell.equipmentImageView setImage:[UIImage imageNamed:equipment.imageName]];
     
     return cell;
 }
@@ -88,7 +87,6 @@
     {
         EquipmentDetailsViewController *equipmentDetailsView = [segue destinationViewController];
         equipmentDetailsView.selectedEquipment = nil;
-        equipmentDetailsView.equipments = self.equipmentsList;
         equipmentDetailsView.title = @"New Equipment";
     }
     
@@ -97,8 +95,7 @@
         EquipmentDetailsViewController *equipmentDetailsView = [segue destinationViewController];
         NSIndexPath *myIndexPath = [self.tableView indexPathForSelectedRow];
         NSInteger row = [myIndexPath row];
-        equipmentDetailsView.selectedEquipment = self.equipmentsList[row];
-        equipmentDetailsView.equipments = self.equipmentsList;
+        equipmentDetailsView.selectedEquipment = utility.equipmentsList[row];
         equipmentDetailsView.title = @"Edit Equipment";
     }
 }
@@ -115,11 +112,11 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete)
     {
-        Equipment *equipment = [self.equipmentsList objectAtIndex:[indexPath row]];
+        Equipment *equipment = [utility.equipmentsList objectAtIndex:[indexPath row]];
         
         if(equipment.imageName != nil)
         {
-            NSString *filePath = [NSString stringWithFormat:@"%@/%@", [Utility sharedInstance].documentDir, equipment.imageName];
+            NSString *filePath = [NSString stringWithFormat:@"%@/%@", utility.documentDir, equipment.imageName];
             NSFileManager *fileManager = [NSFileManager defaultManager];
         
             if ([fileManager fileExistsAtPath:filePath] == YES)
@@ -130,7 +127,7 @@
         
         [FMDBDataAccess deleteEquipment:equipment];
         
-        [self.equipmentsList removeObjectAtIndex:indexPath.row];
+        [utility.equipmentsList removeObjectAtIndex:indexPath.row];
         
         [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }

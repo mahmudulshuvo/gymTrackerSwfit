@@ -2,6 +2,4 @@
 
 @interface EquipmentMainViewController : UITableViewController
 
-@property (nonatomic, strong) NSMutableArray *equipmentsList;
-
 @end

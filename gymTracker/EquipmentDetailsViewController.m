@@ -9,13 +9,14 @@
 @implementation EquipmentDetailsViewController
 
 bool hasChosenImage;
+Utility *utility;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self)
     {
-        // Custom initialization
+        utility = [Utility sharedInstance];
     }
     return self;
 }
@@ -30,17 +31,17 @@ bool hasChosenImage;
         self.equipmentNameTextField.text = [NSString stringWithFormat:@"%@", _selectedEquipment.equipmentName];
         if(_selectedEquipment.imageName != nil && ![_selectedEquipment.imageName isEqualToString:@"(null)"])
         {
-            NSString *filePath = [NSString stringWithFormat:@"%@/%@", [Utility sharedInstance].documentDir, _selectedEquipment.imageName];
+            NSString *filePath = [NSString stringWithFormat:@"%@/%@", utility.documentDir, _selectedEquipment.imageName];
             [self.equipmentImageView setImage:[UIImage imageWithContentsOfFile:filePath]];
         }
         else
         {
-            [self.equipmentImageView setImage:[UIImage imageNamed:@"no_image.jpg"]];
+            [self.equipmentImageView setImage:utility.noImage];
         }
     }
     else
     {
-        [self.equipmentImageView setImage:[UIImage imageNamed:@"no_image.jpg"]];
+        [self.equipmentImageView setImage:utility.noImage];
     }
 }
 
@@ -70,10 +71,10 @@ bool hasChosenImage;
     
     if(_selectedEquipment == nil)
     {
-        NSUInteger totalEquipmentsCount = self.equipments.count;
+        NSUInteger totalEquipmentsCount = utility.equipmentsList.count;
         for(int i=0;i<totalEquipmentsCount;i++)
         {
-            Equipment *equipmentFromArray = [self.equipments objectAtIndex:i];
+            Equipment *equipmentFromArray = [utility.equipmentsList objectAtIndex:i];
             if([[equipmentFromArray.equipmentName lowercaseString] isEqualToString:[strEquipmentName lowercaseString]])
             {
                 [Utility showAlert:@"Error" message:@"The specified Equipment name already exists"];
@@ -82,8 +83,9 @@ bool hasChosenImage;
         }
 
         _selectedEquipment = [Equipment new];
-        if(self.equipmentImageView.image != nil)
-            _selectedEquipment.imageName = [NSString stringWithFormat:@"%@.png", strEquipmentName];
+        if(self.equipmentImageView.image != utility.noImage)
+            _selectedEquipment.imageName = [NSString stringWithFormat:@"%.0f.png", [NSDate date].timeIntervalSince1970];
+        
         newEntry = YES;
     }
     
@@ -92,10 +94,8 @@ bool hasChosenImage;
     if(hasChosenImage)
     {
         [[NSUserDefaults standardUserDefaults]setValue:_selectedEquipment.imageName forKey:@"imageName"];
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *documentsDirectory = [paths objectAtIndex:0];
     
-        NSString *savedImagePath = [documentsDirectory stringByAppendingPathComponent:_selectedEquipment.imageName];
+        NSString *savedImagePath = [utility.documentDir stringByAppendingPathComponent:_selectedEquipment.imageName];
         UIImage *image = self.equipmentImageView.image;
         NSData *imageData = UIImagePNGRepresentation(image);
         [imageData writeToFile:savedImagePath atomically:NO];

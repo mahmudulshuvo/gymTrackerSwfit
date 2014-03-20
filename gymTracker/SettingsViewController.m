@@ -12,12 +12,14 @@
 
 @implementation SettingsViewController
 
+Utility *utility;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self)
     {
-        // Custom initialization
+        utility = [Utility sharedInstance];
     }
     return self;
 }
@@ -25,7 +27,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    if([[Utility sharedInstance].settings.weight isEqualToString:@"lbs"])
+    if([utility.settings.weight isEqualToString:@"lbs"])
     {
         [self.lbsCheckBox setImage:[UIImage imageNamed:@"checkBoxMarked.png"] forState:UIControlStateNormal];
         lbsChecked = YES;
@@ -35,7 +37,7 @@
         [self.kgCheckBox setImage:[UIImage imageNamed:@"checkBoxMarked.png"] forState:UIControlStateNormal];
         kgChecked = YES;
     }
-    int sets = [Utility sharedInstance].settings.sets.intValue;
+    int sets = utility.settings.sets.intValue;
     self.setsStepper.value = sets;
     self.setsTextField.text = [NSString stringWithFormat:@"%d", sets];
 }
@@ -54,10 +56,10 @@
     else if(kgChecked)
         strWeight = @"kg";
     
-    [Utility sharedInstance].settings.weight = strWeight;
-    [Utility sharedInstance].settings.sets = [NSNumber numberWithInt:self.setsStepper.value];
+    utility.settings.weight = strWeight;
+    utility.settings.sets = [NSNumber numberWithInt:self.setsStepper.value];
     
-    [FMDBDataAccess updateSettings:[Utility sharedInstance].settings];
+    [FMDBDataAccess updateSettings:utility.settings];
 }
 
 - (IBAction)lbsCheckBoxClick:(id)sender

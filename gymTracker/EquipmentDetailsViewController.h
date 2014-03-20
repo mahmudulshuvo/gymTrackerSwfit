@@ -10,8 +10,6 @@
 
 @property (strong, nonatomic) IBOutlet UITextField *equipmentNameTextField;
 
-@property (retain, nonatomic) NSMutableArray *equipments;
-
 @property (retain, nonatomic) Equipment *selectedEquipment;
 
 - (IBAction)saveBtn:(id)sender;

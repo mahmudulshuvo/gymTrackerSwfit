@@ -2,6 +2,4 @@
 
 @interface WorkoutMainViewController : UITableViewController
 
-@property (nonatomic, strong) NSMutableArray *equipmentsList;
-
 @end

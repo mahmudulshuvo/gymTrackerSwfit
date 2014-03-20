@@ -26,6 +26,8 @@
         
         _sharedClient.userFriendlyDateFormat = [NSDateFormatter new];
         _sharedClient.userFriendlyDateFormat.dateFormat = @"MMM/dd/yyyy";
+        
+        _sharedClient.noImage = [UIImage imageNamed:@"no_image.jpg"];
     });
     
     return _sharedClient;

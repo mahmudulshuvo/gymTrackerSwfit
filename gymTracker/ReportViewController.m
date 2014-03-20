@@ -17,12 +17,14 @@
 
 @implementation ReportViewController
 
+Utility *utility;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self)
     {
-        // Custom initialization
+        utility = [Utility sharedInstance];
     }
     return self;
 }
@@ -77,7 +79,7 @@
     
 	while(YES)
     {
-        NSString *simplifiedStart = [[Utility sharedInstance].dbDateFormat stringFromDate:d];
+        NSString *simplifiedStart = [utility.dbDateFormat stringFromDate:d];
         
 		if ([workoutDates containsObject:simplifiedStart])
         {
@@ -102,11 +104,9 @@
 {
     [super viewDidAppear:animated];
     
-    self.equipmentsList = [FMDBDataAccess getEquipments];
-    
     [self.equipmentPicker reloadAllComponents];
     
-    if(self.equipmentsList.count < 1)
+    if(utility.equipmentsList.count < 1)
     {
         self.dateWiseReportBtn.enabled = NO;
         self.equipmentWiseReportBtn.enabled = NO;
@@ -134,16 +134,16 @@
     {
         DateWiseReportViewController *dateWiseReportView = [segue destinationViewController];
         
-        dateWiseReportView.strSelectedDate = [[Utility sharedInstance].dbDateFormat stringFromDate:selectedDate];
+        dateWiseReportView.strSelectedDate = [utility.dbDateFormat stringFromDate:selectedDate];
         
-        dateWiseReportView.title = [[Utility sharedInstance].userFriendlyDateFormat stringFromDate:selectedDate];
+        dateWiseReportView.title = [utility.userFriendlyDateFormat stringFromDate:selectedDate];
     }
     
     else if([segue.identifier isEqualToString:@"EquipmentWiseReportView"])
     {
         EquipmentWiseReportViewController *equipmentWiseReportView = [segue destinationViewController];
         NSInteger row = [self.equipmentPicker selectedRowInComponent:0];
-        equipmentWiseReportView.selectedEquipment = self.equipmentsList[row];
+        equipmentWiseReportView.selectedEquipment = utility.equipmentsList[row];
         equipmentWiseReportView.title = equipmentWiseReportView.selectedEquipment.equipmentName;
     }
 }
@@ -200,7 +200,7 @@
 
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    Equipment *equipment = [self.equipmentsList objectAtIndex:row];
+    Equipment *equipment = [utility.equipmentsList objectAtIndex:row];
     return equipment.equipmentName;
 }
 
@@ -213,7 +213,7 @@
 // returns the # of rows in each component..
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent: (NSInteger)component
 {
-    return self.equipmentsList.count;
+    return utility.equipmentsList.count;
 }
 
 @end

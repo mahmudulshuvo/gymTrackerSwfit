@@ -11,13 +11,14 @@
 
 BOOL newEntry;
 int sets;
+Utility *utility;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self)
     {
-        // Custom initialization
+        utility = [Utility sharedInstance];
     }
     return self;
 }
@@ -26,7 +27,7 @@ int sets;
 {
     [super viewDidLoad];
     
-    sets = [Utility sharedInstance].settings.sets.intValue;
+    sets = utility.settings.sets.intValue;
     [self prepareViewBasedOnSets];
     
 	self.set1TextField.delegate = self;
@@ -35,7 +36,7 @@ int sets;
     self.set4TextField.delegate = self;
     self.set5TextField.delegate = self;
     
-    NSString *strToday = [[Utility sharedInstance].dbDateFormat stringFromDate:[NSDate date]];
+    NSString *strToday = [utility.dbDateFormat stringFromDate:[NSDate date]];
     
     self.workout = [FMDBDataAccess loadWorkoutByEquipmentIdAndDate:self.selectedEquipment.id date:strToday];
     if(self.workout == nil || self.workout.id == nil)
@@ -60,7 +61,7 @@ int sets;
 {
     [super viewDidAppear:animated];
     
-    NSString *weightLabelValue = [Utility sharedInstance].settings.weight;
+    NSString *weightLabelValue = utility.settings.weight;
     if(![self.weightLabel1.text isEqualToString:weightLabelValue])
     {
         self.weightLabel1.text = weightLabelValue;
@@ -69,9 +70,9 @@ int sets;
         self.weightLabel4.text = weightLabelValue;
         self.weightLabel5.text = weightLabelValue;
     }
-    if(sets != [Utility sharedInstance].settings.sets.intValue)
+    if(sets != utility.settings.sets.intValue)
     {
-        sets = [Utility sharedInstance].settings.sets.intValue;
+        sets = utility.settings.sets.intValue;
         [self prepareViewBasedOnSets];
     }
 }

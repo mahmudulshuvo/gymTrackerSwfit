@@ -12,13 +12,15 @@
 @implementation DateWiseReportViewController
 
 int sets;
+NSString *strWeightLabelValue;
+Utility *utility;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self)
     {
-        // Custom initialization
+        utility = [Utility sharedInstance];
     }
     return self;
 }
@@ -27,7 +29,7 @@ int sets;
 {
     [super viewDidLoad];
     
-    sets = [Utility sharedInstance].settings.sets.intValue;
+    sets = utility.settings.sets.intValue;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -44,6 +46,8 @@ int sets;
         [Utility showAlert:@"No Data" message:@"No data found"];
         return;
     }
+    
+    strWeightLabelValue = utility.settings.weight;
 }
 
 - (void)didReceiveMemoryWarning
@@ -78,11 +82,11 @@ int sets;
     
     Workout *workout = [self.workoutList objectAtIndex:[indexPath row]];
     cell.equipmentNameLabel.text = workout.equipmentName;
-    cell.set1ValueLabel.text = [NSString stringWithFormat:@"%@ %@", workout.workoutSet1, [Utility sharedInstance].settings.weight];
-    cell.set2ValueLabel.text = [NSString stringWithFormat:@"%@ %@", workout.workoutSet2, [Utility sharedInstance].settings.weight];
-    cell.set3ValueLabel.text = [NSString stringWithFormat:@"%@ %@", workout.workoutSet3, [Utility sharedInstance].settings.weight];
-    cell.set4ValueLabel.text = [NSString stringWithFormat:@"%@ %@", workout.workoutSet4, [Utility sharedInstance].settings.weight];
-    cell.set5ValueLabel.text = [NSString stringWithFormat:@"%@ %@", workout.workoutSet5, [Utility sharedInstance].settings.weight];
+    cell.set1ValueLabel.text = [NSString stringWithFormat:@"%@ %@", workout.workoutSet1, strWeightLabelValue];
+    cell.set2ValueLabel.text = [NSString stringWithFormat:@"%@ %@", workout.workoutSet2, strWeightLabelValue];
+    cell.set3ValueLabel.text = [NSString stringWithFormat:@"%@ %@", workout.workoutSet3, strWeightLabelValue];
+    cell.set4ValueLabel.text = [NSString stringWithFormat:@"%@ %@", workout.workoutSet4, strWeightLabelValue];
+    cell.set5ValueLabel.text = [NSString stringWithFormat:@"%@ %@", workout.workoutSet5, strWeightLabelValue];
     if(sets == 3)
     {
         cell.set4Label.hidden = YES;
@@ -107,12 +111,10 @@ int sets;
         cell.set5Label.hidden = NO;
         cell.set5ValueLabel.hidden = NO;
     }
-    UIImage *image;
     if(workout.equipmentImageName == nil || [workout.equipmentImageName isEqualToString:@"(null)"])
-        image = [UIImage imageNamed:@"no_image.jpg"];
+        [cell.equipmentImageView setImage:utility.noImage];
     else
-        image = [UIImage imageNamed:workout.equipmentImageName];
-    [cell.equipmentImageView setImage:image];
+        [cell.equipmentImageView setImage:[UIImage imageNamed:workout.equipmentImageName]];
     
     return cell;
 }

@@ -10,6 +10,8 @@
 @property (nonatomic, strong) NSDateFormatter *dbDateFormat;
 @property (nonatomic, strong) NSDateFormatter *userFriendlyDateFormat;
 @property (nonatomic, strong) NSDateFormatter *dateOnlyDateFormat;
+@property (nonatomic, strong) UIImage *noImage;
+@property (nonatomic, strong) NSMutableArray *equipmentsList;
 
 + (void) showAlert:(NSString *) title message:(NSString *) msg;
 + (NSDate *)dateAtBeginningOfDayForDate:(NSDate *)inputDate;
