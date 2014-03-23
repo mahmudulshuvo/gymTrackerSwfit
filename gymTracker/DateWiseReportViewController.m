@@ -4,6 +4,7 @@
 #import "Equipment.h"
 #import "DateWiseReportCell.h"
 #import "FMDBDataAccess.h"
+#import "WorkoutDetailsViewController.h"
 
 @interface DateWiseReportViewController ()
 
@@ -87,8 +88,23 @@ Utility *utility;
     cell.set3ValueLabel.text = [NSString stringWithFormat:@"%@ %@", workout.workoutSet3, strWeightLabelValue];
     cell.set4ValueLabel.text = [NSString stringWithFormat:@"%@ %@", workout.workoutSet4, strWeightLabelValue];
     cell.set5ValueLabel.text = [NSString stringWithFormat:@"%@ %@", workout.workoutSet5, strWeightLabelValue];
-    if(sets == 3)
+    
+    if(sets == 2)
     {
+        cell.set3Label.hidden = YES;
+        cell.set3ValueLabel.hidden = YES;
+        
+        cell.set4Label.hidden = YES;
+        cell.set4ValueLabel.hidden = YES;
+        
+        cell.set5Label.hidden = YES;
+        cell.set5ValueLabel.hidden = YES;
+    }
+    else if(sets == 3)
+    {
+        cell.set3Label.hidden = NO;
+        cell.set3ValueLabel.hidden = NO;
+        
         cell.set4Label.hidden = YES;
         cell.set4ValueLabel.hidden = YES;
         
@@ -117,6 +133,19 @@ Utility *utility;
         [cell.equipmentImageView setImage:[UIImage imageNamed:workout.equipmentImageName]];
     
     return cell;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"EditWorkOutDetails"])
+    {
+        WorkoutDetailsViewController *workoutDetailsView = [segue destinationViewController];
+        NSIndexPath *myIndexPath = [self.tableView indexPathForSelectedRow];
+        NSInteger row = [myIndexPath row];
+        workoutDetailsView.workout = self.workoutList[row];
+        workoutDetailsView.title = workoutDetailsView.workout.equipmentName;
+        workoutDetailsView.parentControllerName = @"report";
+    }
 }
 
 @end

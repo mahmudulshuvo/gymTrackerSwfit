@@ -36,9 +36,18 @@ Utility *utility;
     self.set4TextField.delegate = self;
     self.set5TextField.delegate = self;
     
-    NSString *strToday = [utility.dbDateFormat stringFromDate:[NSDate date]];
+    NSString *strToday;
     
-    self.workout = [FMDBDataAccess loadWorkoutByEquipmentIdAndDate:self.selectedEquipment.id date:strToday];
+    if([self.parentControllerName isEqualToString:@"workout"])
+    {
+        strToday = [utility.dbDateFormat stringFromDate:[NSDate date]];
+        self.workout = [FMDBDataAccess loadWorkoutByEquipmentIdAndDate:self.selectedEquipment.id date:strToday];
+    }
+    else if([self.parentControllerName isEqualToString:@"report"])
+    {
+        self.workout = [FMDBDataAccess loadWorkout:self.workout];
+    }
+    
     if(self.workout == nil || self.workout.id == nil)
     {
         newEntry = YES;
@@ -77,10 +86,35 @@ Utility *utility;
     }
 }
 
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    
+    [self save];
+}
+
 - (void)prepareViewBasedOnSets
 {
-    if(sets == 3)
+    if(sets == 2)
     {
+        self.set3Label.hidden = YES;
+        self.set3TextField.hidden = YES;
+        self.weightLabel3.hidden = YES;
+        
+        self.set4Label.hidden = YES;
+        self.set4TextField.hidden = YES;
+        self.weightLabel4.hidden = YES;
+        
+        self.set5Label.hidden = YES;
+        self.set5TextField.hidden = YES;
+        self.weightLabel5.hidden = YES;
+    }
+    else if(sets == 3)
+    {
+        self.set3Label.hidden = NO;
+        self.set3TextField.hidden = NO;
+        self.weightLabel3.hidden = NO;
+
         self.set4Label.hidden = YES;
         self.set4TextField.hidden = YES;
         self.weightLabel4.hidden = YES;
@@ -123,21 +157,22 @@ Utility *utility;
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)saveBtn:(id)sender
+- (void)save
 {
     NSString *strSet1 = [self.set1TextField.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
     
     if(strSet1.length == 0)
     {
-        [Utility showAlert:@"Error" message:@"Set 1 field is required"];
-        return;
+        if(newEntry)
+            self.workout.workoutSet1 = 0;
     }
-    
-    NSNumber *set1 = [[[NSNumberFormatter alloc] init] numberFromString:strSet1];
-    if(!set1 || [set1 floatValue] < 1)
+    else
     {
-        [Utility showAlert:@"Error" message:@"Please insert a valid number in Set 1 field"];
-        return;
+        NSNumber *set1 = [[[NSNumberFormatter alloc] init] numberFromString:strSet1];
+        if(set1 && [set1 floatValue] >= 0)
+        {
+            self.workout.workoutSet1 = set1;
+        }
     }
     
     NSString *strSet2 = [self.set2TextField.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
@@ -145,12 +180,10 @@ Utility *utility;
     if(strSet2.length > 0)
     {
         NSNumber *set2 = [[[NSNumberFormatter alloc] init] numberFromString:strSet2];
-        if(!set2 || [set2 floatValue] < 0)
+        if(set2 && [set2 floatValue] >= 0)
         {
-            [Utility showAlert:@"Error" message:@"Please insert a valid number in Set 2 field"];
-            return;
+            self.workout.workoutSet2 = set2;
         }
-        self.workout.workoutSet2 = set2;
     }
 
     NSString *strSet3 = [self.set3TextField.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
@@ -158,12 +191,10 @@ Utility *utility;
     if(strSet3.length > 0)
     {
         NSNumber *set3 = [[[NSNumberFormatter alloc] init] numberFromString:strSet3];
-        if(!set3 || [set3 floatValue] < 0)
+        if(set3 && [set3 floatValue] >= 0)
         {
-            [Utility showAlert:@"Error" message:@"Please insert a valid number in Set 3 field"];
-            return;
+            self.workout.workoutSet3 = set3;
         }
-        self.workout.workoutSet3 = set3;
     }
     
     NSString *strSet4 = [self.set4TextField.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
@@ -171,12 +202,10 @@ Utility *utility;
     if(strSet4.length > 0)
     {
         NSNumber *set4 = [[[NSNumberFormatter alloc] init] numberFromString:strSet4];
-        if(!set4 || [set4 floatValue] < 0)
+        if(set4 && [set4 floatValue] >= 0)
         {
-            [Utility showAlert:@"Error" message:@"Please insert a valid number in Set 4 field"];
-            return;
+            self.workout.workoutSet4 = set4;
         }
-        self.workout.workoutSet4 = set4;
     }
     
     NSString *strSet5 = [self.set5TextField.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
@@ -184,16 +213,12 @@ Utility *utility;
     if(strSet5.length > 0)
     {
         NSNumber *set5 = [[[NSNumberFormatter alloc] init] numberFromString:strSet5];
-        if(!set5 || [set5 floatValue] < 0)
+        if(set5 && [set5 floatValue] >= 0)
         {
-            [Utility showAlert:@"Error" message:@"Please insert a valid number in Set 5 field"];
-            return;
+            self.workout.workoutSet5 = set5;
         }
-        self.workout.workoutSet5 = set5;
     }
     
-    self.workout.workoutSet1 = set1;
-
     if(newEntry)
         [FMDBDataAccess createWorkout:self.workout];
     else

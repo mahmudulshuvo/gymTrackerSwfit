@@ -10,7 +10,6 @@
 
 @property (strong, nonatomic) IBOutlet UIStepper *setsStepper;
 
-- (IBAction)saveBtn:(id)sender;
 - (IBAction)lbsCheckBoxClick:(id)sender;
 - (IBAction)kgCheckBoxClick:(id)sender;
 - (IBAction)setsStepperValueChanged:(id)sender;

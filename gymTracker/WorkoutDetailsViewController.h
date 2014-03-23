@@ -38,6 +38,6 @@
 
 @property (retain, nonatomic) Workout *workout;
 
-- (IBAction)saveBtn:(id)sender;
+@property (retain, nonatomic) NSString *parentControllerName;
 
 @end

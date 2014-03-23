@@ -88,6 +88,8 @@ Utility *utility;
         NSIndexPath *myIndexPath = [self.tableView indexPathForSelectedRow];
         NSInteger row = [myIndexPath row];
         workoutDetailsView.selectedEquipment = utility.equipmentsList[row];
+        workoutDetailsView.title = workoutDetailsView.selectedEquipment.equipmentName;
+        workoutDetailsView.parentControllerName = @"workout";
     }
 }
 

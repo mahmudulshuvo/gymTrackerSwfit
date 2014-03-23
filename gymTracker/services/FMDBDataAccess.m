@@ -81,11 +81,12 @@ Utility *utility;
     
     [db open];
     
-    FMResultSet *results = [db executeQuery:[NSString stringWithFormat:@"SELECT workout_set_1, workout_set_2, workout_set_3, workout_set_4, workout_set_5, equipment_name, image_name FROM workout, equipment where workout_date = '%@' and workout.equipment_id = equipment.id order by equipment_name ASC", date]];
+    FMResultSet *results = [db executeQuery:[NSString stringWithFormat:@"SELECT workout.id as id, workout_set_1, workout_set_2, workout_set_3, workout_set_4, workout_set_5, equipment_name, image_name FROM workout, equipment where workout_date = '%@' and workout.equipment_id = equipment.id order by equipment_name ASC", date]];
     
     while([results next])
     {
         Workout *workout = [Workout new];
+        workout.id = [NSNumber numberWithDouble:[results intForColumn:@"id"]];
         workout.workoutSet1 = [NSNumber numberWithDouble:[results doubleForColumn:@"workout_set_1"]];
         workout.workoutSet2 = [NSNumber numberWithDouble:[results doubleForColumn:@"workout_set_2"]];
         workout.workoutSet3 = [NSNumber numberWithDouble:[results doubleForColumn:@"workout_set_3"]];
@@ -125,6 +126,24 @@ Utility *utility;
     [db close];
     
     return workouts;
+}
+
++ (Workout *) loadWorkout:(Workout *) workout
+{
+    FMDatabase *db = [FMDatabase databaseWithPath:utility.databasePath];
+    
+    [db open];
+    
+    FMResultSet *results = [db executeQuery:[NSString stringWithFormat:@"SELECT equipment_id, workout_date from workout where id = %@", workout.id]];
+    
+    while([results next])
+    {
+        workout.workoutDate = [results stringForColumn:@"workout_date"];
+        workout.equipmentId = [NSNumber numberWithDouble:[results intForColumn:@"equipment_id"]];
+    }
+    
+    [db close];
+    return workout;
 }
 
 + (Workout *) loadWorkoutByEquipmentIdAndDate:(NSNumber *) equipmentId date:(NSString *) date

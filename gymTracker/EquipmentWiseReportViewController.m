@@ -41,13 +41,12 @@ Utility *utility;
     self.fromDateTextField.text = [utility.userFriendlyDateFormat stringFromDate: selectedFromDate];
     self.toDateTextField.text = [utility.userFriendlyDateFormat stringFromDate: selectedToDate];
     
-    self.xAxisLegendLabel.hidden = YES;
-    self.yAxisLegendLabel.hidden = YES;
+    self.legendLabel.hidden = YES;
     
     self.fromDateTextField.delegate = self;
     self.toDateTextField.delegate = self;
     
-    self.yAxisLegendLabel.text = [NSString stringWithFormat:@"Y-Axis: Weight values in %@", utility.settings.weight];
+    self.legendLabel.text = [NSString stringWithFormat:@"--> %@", utility.settings.weight];
     
     [self viewBtn:nil];
 }
@@ -161,8 +160,7 @@ Utility *utility;
     
     if(workoutDataArray == nil || workoutDataArray.count < 1)
     {
-        self.xAxisLegendLabel.hidden = YES;
-        self.yAxisLegendLabel.hidden = YES;
+        self.legendLabel.hidden = YES;
         [Utility showAlert:@"No data" message:@"No data found"];
         return;
     }
@@ -222,8 +220,7 @@ Utility *utility;
     self.lineChart.chartData = @[data];
     [self.lineChart strokeChart];
     
-    self.xAxisLegendLabel.hidden = NO;
-    self.yAxisLegendLabel.hidden = NO;
+    self.legendLabel.hidden = NO;
 }
 
 @end

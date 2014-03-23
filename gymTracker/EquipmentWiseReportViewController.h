@@ -13,9 +13,7 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *chartHeader;
 
-@property (strong, nonatomic) IBOutlet UILabel *xAxisLegendLabel;
-
-@property (strong, nonatomic) IBOutlet UILabel *yAxisLegendLabel;
+@property (strong, nonatomic) IBOutlet UILabel *legendLabel;
 
 @property (strong, nonatomic) IBOutlet UITextField *fromDateTextField;
 

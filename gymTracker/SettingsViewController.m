@@ -48,20 +48,6 @@ Utility *utility;
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)saveBtn:(id)sender
-{
-    NSString *strWeight;
-    if(lbsChecked)
-        strWeight = @"lbs";
-    else if(kgChecked)
-        strWeight = @"kg";
-    
-    utility.settings.weight = strWeight;
-    utility.settings.sets = [NSNumber numberWithInt:self.setsStepper.value];
-    
-    [FMDBDataAccess updateSettings:utility.settings];
-}
-
 - (IBAction)lbsCheckBoxClick:(id)sender
 {
     if(!lbsChecked)
@@ -73,6 +59,9 @@ Utility *utility;
             [self.kgCheckBox setImage:[UIImage imageNamed:@"checkBox.png"] forState:UIControlStateNormal];
             kgChecked = NO;
         }
+        
+        utility.settings.weight = @"lbs";
+        [FMDBDataAccess updateSettings:utility.settings];
     }
 }
 
@@ -87,12 +76,18 @@ Utility *utility;
             [self.lbsCheckBox setImage:[UIImage imageNamed:@"checkBox.png"] forState:UIControlStateNormal];
             lbsChecked = NO;
         }
+        
+        utility.settings.weight = @"kg";
+        [FMDBDataAccess updateSettings:utility.settings];
     }
 }
 
 - (IBAction)setsStepperValueChanged:(id)sender
 {
-    self.setsTextField.text = [NSString stringWithFormat:@"%@", [NSNumber numberWithInt:self.setsStepper.value]];
-}
+    NSNumber *selectedSetsValue = [NSNumber numberWithInt:self.setsStepper.value];
+    self.setsTextField.text = [NSString stringWithFormat:@"%@", selectedSetsValue];
+    
+    utility.settings.sets = selectedSetsValue;
+    [FMDBDataAccess updateSettings:utility.settings];}
 
 @end

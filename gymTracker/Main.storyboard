@@ -72,7 +72,7 @@
             </objects>
             <point key="canvasLocation" x="1106" y="-28"/>
         </scene>
-        <!--Workout Details View Controller - Workout Details-->
+        <!--Workout Details View Controller-->
         <scene sceneID="eg3-DA-Xmo">
             <objects>
                 <viewController id="INu-UP-oNu" customClass="WorkoutDetailsViewController" sceneMemberID="viewController">
@@ -187,21 +187,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Workout Details" id="6s7-4U-5SX">
-                        <barButtonItem key="rightBarButtonItem" id="aW8-7k-tEd">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Gtw-BJ-IAy">
-                                <rect key="frame" x="233" y="5" width="71" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title="Save">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="saveBtn:" destination="INu-UP-oNu" eventType="touchUpInside" id="bb7-EO-Vzf"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="6s7-4U-5SX"/>
                     <connections>
                         <outlet property="set1Label" destination="KcT-59-W96" id="p1J-L2-BRG"/>
                         <outlet property="set1TextField" destination="fVv-pg-IRq" id="XOv-gt-edi"/>
@@ -447,6 +433,7 @@
                                     <outlet property="set4ValueLabel" destination="o9K-uE-BTN" id="63b-Vt-wr5"/>
                                     <outlet property="set5Label" destination="fm8-HL-4qQ" id="9vE-8n-5VO"/>
                                     <outlet property="set5ValueLabel" destination="fR7-Qw-Bfq" id="40O-UK-ccT"/>
+                                    <segue destination="INu-UP-oNu" kind="push" identifier="EditWorkOutDetails" id="AcU-Sj-beg"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -480,15 +467,8 @@
                                 <color key="textColor" red="0.068928618708991668" green="0.063974930216365758" blue="0.35536260190217395" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="X-Axis: Workout dates" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4nk-u1-8Mr">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4nk-u1-8Mr">
                                 <rect key="frame" x="20" y="439" width="280" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="syc-aX-ZMo">
-                                <rect key="frame" x="20" y="457" width="280" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -547,9 +527,8 @@
                     <connections>
                         <outlet property="chartHeader" destination="WIm-Dm-2Lf" id="2V0-du-KID"/>
                         <outlet property="fromDateTextField" destination="KdE-Lm-ms2" id="ZcI-PU-rvz"/>
+                        <outlet property="legendLabel" destination="4nk-u1-8Mr" id="KCj-28-9L9"/>
                         <outlet property="toDateTextField" destination="TOg-ee-una" id="4eD-Yd-QWf"/>
-                        <outlet property="xAxisLegendLabel" destination="4nk-u1-8Mr" id="ujz-ut-jaZ"/>
-                        <outlet property="yAxisLegendLabel" destination="syc-aX-ZMo" id="leU-AB-puT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5LS-xd-7yQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -720,7 +699,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stepper opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" continuous="NO" autorepeat="NO" value="3" minimumValue="3" maximumValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="adB-B2-dyt">
+                            <stepper opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" continuous="NO" autorepeat="NO" value="3" minimumValue="2" maximumValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="adB-B2-dyt">
                                 <rect key="frame" x="173" y="139" width="94" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <connections>
@@ -736,21 +715,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Settings" id="AVm-eL-bin">
-                        <barButtonItem key="rightBarButtonItem" id="XSy-iJ-l8c">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ga1-Bi-0kJ">
-                                <rect key="frame" x="233" y="5" width="71" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title="Save">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="saveBtn:" destination="rmm-Bv-0uN" eventType="touchUpInside" id="k9o-zj-NLV"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Settings" id="AVm-eL-bin"/>
                     <connections>
                         <outlet property="kgCheckBox" destination="NJJ-n2-AhA" id="I4W-RW-qWK"/>
                         <outlet property="lbsCheckBox" destination="KZy-39-igQ" id="yxk-26-IkQ"/>
@@ -833,6 +798,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="AcU-Sj-beg"/>
         <segue reference="4kU-ls-Xda"/>
     </inferredMetricsTieBreakers>
 </document>

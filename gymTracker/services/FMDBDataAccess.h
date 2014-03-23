@@ -14,6 +14,7 @@
 + (NSMutableArray *) getWorkoutsByDate:(NSString *)date;
 + (NSMutableArray *) getWorkoutsByEquipmentId:(NSNumber *) equipmentId fromDate:(NSString *)strFromdate toDate:(NSString *)strToDate;
 + (Workout *) loadWorkoutByEquipmentIdAndDate:(NSNumber *) equipmentId date:(NSString *) date;
++ (Workout *) loadWorkout:(Workout *) workout;
 + (BOOL) createWorkout:(Workout *) workout;
 + (BOOL) updateWorkout:(Workout *) workout;
 + (BOOL) deleteWorkout:(Workout *) workout;
