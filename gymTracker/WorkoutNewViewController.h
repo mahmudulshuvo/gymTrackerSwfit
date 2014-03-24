@@ -1,5 +1,7 @@
 #import <UIKit/UIKit.h>
 
-@interface WorkoutMainViewController : UITableViewController
+@interface WorkoutNewViewController : UITableViewController
+
+@property (retain, nonatomic) NSString *strSelectedDate;
 
 @end
