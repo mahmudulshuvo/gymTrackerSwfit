@@ -2,7 +2,7 @@
 
 @interface DateWiseReportViewController : UITableViewController
 
-@property (nonatomic, strong) NSArray *workoutList;
+@property (nonatomic, strong) NSMutableArray *workoutList;
 
 @property (retain, nonatomic) NSString *strSelectedDate;
 

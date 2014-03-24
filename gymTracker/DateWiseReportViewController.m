@@ -5,6 +5,7 @@
 #import "DateWiseReportCell.h"
 #import "FMDBDataAccess.h"
 #import "WorkoutDetailsViewController.h"
+#import "WorkoutNewViewController.h"
 
 @interface DateWiseReportViewController ()
 
@@ -40,13 +41,6 @@ Utility *utility;
     self.workoutList = [FMDBDataAccess getWorkoutsByDate:self.strSelectedDate];
     
     [self.tableView reloadData];
-    
-    if(self.workoutList.count < 1)
-    {
-        [self.navigationController popViewControllerAnimated:YES];
-        [Utility showAlert:@"No Data" message:@"No data found"];
-        return;
-    }
     
     strWeightLabelValue = utility.settings.weight;
 }
@@ -135,16 +129,41 @@ Utility *utility;
     return cell;
 }
 
+// Override to support conditional editing of the table view.
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Return NO if you do not want the specified item to be editable.
+    return YES;
+}
+
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        [FMDBDataAccess deleteWorkout:[self.workoutList objectAtIndex:[indexPath row]]];
+        
+        [self.workoutList removeObjectAtIndex:indexPath.row];
+        
+        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if([segue.identifier isEqualToString:@"EditWorkOutDetails"])
+    if([segue.identifier isEqualToString:@"EditWorkoutView"])
     {
         WorkoutDetailsViewController *workoutDetailsView = [segue destinationViewController];
         NSIndexPath *myIndexPath = [self.tableView indexPathForSelectedRow];
         NSInteger row = [myIndexPath row];
         workoutDetailsView.workout = self.workoutList[row];
         workoutDetailsView.title = workoutDetailsView.workout.equipmentName;
-        workoutDetailsView.parentControllerName = @"report";
+        workoutDetailsView.parentControllerName = @"DateWiseReportViewController";
+    }
+    else if([segue.identifier isEqualToString:@"EquipmentView"])
+    {
+        WorkoutNewViewController *workoutController = [segue destinationViewController];
+        workoutController.strSelectedDate = self.strSelectedDate;
     }
 }
 

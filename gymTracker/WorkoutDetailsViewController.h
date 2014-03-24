@@ -38,6 +38,8 @@
 
 @property (retain, nonatomic) Workout *workout;
 
+@property (retain, nonatomic) NSString *strSelectedDate;
+
 @property (retain, nonatomic) NSString *parentControllerName;
 
 @end

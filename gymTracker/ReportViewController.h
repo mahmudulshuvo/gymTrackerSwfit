@@ -1,23 +1,19 @@
 #import <UIKit/UIKit.h>
-#import "TKCalendarMonthView.h"
+#import "MyPMCalendarController.h"
 
-@interface ReportViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate, TKCalendarMonthViewDelegate, TKCalendarMonthViewDataSource>
+@interface ReportViewController : UIViewController <PMCalendarControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate>
 
-@property (strong, nonatomic) IBOutlet UIButton *dateWiseReportCheckBox;
+@property (nonatomic, strong) MyPMCalendarController *pmCalendarController;
 
-@property (strong, nonatomic) IBOutlet UIButton *equipmentWiseReportCheckBox;
+@property (strong, nonatomic) IBOutlet UITextField *fromDateTextField;
 
-@property (strong, nonatomic) IBOutlet UIView *calendarContainer;
-
-@property (strong, nonatomic) IBOutlet TKCalendarMonthView *dateCalenderView;
+@property (strong, nonatomic) IBOutlet UITextField *toDateTextField;
 
 @property (strong, nonatomic) IBOutlet UIPickerView *equipmentPicker;
 
-@property (strong, nonatomic) IBOutlet UIButton *dateWiseReportBtn;
-
 @property (strong, nonatomic) IBOutlet UIButton *equipmentWiseReportBtn;
 
-- (IBAction)dateWiseReportCheckBoxClick:(id)sender;
-- (IBAction)equipmentWiseReportCheckBoxClick:(id)sender;
+- (IBAction)fromDateTextFieldTouchDown:(id)sender;
+- (IBAction)toDateTextFieldTouchDown:(id)sender;
 
 @end

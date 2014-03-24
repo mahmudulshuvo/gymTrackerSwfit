@@ -36,14 +36,11 @@ Utility *utility;
     self.set4TextField.delegate = self;
     self.set5TextField.delegate = self;
     
-    NSString *strToday;
-    
-    if([self.parentControllerName isEqualToString:@"workout"])
+    if([self.parentControllerName isEqualToString:@"WorkoutNewViewController"])
     {
-        strToday = [utility.dbDateFormat stringFromDate:[NSDate date]];
-        self.workout = [FMDBDataAccess loadWorkoutByEquipmentIdAndDate:self.selectedEquipment.id date:strToday];
+        self.workout = [FMDBDataAccess loadWorkoutByEquipmentIdAndDate:self.selectedEquipment.id date:self.strSelectedDate];
     }
-    else if([self.parentControllerName isEqualToString:@"report"])
+    else if([self.parentControllerName isEqualToString:@"DateWiseReportViewController"])
     {
         self.workout = [FMDBDataAccess loadWorkout:self.workout];
     }
@@ -53,7 +50,7 @@ Utility *utility;
         newEntry = YES;
         self.workout = [Workout new];
         self.workout.equipmentId = self.selectedEquipment.id;
-        self.workout.workoutDate = strToday;
+        self.workout.workoutDate = self.strSelectedDate;
     }
     else
     {
@@ -159,12 +156,14 @@ Utility *utility;
 
 - (void)save
 {
+    BOOL needsToSave = NO;
+    
     NSString *strSet1 = [self.set1TextField.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
     
     if(strSet1.length == 0)
     {
         if(newEntry)
-            self.workout.workoutSet1 = 0;
+            self.workout.workoutSet1 = [NSNumber numberWithInt:0];
     }
     else
     {
@@ -172,6 +171,7 @@ Utility *utility;
         if(set1 && [set1 floatValue] >= 0)
         {
             self.workout.workoutSet1 = set1;
+            needsToSave = YES;
         }
     }
     
@@ -183,6 +183,7 @@ Utility *utility;
         if(set2 && [set2 floatValue] >= 0)
         {
             self.workout.workoutSet2 = set2;
+            needsToSave = YES;
         }
     }
 
@@ -194,6 +195,7 @@ Utility *utility;
         if(set3 && [set3 floatValue] >= 0)
         {
             self.workout.workoutSet3 = set3;
+            needsToSave = YES;
         }
     }
     
@@ -205,6 +207,7 @@ Utility *utility;
         if(set4 && [set4 floatValue] >= 0)
         {
             self.workout.workoutSet4 = set4;
+            needsToSave = YES;
         }
     }
     
@@ -216,13 +219,17 @@ Utility *utility;
         if(set5 && [set5 floatValue] >= 0)
         {
             self.workout.workoutSet5 = set5;
+            needsToSave = YES;
         }
     }
     
-    if(newEntry)
-        [FMDBDataAccess createWorkout:self.workout];
-    else
-        [FMDBDataAccess updateWorkout:self.workout];
+    if(needsToSave)
+    {
+        if(newEntry)
+            [FMDBDataAccess createWorkout:self.workout];
+        else
+            [FMDBDataAccess updateWorkout:self.workout];
+    }
     
     [self.navigationController popViewControllerAnimated:YES];
 }

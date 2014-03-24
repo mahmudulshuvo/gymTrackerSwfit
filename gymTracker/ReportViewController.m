@@ -1,21 +1,17 @@
 #import "ReportViewController.h"
 #import "Equipment.h"
 #import "Utility.h"
-#import "DateWiseReportViewController.h"
 #import "EquipmentWiseReportViewController.h"
 #import "FMDBDataAccess.h"
 #import "NSDate+TKCategory.h"
 
 @interface ReportViewController ()
-{
-    BOOL dateWiseReportChecked;
-    BOOL equipmentiseReportChecked;
-    NSDate *selectedDate;
-}
 
 @end
 
 @implementation ReportViewController
+NSDate *selectedFromDate;
+NSDate *selectedToDate;
 
 Utility *utility;
 
@@ -33,71 +29,15 @@ Utility *utility;
 {
     [super viewDidLoad];
     
-	[self.dateWiseReportCheckBox setImage:[UIImage imageNamed:@"checkBoxMarked.png"] forState:UIControlStateNormal];
-    dateWiseReportChecked = YES;
-    
-    self.equipmentPicker.hidden = YES;
-    self.equipmentWiseReportBtn.hidden = YES;
-    self.dateCalenderView = [TKCalendarMonthView new];
-    self.dateCalenderView.delegate = self;
-    self.dateCalenderView.dataSource = self;
-    
-    [self.dateCalenderView selectDate:[NSDate date]];
-    
-    [self.calendarContainer addSubview:self.dateCalenderView];
-}
-
-- (NSArray *)calendarMonthView:(TKCalendarMonthView *)monthView marksFromDate:(NSDate *)startDate toDate:(NSDate *)lastDate
-{
-    return [self populateCalendarThroughStartDate:startDate endDate:lastDate];
-}
-
-- (void) calendarMonthView:(TKCalendarMonthView*)monthView didSelectDate:(NSDate*)date
-{
     NSDate *today = [NSDate date];
-    if([date compare:today] == NSOrderedDescending)
-    {
-        [monthView selectDate:[NSDate date]];
-    }
-}
-
-- (void) calendarMonthView:(TKCalendarMonthView*)monthView monthDidChange:(NSDate*)d animated:(BOOL)animated
-{
-    NSDate *today = [NSDate date];
-    if([d compare:today] == NSOrderedDescending)
-    {
-        [monthView selectDate:[NSDate date]];
-    }
-}
-
-- (NSArray *) populateCalendarThroughStartDate:(NSDate*)start endDate:(NSDate*)end
-{
-	NSMutableArray *marks = [NSMutableArray array];
-    NSArray *workoutDates = [FMDBDataAccess getWorkoutDates];
+    selectedFromDate = [today dateByAddingDays:-15];
+    selectedToDate = today;
     
-    NSDate *d = start;
+    self.fromDateTextField.text = [utility.userFriendlyDateFormat stringFromDate: selectedFromDate];
+    self.toDateTextField.text = [utility.userFriendlyDateFormat stringFromDate: selectedToDate];
     
-	while(YES)
-    {
-        NSString *simplifiedStart = [utility.dbDateFormat stringFromDate:d];
-        
-		if ([workoutDates containsObject:simplifiedStart])
-        {
-            [marks addObject:[NSNumber numberWithBool:YES]];
-        }
-        else
-        {
-            [marks addObject:[NSNumber numberWithBool:NO]];
-        }
-		
-		NSDateComponents *info = [d dateComponentsWithTimeZone:self.dateCalenderView.timeZone];
-		info.day++;
-		d = [NSDate dateWithDateComponents:info];
-		if([d compare:end] == NSOrderedDescending) break;
-	}
-    
-    return marks;
-	
+    self.fromDateTextField.delegate = self;
+    self.toDateTextField.delegate = self;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -108,18 +48,14 @@ Utility *utility;
     
     if(utility.equipmentsList.count < 1)
     {
-        self.dateWiseReportBtn.enabled = NO;
         self.equipmentWiseReportBtn.enabled = NO;
         [Utility showAlert:@"Error" message:@"Please add an Equipment first"];
         return;
     }
     else
     {
-        self.dateWiseReportBtn.enabled = YES;
         self.equipmentWiseReportBtn.enabled = YES;
     }
-    
-    [self.dateCalenderView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -128,74 +64,114 @@ Utility *utility;
     // Dispose of any resources that can be recreated.
 }
 
+- (void)calendarController:(PMCalendarController *)calendarController didChangePeriod:(PMPeriod *)newPeriod
+{
+    if ([self.pmCalendarController isCalendarVisible])
+    {
+        if(self.pmCalendarController.destinationComp == self.fromDateTextField)
+        {
+            selectedFromDate = self.pmCalendarController.period.startDate;
+            self.fromDateTextField.text = [utility.userFriendlyDateFormat stringFromDate: selectedFromDate];
+        }
+        else if(self.pmCalendarController.destinationComp == self.toDateTextField)
+        {
+            selectedToDate = self.pmCalendarController.period.startDate;
+            self.toDateTextField.text = [utility.userFriendlyDateFormat stringFromDate: selectedToDate];
+        }
+        
+        [self.pmCalendarController dismissCalendarAnimated:YES];
+    }
+}
+
+- (void)loadPMCalendar
+{
+    self.pmCalendarController = [[MyPMCalendarController alloc] initWithThemeName:@"default"];
+    
+    self.pmCalendarController.delegate = self;
+    self.pmCalendarController.allowedPeriod = [PMPeriod periodWithStartDate:nil endDate:[NSDate date]];
+    self.pmCalendarController.allowsLongPressMonthChange = YES;
+    self.pmCalendarController.mondayFirstDayOfWeek = NO;
+    self.pmCalendarController.allowsPeriodSelection = NO;
+}
+
+- (IBAction)fromDateTextFieldTouchDown:(id)sender
+{
+    [self.fromDateTextField resignFirstResponder];
+    [self loadPMCalendar];
+    
+    float xValue = self.fromDateTextField.frame.origin.x + ((self.fromDateTextField.frame.size.width / 2) - 35);
+    float yValue = self.fromDateTextField.frame.origin.y + self.fromDateTextField.frame.size.height;
+    
+    [self.pmCalendarController presentCalendarFromRect:CGRectMake(xValue, yValue, 0, 0)
+                                                inView:[sender superview]
+                              permittedArrowDirections:PMCalendarArrowDirectionAny
+                                             isPopover:YES
+                                              animated:YES];
+    self.pmCalendarController.destinationComp = self.fromDateTextField;
+}
+
+- (IBAction)toDateTextFieldTouchDown:(id)sender
+{
+    [self.toDateTextField resignFirstResponder];
+    [self loadPMCalendar];
+    
+    float xValue = self.toDateTextField.frame.origin.x + ((self.toDateTextField.frame.size.width / 2) - 35);
+    float yValue = self.toDateTextField.frame.origin.y + self.toDateTextField.frame.size.height;
+    
+    [self.pmCalendarController presentCalendarFromRect:CGRectMake(xValue, yValue, 0, 0)
+                                                inView:[sender superview]
+                              permittedArrowDirections:PMCalendarArrowDirectionAny
+                                             isPopover:YES
+                                              animated:YES];
+    self.pmCalendarController.destinationComp = self.toDateTextField;
+}
+
+
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if([segue.identifier isEqualToString:@"ViewDateWiseReport"])
-    {
-        DateWiseReportViewController *dateWiseReportView = [segue destinationViewController];
-        
-        dateWiseReportView.strSelectedDate = [utility.dbDateFormat stringFromDate:selectedDate];
-        
-        dateWiseReportView.title = [utility.userFriendlyDateFormat stringFromDate:selectedDate];
-    }
-    
-    else if([segue.identifier isEqualToString:@"EquipmentWiseReportView"])
+    if([segue.identifier isEqualToString:@"EquipmentWiseReportView"])
     {
         EquipmentWiseReportViewController *equipmentWiseReportView = [segue destinationViewController];
         NSInteger row = [self.equipmentPicker selectedRowInComponent:0];
         equipmentWiseReportView.selectedEquipment = utility.equipmentsList[row];
+        equipmentWiseReportView.selectedFromDate = selectedFromDate;
+        equipmentWiseReportView.selectedToDate = selectedToDate;
         equipmentWiseReportView.title = equipmentWiseReportView.selectedEquipment.equipmentName;
     }
 }
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
-    if([identifier isEqualToString:@"ViewDateWiseReport"])
+    if ([self.pmCalendarController isCalendarVisible])
     {
-        selectedDate = self.dateCalenderView.dateSelected;
-        if(selectedDate == nil)
-        {
-            [Utility showAlert:@"Error" message:@"Please select a date"];
-            return NO;
-        }
+        [self.pmCalendarController dismissCalendarAnimated:YES];
     }
+    if(selectedFromDate == nil)
+    {
+        [Utility showAlert:@"Info" message:@"Please select 'From date'"];
+        return NO;
+    }
+    else if(selectedToDate == nil)
+    {
+        [Utility showAlert:@"Info" message:@"Please select 'To date'"];
+        return NO;
+    }
+    else if([selectedToDate compare:selectedFromDate] == NSOrderedAscending)
+    {
+        [Utility showAlert:@"Warning" message:@"'To date' cannot be less than 'From date'"];
+        return NO;
+    }
+    /*else if([selectedFromDate compare:[NSDate date]] == NSOrderedDescending)
+     {
+     [Utility showAlert:@"Warning" message:@"'From date' should not be greater than current date"];
+     return NO;
+     }
+     else if([selectedToDate compare:[NSDate date]] == NSOrderedDescending)
+     {
+     [Utility showAlert:@"Warning" message:@"'To date' should not be greater than current date"];
+     return NO;
+     }*/
     return YES;
-}
-
-- (IBAction)dateWiseReportCheckBoxClick:(id)sender
-{
-    if(!dateWiseReportChecked)
-    {
-        [self.dateWiseReportCheckBox setImage:[UIImage imageNamed:@"checkBoxMarked.png"] forState:UIControlStateNormal];
-        dateWiseReportChecked = YES;
-        if(equipmentiseReportChecked)
-        {
-            [self.equipmentWiseReportCheckBox setImage:[UIImage imageNamed:@"checkBox.png"] forState:UIControlStateNormal];
-            equipmentiseReportChecked = NO;
-        }
-        self.calendarContainer.hidden = NO;
-        self.equipmentPicker.hidden = YES;
-        self.equipmentWiseReportBtn.hidden = YES;
-        self.dateWiseReportBtn.hidden = NO;
-    }
-}
-
-- (IBAction)equipmentWiseReportCheckBoxClick:(id)sender
-{
-    if(!equipmentiseReportChecked)
-    {
-        [self.equipmentWiseReportCheckBox setImage:[UIImage imageNamed:@"checkBoxMarked.png"] forState:UIControlStateNormal];
-        equipmentiseReportChecked = YES;
-        if(dateWiseReportChecked)
-        {
-            [self.dateWiseReportCheckBox setImage:[UIImage imageNamed:@"checkBox.png"] forState:UIControlStateNormal];
-            dateWiseReportChecked = NO;
-        }
-        self.equipmentPicker.hidden = NO;
-        self.calendarContainer.hidden = YES;
-        self.dateWiseReportBtn.hidden = YES;
-        self.equipmentWiseReportBtn.hidden = NO;
-    }
 }
 
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
@@ -214,6 +190,11 @@ Utility *utility;
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent: (NSInteger)component
 {
     return utility.equipmentsList.count;
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    return NO;
 }
 
 @end

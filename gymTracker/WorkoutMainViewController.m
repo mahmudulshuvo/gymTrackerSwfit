@@ -1,9 +1,8 @@
 #import "WorkoutMainViewController.h"
-#import "WorkoutTableCell.h"
-#import "Equipment.h"
-#import "WorkoutDetailsViewController.h"
-#import "Utility.h"
 #import "FMDBDataAccess.h"
+#import "Utility.h"
+#import "NSDate+TKCategory.h"
+#import "DateWiseReportViewController.h"
 
 @interface WorkoutMainViewController ()
 
@@ -12,10 +11,11 @@
 @implementation WorkoutMainViewController
 
 Utility *utility;
+NSDate *selectedDate;
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithStyle:style];
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self)
     {
         utility = [Utility sharedInstance];
@@ -26,19 +26,14 @@ Utility *utility;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
     
-    [self.tableView reloadData];
+    self.dateCalenderView = [TKCalendarMonthView new];
+    self.dateCalenderView.delegate = self;
+    self.dateCalenderView.dataSource = self;
+    
+    [self.dateCalenderView selectDate:[NSDate date]];
+    
+    [self.calendarContainer addSubview:self.dateCalenderView];
 }
 
 - (void)didReceiveMemoryWarning
@@ -47,50 +42,97 @@ Utility *utility;
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+- (void)viewDidAppear:(BOOL)animated
 {
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return utility.equipmentsList.count;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"WorkoutTableCell";
-    WorkoutTableCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    [super viewDidAppear:animated];
     
-    if(cell == nil)
+    if(utility.equipmentsList.count < 1)
     {
-        cell = [[WorkoutTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        [Utility showAlert:@"Error" message:@"Please add an Equipment first"];
+        return;
     }
     
-    Equipment *equipment = [utility.equipmentsList objectAtIndex:[indexPath row]];
-    cell.equipmentNameLabel.text = equipment.equipmentName;
+    [self.dateCalenderView reloadData];
+}
+
+- (NSArray *)calendarMonthView:(TKCalendarMonthView *)monthView marksFromDate:(NSDate *)startDate toDate:(NSDate *)lastDate
+{
+    return [self populateCalendarThroughStartDate:startDate endDate:lastDate];
+}
+
+- (void) calendarMonthView:(TKCalendarMonthView*)monthView didSelectDate:(NSDate*)date
+{
+    NSDate *today = [NSDate date];
+    if([date compare:today] == NSOrderedDescending)
+    {
+        [monthView selectDate:[NSDate date]];
+    }
+}
+
+- (void) calendarMonthView:(TKCalendarMonthView*)monthView monthDidChange:(NSDate*)d animated:(BOOL)animated
+{
+    NSDate *today = [NSDate date];
+    if([d compare:today] == NSOrderedDescending)
+    {
+        [monthView selectDate:[NSDate date]];
+    }
+}
+
+- (NSArray *) populateCalendarThroughStartDate:(NSDate*)start endDate:(NSDate*)end
+{
+	NSMutableArray *marks = [NSMutableArray array];
+    NSArray *workoutDates = [FMDBDataAccess getWorkoutDates];
     
-    if(equipment.imageName == nil || [equipment.imageName isEqualToString:@"(null)"])
-        [cell.equipmentImageView setImage:utility.noImage];
-    else
-        [cell.equipmentImageView setImage:[UIImage imageNamed:equipment.imageName]];
+    NSDate *d = start;
     
-    return cell;
+	while(YES)
+    {
+        NSString *simplifiedStart = [utility.dbDateFormat stringFromDate:d];
+        
+		if ([workoutDates containsObject:simplifiedStart])
+        {
+            [marks addObject:[NSNumber numberWithBool:YES]];
+        }
+        else
+        {
+            [marks addObject:[NSNumber numberWithBool:NO]];
+        }
+		
+		NSDateComponents *info = [d dateComponentsWithTimeZone:self.dateCalenderView.timeZone];
+		info.day++;
+		d = [NSDate dateWithDateComponents:info];
+		if([d compare:end] == NSOrderedDescending) break;
+	}
+    
+    return marks;
+	
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if([segue.identifier isEqualToString:@"WorkOutDetails"])
+    if([segue.identifier isEqualToString:@"ViewDateWiseReport"])
     {
-        WorkoutDetailsViewController *workoutDetailsView = [segue destinationViewController];
-        NSIndexPath *myIndexPath = [self.tableView indexPathForSelectedRow];
-        NSInteger row = [myIndexPath row];
-        workoutDetailsView.selectedEquipment = utility.equipmentsList[row];
-        workoutDetailsView.title = workoutDetailsView.selectedEquipment.equipmentName;
-        workoutDetailsView.parentControllerName = @"workout";
+        DateWiseReportViewController *dateWiseReportView = [segue destinationViewController];
+        
+        dateWiseReportView.strSelectedDate = [utility.dbDateFormat stringFromDate:selectedDate];
+        
+        dateWiseReportView.title = [utility.userFriendlyDateFormat stringFromDate:selectedDate];
     }
+}
+
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
+    if([identifier isEqualToString:@"ViewDateWiseReport"])
+    {
+        selectedDate = self.dateCalenderView.dateSelected;
+        if(selectedDate == nil)
+        {
+            [Utility showAlert:@"Error" message:@"Please select a date"];
+            return NO;
+        }
+        return YES;
+    }
+    return NO;
 }
 
 @end

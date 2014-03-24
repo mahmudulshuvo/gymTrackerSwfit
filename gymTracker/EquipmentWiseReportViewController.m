@@ -12,8 +12,6 @@
 
 @implementation EquipmentWiseReportViewController
 
-NSDate *selectedFromDate;
-NSDate *selectedToDate;
 NSArray *workoutDataArray;
 NSMutableArray *chartXLabels;
 NSMutableArray *chartDatas;
@@ -34,134 +32,16 @@ Utility *utility;
 {
     [super viewDidLoad];
     
-    NSDate *today = [NSDate date];
-    selectedFromDate = [today dateByAddingDays:-15];
-    selectedToDate = today;
-    
-    self.fromDateTextField.text = [utility.userFriendlyDateFormat stringFromDate: selectedFromDate];
-    self.toDateTextField.text = [utility.userFriendlyDateFormat stringFromDate: selectedToDate];
-    
     self.legendLabel.hidden = YES;
-    
-    self.fromDateTextField.delegate = self;
-    self.toDateTextField.delegate = self;
     
     self.legendLabel.text = [NSString stringWithFormat:@"--> %@", utility.settings.weight];
     
-    [self viewBtn:nil];
-}
-
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
-{
-    return NO;
-}
-
-- (void)calendarController:(PMCalendarController *)calendarController didChangePeriod:(PMPeriod *)newPeriod
-{
-    if ([self.pmCalendarController isCalendarVisible])
-    {
-        if(self.pmCalendarController.destinationComp == self.fromDateTextField)
-        {
-            selectedFromDate = self.pmCalendarController.period.startDate;
-            self.fromDateTextField.text = [utility.userFriendlyDateFormat stringFromDate: selectedFromDate];
-        }
-        else if(self.pmCalendarController.destinationComp == self.toDateTextField)
-        {
-            selectedToDate = self.pmCalendarController.period.startDate;
-            self.toDateTextField.text = [utility.userFriendlyDateFormat stringFromDate: selectedToDate];
-        }
-        
-        [self.pmCalendarController dismissCalendarAnimated:YES];
-    }
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (void)loadPMCalendar
-{
-    self.pmCalendarController = [[MyPMCalendarController alloc] initWithThemeName:@"default"];
-    
-    self.pmCalendarController.delegate = self;
-    self.pmCalendarController.allowedPeriod = [PMPeriod periodWithStartDate:nil endDate:[NSDate date]];
-    self.pmCalendarController.allowsLongPressMonthChange = YES;
-    self.pmCalendarController.mondayFirstDayOfWeek = NO;
-    self.pmCalendarController.allowsPeriodSelection = NO;
-}
-
-- (IBAction)fromDateTextFieldTouchDown:(id)sender
-{
-    [self.fromDateTextField resignFirstResponder];
-    [self loadPMCalendar];
-    
-    float xValue = self.fromDateTextField.frame.origin.x + ((self.fromDateTextField.frame.size.width / 2) - 35);
-    float yValue = self.fromDateTextField.frame.origin.y + self.fromDateTextField.frame.size.height;
-    
-    [self.pmCalendarController presentCalendarFromRect:CGRectMake(xValue, yValue, 0, 0)
-                                                inView:[sender superview]
-                              permittedArrowDirections:PMCalendarArrowDirectionAny
-                                             isPopover:YES
-                                              animated:YES];
-    self.pmCalendarController.destinationComp = self.fromDateTextField;
-}
-
-- (IBAction)toDateTextFieldTouchDown:(id)sender
-{
-    [self.toDateTextField resignFirstResponder];
-    [self loadPMCalendar];
-    
-    float xValue = self.toDateTextField.frame.origin.x + ((self.toDateTextField.frame.size.width / 2) - 35);
-    float yValue = self.toDateTextField.frame.origin.y + self.toDateTextField.frame.size.height;
-    
-    [self.pmCalendarController presentCalendarFromRect:CGRectMake(xValue, yValue, 0, 0)
-                                                inView:[sender superview]
-                              permittedArrowDirections:PMCalendarArrowDirectionAny
-                                             isPopover:YES
-                                              animated:YES];
-    self.pmCalendarController.destinationComp = self.toDateTextField;
-}
-
-- (IBAction)viewBtn:(id)sender
-{
-    if ([self.pmCalendarController isCalendarVisible])
-    {
-        [self.pmCalendarController dismissCalendarAnimated:YES];
-    }
-    if(selectedFromDate == nil)
-    {
-        [Utility showAlert:@"Info" message:@"Please select 'From date'"];
-        return;
-    }
-    else if(selectedToDate == nil)
-    {
-        [Utility showAlert:@"Info" message:@"Please select 'To date'"];
-        return;
-    }
-    else if([selectedToDate compare:selectedFromDate] == NSOrderedAscending)
-    {
-        [Utility showAlert:@"Warning" message:@"'To date' cannot be less than 'From date'"];
-        return;
-    }
-    /*else if([selectedFromDate compare:[NSDate date]] == NSOrderedDescending)
-    {
-        [Utility showAlert:@"Warning" message:@"'From date' should not be greater than current date"];
-        return;
-    }
-    else if([selectedToDate compare:[NSDate date]] == NSOrderedDescending)
-    {
-        [Utility showAlert:@"Warning" message:@"'To date' should not be greater than current date"];
-        return;
-    }*/
-    
-    workoutDataArray = [FMDBDataAccess getWorkoutsByEquipmentId:self.selectedEquipment.id fromDate:[utility.dbDateFormat stringFromDate:selectedFromDate] toDate:[utility.dbDateFormat stringFromDate:selectedToDate]];
+    workoutDataArray = [FMDBDataAccess getWorkoutsByEquipmentId:self.selectedEquipment.id fromDate:[utility.dbDateFormat stringFromDate:self.selectedFromDate] toDate:[utility.dbDateFormat stringFromDate:self.selectedToDate]];
     
     if(workoutDataArray == nil || workoutDataArray.count < 1)
     {
         self.legendLabel.hidden = YES;
-        [Utility showAlert:@"No data" message:@"No data found"];
+        [Utility showAlert:@"Info" message:@"No data found"];
         return;
     }
     
@@ -204,7 +84,7 @@ Utility *utility;
         self.lineChart = nil;
     }
     
-    self.lineChart = [[PNLineChart alloc] initWithFrame:CGRectMake(0, 220.0, SCREEN_WIDTH, 200.0)];
+    self.lineChart = [[PNLineChart alloc] initWithFrame:CGRectMake(0, 140.0, SCREEN_WIDTH, 200.0)];
     [self.view addSubview:self.lineChart];
     
     [self.lineChart setXLabels:chartXLabels];
@@ -221,6 +101,22 @@ Utility *utility;
     [self.lineChart strokeChart];
     
     self.legendLabel.hidden = NO;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    if(workoutDataArray == nil || workoutDataArray.count < 1)
+    {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 @end

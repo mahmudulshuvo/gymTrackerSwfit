@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F304C8B018DFFF5D009A27D3 /* WorkoutMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F304C8AF18DFFF5D009A27D3 /* WorkoutMainViewController.m */; };
 		F32327F218D56D2D006C7E64 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F32327F118D56D2D006C7E64 /* Foundation.framework */; };
 		F32327F418D56D2D006C7E64 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F32327F318D56D2D006C7E64 /* CoreGraphics.framework */; };
 		F32327F618D56D2D006C7E64 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F32327F518D56D2D006C7E64 /* UIKit.framework */; };
@@ -45,7 +46,6 @@
 		F32328B718D56DFB006C7E64 /* workout.png in Resources */ = {isa = PBXBuildFile; fileRef = F323286218D56DFB006C7E64 /* workout.png */; };
 		F32328B818D56DFB006C7E64 /* workout@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F323286318D56DFB006C7E64 /* workout@2x.png */; };
 		F32328B918D56DFB006C7E64 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F323286418D56DFB006C7E64 /* Main.storyboard */; };
-		F32328BA18D56DFB006C7E64 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F323286618D56DFB006C7E64 /* MainViewController.m */; };
 		F32328BB18D56DFB006C7E64 /* PNBar.m in Sources */ = {isa = PBXBuildFile; fileRef = F323286918D56DFB006C7E64 /* PNBar.m */; };
 		F32328BC18D56DFB006C7E64 /* PNBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = F323286B18D56DFB006C7E64 /* PNBarChart.m */; };
 		F32328BD18D56DFB006C7E64 /* PNChartLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F323286F18D56DFB006C7E64 /* PNChartLabel.m */; };
@@ -59,7 +59,7 @@
 		F32328C518D56DFB006C7E64 /* UICountingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F323288018D56DFB006C7E64 /* UICountingLabel.m */; };
 		F32328C618D56DFB006C7E64 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = F323288218D56DFB006C7E64 /* Utility.m */; };
 		F32328C718D56DFB006C7E64 /* WorkoutDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F323288418D56DFB006C7E64 /* WorkoutDetailsViewController.m */; };
-		F32328C818D56DFB006C7E64 /* WorkoutMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F323288618D56DFB006C7E64 /* WorkoutMainViewController.m */; };
+		F32328C818D56DFB006C7E64 /* WorkoutNewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F323288618D56DFB006C7E64 /* WorkoutNewViewController.m */; };
 		F32328C918D56DFB006C7E64 /* WorkoutTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F323288818D56DFB006C7E64 /* WorkoutTableCell.m */; };
 		F32328DF18D577B7006C7E64 /* FMDBDataAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = F32328DE18D577B7006C7E64 /* FMDBDataAccess.m */; };
 		F32328E118D58FA6006C7E64 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F32328E018D58FA6006C7E64 /* libsqlite3.dylib */; };
@@ -107,6 +107,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F304C8AE18DFFF5D009A27D3 /* WorkoutMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkoutMainViewController.h; sourceTree = "<group>"; };
+		F304C8AF18DFFF5D009A27D3 /* WorkoutMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkoutMainViewController.m; sourceTree = "<group>"; };
 		F32327EE18D56D2D006C7E64 /* gymTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gymTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F32327F118D56D2D006C7E64 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F32327F318D56D2D006C7E64 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -158,8 +160,6 @@
 		F323286218D56DFB006C7E64 /* workout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = workout.png; sourceTree = "<group>"; };
 		F323286318D56DFB006C7E64 /* workout@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "workout@2x.png"; sourceTree = "<group>"; };
 		F323286418D56DFB006C7E64 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		F323286518D56DFB006C7E64 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
-		F323286618D56DFB006C7E64 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		F323286818D56DFB006C7E64 /* PNBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNBar.h; sourceTree = "<group>"; };
 		F323286918D56DFB006C7E64 /* PNBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNBar.m; sourceTree = "<group>"; };
 		F323286A18D56DFB006C7E64 /* PNBarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNBarChart.h; sourceTree = "<group>"; };
@@ -188,8 +188,8 @@
 		F323288218D56DFB006C7E64 /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
 		F323288318D56DFB006C7E64 /* WorkoutDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkoutDetailsViewController.h; sourceTree = "<group>"; };
 		F323288418D56DFB006C7E64 /* WorkoutDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkoutDetailsViewController.m; sourceTree = "<group>"; };
-		F323288518D56DFB006C7E64 /* WorkoutMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkoutMainViewController.h; sourceTree = "<group>"; };
-		F323288618D56DFB006C7E64 /* WorkoutMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkoutMainViewController.m; sourceTree = "<group>"; };
+		F323288518D56DFB006C7E64 /* WorkoutNewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkoutNewViewController.h; sourceTree = "<group>"; };
+		F323288618D56DFB006C7E64 /* WorkoutNewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkoutNewViewController.m; sourceTree = "<group>"; };
 		F323288718D56DFB006C7E64 /* WorkoutTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkoutTableCell.h; sourceTree = "<group>"; };
 		F323288818D56DFB006C7E64 /* WorkoutTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkoutTableCell.m; sourceTree = "<group>"; };
 		F32328DD18D577B7006C7E64 /* FMDBDataAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDBDataAccess.h; sourceTree = "<group>"; };
@@ -341,16 +341,16 @@
 				F3D2B68618D8273F00E85646 /* MyPMCalendarController.h */,
 				F3D2B68718D8273F00E85646 /* MyPMCalendarController.m */,
 				F323286418D56DFB006C7E64 /* Main.storyboard */,
-				F323286518D56DFB006C7E64 /* MainViewController.h */,
-				F323286618D56DFB006C7E64 /* MainViewController.m */,
 				F323287A18D56DFB006C7E64 /* ReportViewController.h */,
 				F323287B18D56DFB006C7E64 /* ReportViewController.m */,
 				F323287C18D56DFB006C7E64 /* SettingsViewController.h */,
 				F323287D18D56DFB006C7E64 /* SettingsViewController.m */,
+				F304C8AE18DFFF5D009A27D3 /* WorkoutMainViewController.h */,
+				F304C8AF18DFFF5D009A27D3 /* WorkoutMainViewController.m */,
 				F323288318D56DFB006C7E64 /* WorkoutDetailsViewController.h */,
 				F323288418D56DFB006C7E64 /* WorkoutDetailsViewController.m */,
-				F323288518D56DFB006C7E64 /* WorkoutMainViewController.h */,
-				F323288618D56DFB006C7E64 /* WorkoutMainViewController.m */,
+				F323288518D56DFB006C7E64 /* WorkoutNewViewController.h */,
+				F323288618D56DFB006C7E64 /* WorkoutNewViewController.m */,
 				F323288718D56DFB006C7E64 /* WorkoutTableCell.h */,
 				F323288818D56DFB006C7E64 /* WorkoutTableCell.m */,
 				F323280318D56D2D006C7E64 /* Images.xcassets */,
@@ -692,6 +692,7 @@
 				F3E07C4018D69FA0000DA9C4 /* UIImage+TKCategory.m in Sources */,
 				F323288B18D56DFB006C7E64 /* Equipment.m in Sources */,
 				F3E07C4118D69FA0000DA9C4 /* UIImageView+TKCategory.m in Sources */,
+				F304C8B018DFFF5D009A27D3 /* WorkoutMainViewController.m in Sources */,
 				F3D2B68818D8273F00E85646 /* MyPMCalendarController.m in Sources */,
 				F3D2B6AE18D8380400E85646 /* PMSelectionView.m in Sources */,
 				F32328BB18D56DFB006C7E64 /* PNBar.m in Sources */,
@@ -699,7 +700,6 @@
 				F3D2B6AF18D8380400E85646 /* PMThemeEngine.m in Sources */,
 				F32328A618D56DFB006C7E64 /* EquipmentMainViewController.m in Sources */,
 				F32328C418D56DFB006C7E64 /* SettingsViewController.m in Sources */,
-				F32328BA18D56DFB006C7E64 /* MainViewController.m in Sources */,
 				F3D2B6AB18D8380400E85646 /* PMCalendarView.m in Sources */,
 				F32328C618D56DFB006C7E64 /* Utility.m in Sources */,
 				F3E07C3B18D69FA0000DA9C4 /* NSDate+TKCategory.m in Sources */,
@@ -729,7 +729,7 @@
 				F3D2B6A918D8380300E85646 /* PMCalendarBackgroundView.m in Sources */,
 				F32328C718D56DFB006C7E64 /* WorkoutDetailsViewController.m in Sources */,
 				F32327FE18D56D2D006C7E64 /* main.m in Sources */,
-				F32328C818D56DFB006C7E64 /* WorkoutMainViewController.m in Sources */,
+				F32328C818D56DFB006C7E64 /* WorkoutNewViewController.m in Sources */,
 				F32328C318D56DFB006C7E64 /* ReportViewController.m in Sources */,
 				F3E02BBA18D5AB8D00767921 /* LineChartVO.m in Sources */,
 				F3E07C3E18D69FA0000DA9C4 /* TKGradientView.m in Sources */,

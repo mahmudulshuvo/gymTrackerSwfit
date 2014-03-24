@@ -1,12 +1,10 @@
 #import <UIKit/UIKit.h>
 #import "Equipment.h"
 #import "PMCalendar.h"
-#import "MyPMCalendarController.h"
 #import "PNLineChart.h"
 
-@interface EquipmentWiseReportViewController : UIViewController <PMCalendarControllerDelegate, UITextFieldDelegate>
+@interface EquipmentWiseReportViewController : UIViewController <PMCalendarControllerDelegate>
 
-@property (nonatomic, strong) MyPMCalendarController *pmCalendarController;
 @property (nonatomic, strong) PNLineChart * lineChart;
 
 @property (retain, nonatomic) Equipment *selectedEquipment;
@@ -15,12 +13,7 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *legendLabel;
 
-@property (strong, nonatomic) IBOutlet UITextField *fromDateTextField;
-
-@property (strong, nonatomic) IBOutlet UITextField *toDateTextField;
-
-- (IBAction)fromDateTextFieldTouchDown:(id)sender;
-- (IBAction)toDateTextFieldTouchDown:(id)sender;
-- (IBAction)viewBtn:(id)sender;
+@property (strong, nonatomic) NSDate *selectedFromDate;
+@property (strong, nonatomic) NSDate *selectedToDate;
 
 @end
