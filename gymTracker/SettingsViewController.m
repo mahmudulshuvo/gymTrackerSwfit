@@ -88,6 +88,7 @@ Utility *utility;
     self.setsTextField.text = [NSString stringWithFormat:@"%@", selectedSetsValue];
     
     utility.settings.sets = selectedSetsValue;
-    [FMDBDataAccess updateSettings:utility.settings];}
+    [FMDBDataAccess updateSettings:utility.settings];
+}
 
 @end

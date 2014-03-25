@@ -32,15 +32,13 @@ Utility *utility;
 {
     [super viewDidLoad];
     
-    self.legendLabel.hidden = YES;
-    
-    self.legendLabel.text = [NSString stringWithFormat:@"--> %@", utility.settings.weight];
+    self.legendImageView.hidden = YES;
     
     workoutDataArray = [FMDBDataAccess getWorkoutsByEquipmentId:self.selectedEquipment.id fromDate:[utility.dbDateFormat stringFromDate:self.selectedFromDate] toDate:[utility.dbDateFormat stringFromDate:self.selectedToDate]];
     
     if(workoutDataArray == nil || workoutDataArray.count < 1)
     {
-        self.legendLabel.hidden = YES;
+        self.legendImageView.hidden = YES;
         [Utility showAlert:@"Info" message:@"No data found"];
         return;
     }
@@ -100,7 +98,7 @@ Utility *utility;
     self.lineChart.chartData = @[data];
     [self.lineChart strokeChart];
     
-    self.legendLabel.hidden = NO;
+    self.legendImageView.hidden = NO;
 }
 
 - (void)viewDidAppear:(BOOL)animated

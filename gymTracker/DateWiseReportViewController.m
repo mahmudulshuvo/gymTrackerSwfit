@@ -163,8 +163,22 @@ Utility *utility;
     else if([segue.identifier isEqualToString:@"EquipmentView"])
     {
         WorkoutNewViewController *workoutController = [segue destinationViewController];
+        workoutController.workoutList = self.workoutList;
         workoutController.strSelectedDate = self.strSelectedDate;
     }
+}
+
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
+    if([identifier isEqualToString:@"EquipmentView"])
+    {
+        if(self.workoutList.count == utility.equipmentsList.count)
+        {
+            [Utility showAlert:@"Info" message:@"No more item(s) to be added for workout"];
+            return NO;
+        }
+    }
+    return YES;
 }
 
 @end

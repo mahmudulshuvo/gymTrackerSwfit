@@ -288,6 +288,7 @@ static UIImage *tileImage;
 	
 	CGContextSetPatternPhase(context, CGSizeMake(r.origin.x, r.origin.y - 2));
 
+    #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 	[str drawInRect: r
 		   withFont: f1
 	  lineBreakMode: NSLineBreakByWordWrapping
@@ -551,6 +552,7 @@ static UIImage *tileImage;
 	if(portion == 1){
 		selectedDay = day;
 		selectedPortion = portion;
+        #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
 		[self.target performSelector:self.action withObject:@[@(day)]];
 		
 	}else if(down){

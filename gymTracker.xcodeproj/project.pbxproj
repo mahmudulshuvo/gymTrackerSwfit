@@ -39,8 +39,6 @@
 		F32328B018D56DFB006C7E64 /* checkBoxMarked.png in Resources */ = {isa = PBXBuildFile; fileRef = F323285B18D56DFB006C7E64 /* checkBoxMarked.png */; };
 		F32328B118D56DFB006C7E64 /* checkBoxMarked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F323285C18D56DFB006C7E64 /* checkBoxMarked@2x.png */; };
 		F32328B218D56DFB006C7E64 /* no_image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F323285D18D56DFB006C7E64 /* no_image.jpg */; };
-		F32328B318D56DFB006C7E64 /* report.png in Resources */ = {isa = PBXBuildFile; fileRef = F323285E18D56DFB006C7E64 /* report.png */; };
-		F32328B418D56DFB006C7E64 /* report@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F323285F18D56DFB006C7E64 /* report@2x.png */; };
 		F32328B518D56DFB006C7E64 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = F323286018D56DFB006C7E64 /* settings.png */; };
 		F32328B618D56DFB006C7E64 /* settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F323286118D56DFB006C7E64 /* settings@2x.png */; };
 		F32328B718D56DFB006C7E64 /* workout.png in Resources */ = {isa = PBXBuildFile; fileRef = F323286218D56DFB006C7E64 /* workout.png */; };
@@ -78,6 +76,10 @@
 		F3D2B6B318D8380400E85646 /* background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F3D2B6A618D8380300E85646 /* background@2x.png */; };
 		F3D2B6B418D8380400E85646 /* default.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3D2B6A718D8380300E85646 /* default.plist */; };
 		F3DB675518DAB2A4003626C1 /* gymTracker.db in Resources */ = {isa = PBXBuildFile; fileRef = F3DB675418DAB299003626C1 /* gymTracker.db */; };
+		F3DECBDD18E14BF2001B29BF /* report.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DECBDB18E14BF2001B29BF /* report.png */; };
+		F3DECBDE18E14BF2001B29BF /* report@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DECBDC18E14BF2001B29BF /* report@2x.png */; };
+		F3DECBE418E158B4001B29BF /* legend.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DECBE318E158B4001B29BF /* legend.png */; };
+		F3DECBEA18E16E0B001B29BF /* button_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DECBE918E16E0B001B29BF /* button_bg.png */; };
 		F3E02BBA18D5AB8D00767921 /* LineChartVO.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E02BB918D5AB8D00767921 /* LineChartVO.m */; };
 		F3E07C3A18D69FA0000DA9C4 /* NSDate+CalendarGrid.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E07C2918D69FA0000DA9C4 /* NSDate+CalendarGrid.m */; };
 		F3E07C3B18D69FA0000DA9C4 /* NSDate+TKCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E07C2B18D69FA0000DA9C4 /* NSDate+TKCategory.m */; };
@@ -153,8 +155,6 @@
 		F323285B18D56DFB006C7E64 /* checkBoxMarked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkBoxMarked.png; sourceTree = "<group>"; };
 		F323285C18D56DFB006C7E64 /* checkBoxMarked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkBoxMarked@2x.png"; sourceTree = "<group>"; };
 		F323285D18D56DFB006C7E64 /* no_image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = no_image.jpg; sourceTree = "<group>"; };
-		F323285E18D56DFB006C7E64 /* report.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = report.png; sourceTree = "<group>"; };
-		F323285F18D56DFB006C7E64 /* report@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "report@2x.png"; sourceTree = "<group>"; };
 		F323286018D56DFB006C7E64 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		F323286118D56DFB006C7E64 /* settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings@2x.png"; sourceTree = "<group>"; };
 		F323286218D56DFB006C7E64 /* workout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = workout.png; sourceTree = "<group>"; };
@@ -224,6 +224,10 @@
 		F3D2B6A618D8380300E85646 /* background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background@2x.png"; sourceTree = "<group>"; };
 		F3D2B6A718D8380300E85646 /* default.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = default.plist; sourceTree = "<group>"; };
 		F3DB675418DAB299003626C1 /* gymTracker.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = gymTracker.db; sourceTree = "<group>"; };
+		F3DECBDB18E14BF2001B29BF /* report.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = report.png; sourceTree = "<group>"; };
+		F3DECBDC18E14BF2001B29BF /* report@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "report@2x.png"; sourceTree = "<group>"; };
+		F3DECBE318E158B4001B29BF /* legend.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = legend.png; sourceTree = "<group>"; };
+		F3DECBE918E16E0B001B29BF /* button_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_bg.png; sourceTree = "<group>"; };
 		F3E02BB818D5AB8D00767921 /* LineChartVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineChartVO.h; sourceTree = "<group>"; };
 		F3E02BB918D5AB8D00767921 /* LineChartVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineChartVO.m; sourceTree = "<group>"; };
 		F3E07C2818D69FA0000DA9C4 /* NSDate+CalendarGrid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+CalendarGrid.h"; sourceTree = "<group>"; };
@@ -409,6 +413,10 @@
 		F323285318D56DFB006C7E64 /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				F3DECBE918E16E0B001B29BF /* button_bg.png */,
+				F3DECBE318E158B4001B29BF /* legend.png */,
+				F3DECBDB18E14BF2001B29BF /* report.png */,
+				F3DECBDC18E14BF2001B29BF /* report@2x.png */,
 				F323285418D56DFB006C7E64 /* addIcon.png */,
 				F323285518D56DFB006C7E64 /* addIcon@2x.png */,
 				F323285618D56DFB006C7E64 /* appIcon29pt.png */,
@@ -419,8 +427,6 @@
 				F323285B18D56DFB006C7E64 /* checkBoxMarked.png */,
 				F323285C18D56DFB006C7E64 /* checkBoxMarked@2x.png */,
 				F323285D18D56DFB006C7E64 /* no_image.jpg */,
-				F323285E18D56DFB006C7E64 /* report.png */,
-				F323285F18D56DFB006C7E64 /* report@2x.png */,
 				F323286018D56DFB006C7E64 /* settings.png */,
 				F323286118D56DFB006C7E64 /* settings@2x.png */,
 				F323286218D56DFB006C7E64 /* workout.png */,
@@ -643,9 +649,7 @@
 			files = (
 				F3DB675518DAB2A4003626C1 /* gymTracker.db in Resources */,
 				F3D2B6B418D8380400E85646 /* default.plist in Resources */,
-				F32328B418D56DFB006C7E64 /* report@2x.png in Resources */,
 				F32328AD18D56DFB006C7E64 /* appIcon60pt.png in Resources */,
-				F32328B318D56DFB006C7E64 /* report.png in Resources */,
 				F32328B218D56DFB006C7E64 /* no_image.jpg in Resources */,
 				F32328B718D56DFB006C7E64 /* workout.png in Resources */,
 				F32328AA18D56DFB006C7E64 /* addIcon@2x.png in Resources */,
@@ -658,8 +662,12 @@
 				F32328AF18D56DFB006C7E64 /* checkBox@2x.png in Resources */,
 				F3E07C4518D6A172000DA9C4 /* TapkuLibrary.bundle in Resources */,
 				F32328B518D56DFB006C7E64 /* settings.png in Resources */,
+				F3DECBDE18E14BF2001B29BF /* report@2x.png in Resources */,
+				F3DECBE418E158B4001B29BF /* legend.png in Resources */,
 				F3D2B6B118D8380400E85646 /* apple calendar.plist in Resources */,
 				F32327FC18D56D2D006C7E64 /* InfoPlist.strings in Resources */,
+				F3DECBEA18E16E0B001B29BF /* button_bg.png in Resources */,
+				F3DECBDD18E14BF2001B29BF /* report.png in Resources */,
 				F32328B018D56DFB006C7E64 /* checkBoxMarked.png in Resources */,
 				F323280418D56D2D006C7E64 /* Images.xcassets in Resources */,
 				F32328AC18D56DFB006C7E64 /* appIcon40pt.png in Resources */,

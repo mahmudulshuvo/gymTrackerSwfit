@@ -321,6 +321,7 @@ static PMThemeEngine* sharedInstance;
 
     NSAssert(usedFont != nil, @"Please provide proper font either in theme file or in a code.");
     
+    #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
     CGSize sz = [string sizeWithFont:usedFont];
     BOOL isGradient = ![colorObj isKindOfClass:[NSString class]];
     CGSize shadowOffset = CGSizeZero;

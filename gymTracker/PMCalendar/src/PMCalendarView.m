@@ -154,6 +154,7 @@
         NSInteger index = i + (_mondayFirstDayOfWeek?1:0);
         index = index % 7;
         NSString *dayTitle = [dayTitles objectAtIndex:index];
+        #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
         //// dayHeader Drawing
         CGSize sz = [dayTitle sizeWithFont:dayFont];
         CGRect dayHeaderFrame = CGRectMake(floor(i * hDiff) - 1

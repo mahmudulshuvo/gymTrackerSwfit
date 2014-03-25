@@ -25,7 +25,7 @@
             </objects>
             <point key="canvasLocation" x="53" y="-28"/>
         </scene>
-        <!--Workout New View Controller - Workout-->
+        <!--Workout New View Controller - Equipments-->
         <scene sceneID="G2q-t2-b8G">
             <objects>
                 <tableViewController id="u2f-Zb-yWZ" customClass="WorkoutNewViewController" sceneMemberID="viewController">
@@ -66,7 +66,7 @@
                             <outlet property="delegate" destination="u2f-Zb-yWZ" id="xDM-EC-282"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Workout" id="LLM-th-aZg"/>
+                    <navigationItem key="navigationItem" title="Equipments" id="LLM-th-aZg"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rn7-Rl-ZjX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -227,10 +227,11 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nqx-xX-cdq">
-                                <rect key="frame" x="267" y="389" width="33" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nqx-xX-cdq">
+                                <rect key="frame" x="125" y="417" width="70" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="View">
+                                <state key="normal" title="View" backgroundImage="button_bg.png">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -269,10 +270,11 @@
                                     <outlet property="delegate" destination="0Ni-Nh-979" id="XHv-iX-WIe"/>
                                 </connections>
                             </pickerView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pgr-0n-WMf">
-                                <rect key="frame" x="267" y="381" width="33" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pgr-0n-WMf">
+                                <rect key="frame" x="125" y="417" width="70" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="View">
+                                <state key="normal" title="View" backgroundImage="button_bg.png">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -478,20 +480,17 @@
                                 <color key="textColor" red="0.068928618708991668" green="0.063974930216365758" blue="0.35536260190217395" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4nk-u1-8Mr">
-                                <rect key="frame" x="20" y="395" width="280" height="21"/>
+                            <imageView userInteractionEnabled="NO" alpha="0.65000000000000002" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="legend.png" translatesAutoresizingMaskIntoConstraints="NO" id="kQ0-Ic-dSe">
+                                <rect key="frame" x="105" y="371" width="110" height="108"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="7qe-h5-NuX"/>
                     <connections>
                         <outlet property="chartHeader" destination="WIm-Dm-2Lf" id="2V0-du-KID"/>
-                        <outlet property="legendLabel" destination="4nk-u1-8Mr" id="KCj-28-9L9"/>
+                        <outlet property="legendImageView" destination="kQ0-Ic-dSe" id="8Cm-Q3-skT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5LS-xd-7yQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -576,10 +575,11 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yvE-48-1qa">
-                                <rect key="frame" x="266" y="314" width="34" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yvE-48-1qa">
+                                <rect key="frame" x="229" y="324" width="71" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Save">
+                                <state key="normal" title="Save" backgroundImage="button_bg.png">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -769,7 +769,9 @@
     </scenes>
     <resources>
         <image name="addIcon.png" width="30" height="30"/>
+        <image name="button_bg.png" width="495" height="167"/>
         <image name="checkBox.png" width="20" height="20"/>
+        <image name="legend.png" width="110" height="108"/>
         <image name="report.png" width="30" height="30"/>
         <image name="settings.png" width="30" height="30"/>
         <image name="workout.png" width="30" height="30"/>

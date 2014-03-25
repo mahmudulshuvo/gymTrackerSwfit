@@ -26,6 +26,8 @@ Utility *utility;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.equipmentsWithNoWorkout = [NSMutableArray new];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -38,6 +40,35 @@ Utility *utility;
 {
     [super viewDidAppear:animated];
     
+    [self.equipmentsWithNoWorkout removeAllObjects];
+    
+    int equipmentsLength = utility.equipmentsList.count;
+    int workoutsLength = self.workoutList.count;
+    
+    if(workoutsLength > 0)
+    {
+        for(int i=0;i<equipmentsLength;i++)
+        {
+            Equipment *equipment = utility.equipmentsList[i];
+            BOOL shouldAdd = YES;
+            for(int j=0;j<workoutsLength;j++)
+            {
+                Workout *workout = self.workoutList[j];
+                if([equipment.equipmentName isEqualToString:workout.equipmentName])
+                {
+                    shouldAdd = NO;
+                    break;
+                }
+            }
+            if(shouldAdd)
+                [self.equipmentsWithNoWorkout addObject:equipment];
+        }
+    }
+    else
+    {
+        [self.equipmentsWithNoWorkout addObjectsFromArray:utility.equipmentsList];
+    }
+
     [self.tableView reloadData];
 }
 
@@ -56,7 +87,7 @@ Utility *utility;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return utility.equipmentsList.count;
+    return self.equipmentsWithNoWorkout.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -69,7 +100,7 @@ Utility *utility;
         cell = [[WorkoutTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    Equipment *equipment = [utility.equipmentsList objectAtIndex:[indexPath row]];
+    Equipment *equipment = [self.equipmentsWithNoWorkout objectAtIndex:[indexPath row]];
     cell.equipmentNameLabel.text = equipment.equipmentName;
     
     if(equipment.imageName == nil || [equipment.imageName isEqualToString:@"(null)"])
@@ -87,7 +118,7 @@ Utility *utility;
         WorkoutDetailsViewController *workoutDetailsView = [segue destinationViewController];
         NSIndexPath *myIndexPath = [self.tableView indexPathForSelectedRow];
         NSInteger row = [myIndexPath row];
-        workoutDetailsView.selectedEquipment = utility.equipmentsList[row];
+        workoutDetailsView.selectedEquipment = self.equipmentsWithNoWorkout[row];
         workoutDetailsView.title = workoutDetailsView.selectedEquipment.equipmentName;
         workoutDetailsView.strSelectedDate = self.strSelectedDate;
         workoutDetailsView.parentControllerName = @"WorkoutNewViewController";

@@ -11,7 +11,7 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *chartHeader;
 
-@property (strong, nonatomic) IBOutlet UILabel *legendLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *legendImageView;
 
 @property (strong, nonatomic) NSDate *selectedFromDate;
 @property (strong, nonatomic) NSDate *selectedToDate;
