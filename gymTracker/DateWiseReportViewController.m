@@ -77,11 +77,17 @@ Utility *utility;
     
     Workout *workout = [self.workoutList objectAtIndex:[indexPath row]];
     cell.equipmentNameLabel.text = workout.equipmentName;
-    cell.set1ValueLabel.text = [NSString stringWithFormat:@"%@ %@", workout.workoutSet1, strWeightLabelValue];
-    cell.set2ValueLabel.text = [NSString stringWithFormat:@"%@ %@", workout.workoutSet2, strWeightLabelValue];
-    cell.set3ValueLabel.text = [NSString stringWithFormat:@"%@ %@", workout.workoutSet3, strWeightLabelValue];
-    cell.set4ValueLabel.text = [NSString stringWithFormat:@"%@ %@", workout.workoutSet4, strWeightLabelValue];
-    cell.set5ValueLabel.text = [NSString stringWithFormat:@"%@ %@", workout.workoutSet5, strWeightLabelValue];
+    cell.set1ValueLabel.text = [NSString stringWithFormat:@"%@", workout.workoutSet1];
+    cell.set2ValueLabel.text = [NSString stringWithFormat:@"%@", workout.workoutSet2];
+    cell.set3ValueLabel.text = [NSString stringWithFormat:@"%@", workout.workoutSet3];
+    cell.set4ValueLabel.text = [NSString stringWithFormat:@"%@", workout.workoutSet4];
+    cell.set5ValueLabel.text = [NSString stringWithFormat:@"%@", workout.workoutSet5];
+    
+    cell.weightValueLabel1.text = strWeightLabelValue;
+    cell.weightValueLabel2.text = strWeightLabelValue;
+    cell.weightValueLabel3.text = strWeightLabelValue;
+    cell.weightValueLabel4.text = strWeightLabelValue;
+    cell.weightValueLabel5.text = strWeightLabelValue;
     
     if(sets == 2)
     {

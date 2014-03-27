@@ -12,6 +12,7 @@
 BOOL newEntry;
 int sets;
 Utility *utility;
+NSNumber *set1, *set2, *set3, *set4, *set5;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -51,16 +52,30 @@ Utility *utility;
         self.workout = [Workout new];
         self.workout.equipmentId = self.selectedEquipment.id;
         self.workout.workoutDate = self.strSelectedDate;
+        
+        set1 = nil;
+        set2 = nil;
+        set3 = nil;
+        set4 = nil;
+        set5 = nil;
     }
     else
     {
         newEntry = NO;
-        self.set1TextField.text = [NSString stringWithFormat:@"%@", self.workout.workoutSet1];
-        self.set2TextField.text = [NSString stringWithFormat:@"%@", self.workout.workoutSet2];
-        self.set3TextField.text = [NSString stringWithFormat:@"%@", self.workout.workoutSet3];
-        self.set4TextField.text = [NSString stringWithFormat:@"%@", self.workout.workoutSet4];
-        self.set5TextField.text = [NSString stringWithFormat:@"%@", self.workout.workoutSet5];
+        
+        set1 = self.workout.workoutSet1;
+        set2 = self.workout.workoutSet2;
+        set3 = self.workout.workoutSet3;
+        set4 = self.workout.workoutSet4;
+        set5 = self.workout.workoutSet5;
+        
+        self.set1TextField.text = [NSString stringWithFormat:@"%@", set1];
+        self.set2TextField.text = [NSString stringWithFormat:@"%@", set2];
+        self.set3TextField.text = [NSString stringWithFormat:@"%@", set3];
+        self.set4TextField.text = [NSString stringWithFormat:@"%@", set4];
+        self.set5TextField.text = [NSString stringWithFormat:@"%@", set5];
     }
+    [self enableFieldsBasedOnData];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -80,6 +95,42 @@ Utility *utility;
     {
         sets = utility.settings.sets.intValue;
         [self prepareViewBasedOnSets];
+    }
+}
+
+- (void)enableFieldsBasedOnData
+{
+    if(set1 && set1.floatValue > 0)
+    {
+        self.set2TextField.enabled = YES;
+    }
+    else
+    {
+        self.set2TextField.enabled = NO;
+    }
+    if(set2 && set2.floatValue > 0)
+    {
+        self.set3TextField.enabled = YES;
+    }
+    else
+    {
+        self.set3TextField.enabled = NO;
+    }
+    if(set3 && set3.floatValue > 0)
+    {
+        self.set4TextField.enabled = YES;
+    }
+    else
+    {
+        self.set4TextField.enabled = NO;
+    }
+    if(set4 && set4.floatValue > 0)
+    {
+        self.set5TextField.enabled = YES;
+    }
+    else
+    {
+        self.set5TextField.enabled = NO;
     }
 }
 
@@ -158,65 +209,47 @@ Utility *utility;
 {
     BOOL needsToSave = NO;
     
-    NSString *strSet1 = [self.set1TextField.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
-    
-    if(strSet1.length == 0)
+    if(newEntry)
     {
-        if(newEntry)
-            self.workout.workoutSet1 = [NSNumber numberWithInt:0];
-    }
-    else
-    {
-        NSNumber *set1 = [[[NSNumberFormatter alloc] init] numberFromString:strSet1];
-        if(set1 && [set1 floatValue] >= 0)
+        if(self.set2TextField.enabled)
         {
             self.workout.workoutSet1 = set1;
-            needsToSave = YES;
-        }
-    }
-    
-    NSString *strSet2 = [self.set2TextField.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
-    
-    if(strSet2.length > 0)
-    {
-        NSNumber *set2 = [[[NSNumberFormatter alloc] init] numberFromString:strSet2];
-        if(set2 && [set2 floatValue] >= 0)
-        {
             self.workout.workoutSet2 = set2;
             needsToSave = YES;
         }
+        if(self.set3TextField.enabled)
+            self.workout.workoutSet3 = set3;
+        if(self.set4TextField.enabled)
+            self.workout.workoutSet4 = set4;
+        if(self.set5TextField.enabled)
+            self.workout.workoutSet5 = set5;
     }
-
-    NSString *strSet3 = [self.set3TextField.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
-    
-    if(strSet3.length > 0)
+    else
     {
-        NSNumber *set3 = [[[NSNumberFormatter alloc] init] numberFromString:strSet3];
-        if(set3 && [set3 floatValue] >= 0)
+        if(self.set2TextField.enabled)
+        {
+            if(set1.floatValue != self.workout.workoutSet1.floatValue)
+            {
+                self.workout.workoutSet1 = set1;
+                needsToSave = YES;
+            }
+            if(set2.floatValue != self.workout.workoutSet2.floatValue)
+            {
+                self.workout.workoutSet2 = set2;
+                needsToSave = YES;
+            }
+        }
+        if(self.set3TextField.enabled && set3.floatValue != self.workout.workoutSet3.floatValue)
         {
             self.workout.workoutSet3 = set3;
             needsToSave = YES;
         }
-    }
-    
-    NSString *strSet4 = [self.set4TextField.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
-    
-    if(strSet4.length > 0)
-    {
-        NSNumber *set4 = [[[NSNumberFormatter alloc] init] numberFromString:strSet4];
-        if(set4 && [set4 floatValue] >= 0)
+        if(self.set4TextField.enabled && set4.floatValue != self.workout.workoutSet4.floatValue)
         {
             self.workout.workoutSet4 = set4;
             needsToSave = YES;
         }
-    }
-    
-    NSString *strSet5 = [self.set5TextField.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
-    
-    if(strSet5.length > 0)
-    {
-        NSNumber *set5 = [[[NSNumberFormatter alloc] init] numberFromString:strSet5];
-        if(set5 && [set5 floatValue] >= 0)
+        if(self.set5TextField.enabled && set5.floatValue != self.workout.workoutSet5.floatValue)
         {
             self.workout.workoutSet5 = set5;
             needsToSave = YES;
@@ -233,4 +266,39 @@ Utility *utility;
     
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+- (IBAction)set1TextFieldEditingChanged:(id)sender
+{
+    NSString *strSet1 = [self.set1TextField.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
+    set1 = [[[NSNumberFormatter alloc] init] numberFromString:strSet1];
+    [self enableFieldsBasedOnData];
+}
+
+- (IBAction)set2TextFieldEditingChanged:(id)sender
+{
+    NSString *strSet2 = [self.set2TextField.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
+    set2 = [[[NSNumberFormatter alloc] init] numberFromString:strSet2];
+    [self enableFieldsBasedOnData];
+}
+
+- (IBAction)set3TextFieldEditingChanged:(id)sender
+{
+    NSString *strSet3 = [self.set3TextField.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
+    set3 = [[[NSNumberFormatter alloc] init] numberFromString:strSet3];
+    [self enableFieldsBasedOnData];
+}
+
+- (IBAction)set4TextFieldEditingChanged:(id)sender
+{
+    NSString *strSet4 = [self.set4TextField.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
+    set4 = [[[NSNumberFormatter alloc] init] numberFromString:strSet4];
+    [self enableFieldsBasedOnData];
+}
+
+- (IBAction)set5TextFieldEditingChanged:(id)sender
+{
+    NSString *strSet5 = [self.set5TextField.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
+    set5= [[[NSNumberFormatter alloc] init] numberFromString:strSet5];
+}
+
 @end

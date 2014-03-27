@@ -26,4 +26,14 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *set5ValueLabel;
 
+@property (strong, nonatomic) IBOutlet UILabel *weightValueLabel1;
+
+@property (strong, nonatomic) IBOutlet UILabel *weightValueLabel2;
+
+@property (strong, nonatomic) IBOutlet UILabel *weightValueLabel3;
+
+@property (strong, nonatomic) IBOutlet UILabel *weightValueLabel4;
+
+@property (strong, nonatomic) IBOutlet UILabel *weightValueLabel5;
+
 @end

@@ -42,4 +42,14 @@
 
 @property (retain, nonatomic) NSString *parentControllerName;
 
+- (IBAction)set1TextFieldEditingChanged:(id)sender;
+
+- (IBAction)set2TextFieldEditingChanged:(id)sender;
+
+- (IBAction)set3TextFieldEditingChanged:(id)sender;
+
+- (IBAction)set4TextFieldEditingChanged:(id)sender;
+
+- (IBAction)set5TextFieldEditingChanged:(id)sender;
+
 @end
