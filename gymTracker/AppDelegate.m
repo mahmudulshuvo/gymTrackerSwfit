@@ -20,6 +20,7 @@ Utility *utility;
     
     utility.settings = [FMDBDataAccess getSettings];
     utility.equipmentsList = [FMDBDataAccess getEquipments];
+    utility.measurementsList = [FMDBDataAccess getMeasurements];
     
     return YES;
 }

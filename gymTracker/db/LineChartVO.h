@@ -2,7 +2,7 @@
 
 @interface LineChartVO : NSObject
 
-@property (nonatomic, strong) NSNumber * workoutSets;
-@property (nonatomic, strong) NSString * workoutDate;
+@property (nonatomic, strong) NSNumber * value;
+@property (nonatomic, strong) NSString * date;
 
 @end

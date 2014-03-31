@@ -4,6 +4,8 @@
 
 @interface SettingsViewController ()
 {
+    BOOL cmChecked;
+    BOOL inchChecked;
     BOOL lbsChecked;
     BOOL kgChecked;
 }
@@ -27,6 +29,16 @@ Utility *utility;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    if([utility.settings.measurement isEqualToString:@"cm"])
+    {
+        [self.cmCheckBox setImage:[UIImage imageNamed:@"checkBoxMarked.png"] forState:UIControlStateNormal];
+        cmChecked = YES;
+    }
+    else
+    {
+        [self.inchCheckBox setImage:[UIImage imageNamed:@"checkBoxMarked.png"] forState:UIControlStateNormal];
+        inchChecked = YES;
+    }
     if([utility.settings.weight isEqualToString:@"lbs"])
     {
         [self.lbsCheckBox setImage:[UIImage imageNamed:@"checkBoxMarked.png"] forState:UIControlStateNormal];
@@ -46,6 +58,40 @@ Utility *utility;
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)cmCheckBoxClick:(id)sender
+{
+    if(!cmChecked)
+    {
+        [self.cmCheckBox setImage:[UIImage imageNamed:@"checkBoxMarked.png"] forState:UIControlStateNormal];
+        cmChecked = YES;
+        if(inchChecked)
+        {
+            [self.inchCheckBox setImage:[UIImage imageNamed:@"checkBox.png"] forState:UIControlStateNormal];
+            inchChecked = NO;
+        }
+        
+        utility.settings.measurement = @"cm";
+        [FMDBDataAccess updateSettings:utility.settings];
+    }
+}
+
+- (IBAction)inchCheckBoxClick:(id)sender
+{
+    if(!inchChecked)
+    {
+        [self.inchCheckBox setImage:[UIImage imageNamed:@"checkBoxMarked.png"] forState:UIControlStateNormal];
+        inchChecked = YES;
+        if(cmChecked)
+        {
+            [self.cmCheckBox setImage:[UIImage imageNamed:@"checkBox.png"] forState:UIControlStateNormal];
+            cmChecked = NO;
+        }
+        
+        utility.settings.measurement = @"inch";
+        [FMDBDataAccess updateSettings:utility.settings];
+    }
 }
 
 - (IBAction)lbsCheckBoxClick:(id)sender

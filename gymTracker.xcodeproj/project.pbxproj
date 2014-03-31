@@ -75,7 +75,6 @@
 		F3D2B6B218D8380400E85646 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = F3D2B6A518D8380300E85646 /* background.png */; };
 		F3D2B6B318D8380400E85646 /* background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F3D2B6A618D8380300E85646 /* background@2x.png */; };
 		F3D2B6B418D8380400E85646 /* default.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3D2B6A718D8380300E85646 /* default.plist */; };
-		F3DB675518DAB2A4003626C1 /* gymTracker.db in Resources */ = {isa = PBXBuildFile; fileRef = F3DB675418DAB299003626C1 /* gymTracker.db */; };
 		F3DECBDD18E14BF2001B29BF /* report.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DECBDB18E14BF2001B29BF /* report.png */; };
 		F3DECBDE18E14BF2001B29BF /* report@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DECBDC18E14BF2001B29BF /* report@2x.png */; };
 		F3DECBEA18E16E0B001B29BF /* button_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DECBE918E16E0B001B29BF /* button_bg.png */; };
@@ -96,6 +95,11 @@
 		F3E07C5B18D6FF5E000DA9C4 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E07C5418D6FF5E000DA9C4 /* FMDatabaseQueue.m */; };
 		F3E07C5C18D6FF5E000DA9C4 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E07C5718D6FF5E000DA9C4 /* FMResultSet.m */; };
 		F3ED195D18E3DEBB00DC7F13 /* legend.png in Resources */ = {isa = PBXBuildFile; fileRef = F3ED195C18E3DEBB00DC7F13 /* legend.png */; };
+		F3FE80D718E938E80051D4B2 /* Measurement.m in Sources */ = {isa = PBXBuildFile; fileRef = F3FE80D618E938E80051D4B2 /* Measurement.m */; };
+		F3FE80DA18E9393B0051D4B2 /* MeasurementHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = F3FE80D918E9393B0051D4B2 /* MeasurementHistory.m */; };
+		F3FE80DE18E947B70051D4B2 /* MeasurementsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3FE80DD18E947B70051D4B2 /* MeasurementsTableViewController.m */; };
+		F3FE80E118E9486F0051D4B2 /* MeasurementsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3FE80E018E9486F0051D4B2 /* MeasurementsViewController.m */; };
+		F3FE80E318E949C70051D4B2 /* gymTracker.db in Resources */ = {isa = PBXBuildFile; fileRef = F3FE80E218E949A50051D4B2 /* gymTracker.db */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -223,7 +227,6 @@
 		F3D2B6A518D8380300E85646 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		F3D2B6A618D8380300E85646 /* background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background@2x.png"; sourceTree = "<group>"; };
 		F3D2B6A718D8380300E85646 /* default.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = default.plist; sourceTree = "<group>"; };
-		F3DB675418DAB299003626C1 /* gymTracker.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = gymTracker.db; sourceTree = "<group>"; };
 		F3DECBDB18E14BF2001B29BF /* report.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = report.png; sourceTree = "<group>"; };
 		F3DECBDC18E14BF2001B29BF /* report@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "report@2x.png"; sourceTree = "<group>"; };
 		F3DECBE918E16E0B001B29BF /* button_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_bg.png; sourceTree = "<group>"; };
@@ -260,6 +263,15 @@
 		F3E07C5618D6FF5E000DA9C4 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
 		F3E07C5718D6FF5E000DA9C4 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
 		F3ED195C18E3DEBB00DC7F13 /* legend.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = legend.png; sourceTree = "<group>"; };
+		F3FE80D518E938E80051D4B2 /* Measurement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Measurement.h; sourceTree = "<group>"; };
+		F3FE80D618E938E80051D4B2 /* Measurement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Measurement.m; sourceTree = "<group>"; };
+		F3FE80D818E9393B0051D4B2 /* MeasurementHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeasurementHistory.h; sourceTree = "<group>"; };
+		F3FE80D918E9393B0051D4B2 /* MeasurementHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeasurementHistory.m; sourceTree = "<group>"; };
+		F3FE80DC18E947B70051D4B2 /* MeasurementsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeasurementsTableViewController.h; sourceTree = "<group>"; };
+		F3FE80DD18E947B70051D4B2 /* MeasurementsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeasurementsTableViewController.m; sourceTree = "<group>"; };
+		F3FE80DF18E9486F0051D4B2 /* MeasurementsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeasurementsViewController.h; sourceTree = "<group>"; };
+		F3FE80E018E9486F0051D4B2 /* MeasurementsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeasurementsViewController.m; sourceTree = "<group>"; };
+		F3FE80E218E949A50051D4B2 /* gymTracker.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = gymTracker.db; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -345,6 +357,10 @@
 				F3D2B68618D8273F00E85646 /* MyPMCalendarController.h */,
 				F3D2B68718D8273F00E85646 /* MyPMCalendarController.m */,
 				F323286418D56DFB006C7E64 /* Main.storyboard */,
+				F3FE80DF18E9486F0051D4B2 /* MeasurementsViewController.h */,
+				F3FE80E018E9486F0051D4B2 /* MeasurementsViewController.m */,
+				F3FE80DC18E947B70051D4B2 /* MeasurementsTableViewController.h */,
+				F3FE80DD18E947B70051D4B2 /* MeasurementsTableViewController.m */,
 				F323287A18D56DFB006C7E64 /* ReportViewController.h */,
 				F323287B18D56DFB006C7E64 /* ReportViewController.m */,
 				F323287C18D56DFB006C7E64 /* SettingsViewController.h */,
@@ -366,7 +382,7 @@
 		F32327F818D56D2D006C7E64 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				F3DB675418DAB299003626C1 /* gymTracker.db */,
+				F3FE80E218E949A50051D4B2 /* gymTracker.db */,
 				F3E07C4418D6A172000DA9C4 /* TapkuLibrary.bundle */,
 				F323285318D56DFB006C7E64 /* icons */,
 				F32327F918D56D2D006C7E64 /* gymTracker-Info.plist */,
@@ -406,6 +422,10 @@
 				F323282A18D56DFB006C7E64 /* Workout.m */,
 				F3E02BB818D5AB8D00767921 /* LineChartVO.h */,
 				F3E02BB918D5AB8D00767921 /* LineChartVO.m */,
+				F3FE80D518E938E80051D4B2 /* Measurement.h */,
+				F3FE80D618E938E80051D4B2 /* Measurement.m */,
+				F3FE80D818E9393B0051D4B2 /* MeasurementHistory.h */,
+				F3FE80D918E9393B0051D4B2 /* MeasurementHistory.m */,
 			);
 			path = db;
 			sourceTree = "<group>";
@@ -647,7 +667,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F3DB675518DAB2A4003626C1 /* gymTracker.db in Resources */,
+				F3FE80E318E949C70051D4B2 /* gymTracker.db in Resources */,
 				F3D2B6B418D8380400E85646 /* default.plist in Resources */,
 				F32328AD18D56DFB006C7E64 /* appIcon60pt.png in Resources */,
 				F32328B218D56DFB006C7E64 /* no_image.jpg in Resources */,
@@ -712,6 +732,7 @@
 				F32328C618D56DFB006C7E64 /* Utility.m in Sources */,
 				F3E07C3B18D69FA0000DA9C4 /* NSDate+TKCategory.m in Sources */,
 				F323288918D56DFB006C7E64 /* DateWiseReportCell.m in Sources */,
+				F3FE80DE18E947B70051D4B2 /* MeasurementsTableViewController.m in Sources */,
 				F3D2B6AC18D8380400E85646 /* PMDimmingView.m in Sources */,
 				F3E07C3F18D69FA0000DA9C4 /* UIColor+TKCategory.m in Sources */,
 				F3E07C5818D6FF5E000DA9C4 /* FMDatabase.m in Sources */,
@@ -735,15 +756,18 @@
 				F3D2B6A818D8380300E85646 /* NSDate+Helpers.m in Sources */,
 				F3D2B6B018D8380400E85646 /* PMThemeShadow.m in Sources */,
 				F3D2B6A918D8380300E85646 /* PMCalendarBackgroundView.m in Sources */,
+				F3FE80DA18E9393B0051D4B2 /* MeasurementHistory.m in Sources */,
 				F32328C718D56DFB006C7E64 /* WorkoutDetailsViewController.m in Sources */,
 				F32327FE18D56D2D006C7E64 /* main.m in Sources */,
 				F32328C818D56DFB006C7E64 /* WorkoutNewViewController.m in Sources */,
 				F32328C318D56DFB006C7E64 /* ReportViewController.m in Sources */,
 				F3E02BBA18D5AB8D00767921 /* LineChartVO.m in Sources */,
+				F3FE80E118E9486F0051D4B2 /* MeasurementsViewController.m in Sources */,
 				F3E07C3E18D69FA0000DA9C4 /* TKGradientView.m in Sources */,
 				F32328C118D56DFB006C7E64 /* PNLineChartData.m in Sources */,
 				F32328BD18D56DFB006C7E64 /* PNChartLabel.m in Sources */,
 				F3E07C3A18D69FA0000DA9C4 /* NSDate+CalendarGrid.m in Sources */,
+				F3FE80D718E938E80051D4B2 /* Measurement.m in Sources */,
 				F3E07C5918D6FF5E000DA9C4 /* FMDatabaseAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

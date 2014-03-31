@@ -51,8 +51,8 @@ Utility *utility;
         for(int i=0;i<arrayCount;i++)
         {
             LineChartVO *lineChartVO = workoutDataArray[i];
-            [chartXLabels addObject:[lineChartVO.workoutDate substringWithRange:NSMakeRange(8, 2)]];
-            [chartDatas addObject:lineChartVO.workoutSets];
+            [chartXLabels addObject:[lineChartVO.date substringWithRange:NSMakeRange(8, 2)]];
+            [chartDatas addObject:lineChartVO.value];
         }
     }
     else
@@ -61,14 +61,14 @@ Utility *utility;
         {
             LineChartVO *lineChartVO = workoutDataArray[i];
             [chartXLabels addObject:@""];
-            [chartDatas addObject:lineChartVO.workoutSets];
+            [chartDatas addObject:lineChartVO.value];
         }
     }
     
-    NSDate *dbFromDate = [utility.dbDateFormat dateFromString:((LineChartVO *)workoutDataArray[0]).workoutDate];
+    NSDate *dbFromDate = [utility.dbDateFormat dateFromString:((LineChartVO *)workoutDataArray[0]).date];
     if(arrayCount > 1)
     {
-        NSDate *dbToDate = [utility.dbDateFormat dateFromString:((LineChartVO *)workoutDataArray[workoutDataArray.count - 1]).workoutDate];
+        NSDate *dbToDate = [utility.dbDateFormat dateFromString:((LineChartVO *)workoutDataArray[workoutDataArray.count - 1]).date];
         self.chartHeader.text = [NSString stringWithFormat:@"%@ to %@", [utility.userFriendlyDateFormat stringFromDate:dbFromDate], [utility.userFriendlyDateFormat stringFromDate:dbToDate]];
     }
     else

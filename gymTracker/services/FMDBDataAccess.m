@@ -73,6 +73,92 @@ Utility *utility;
     return success;
 }
 
++ (NSMutableArray *) getMeasurements
+{
+    NSMutableArray *measurements = [NSMutableArray new];
+    
+    FMDatabase *db = [FMDatabase databaseWithPath:utility.databasePath];
+    
+    [db open];
+    
+    FMResultSet *results = [db executeQuery:@"SELECT * FROM measurement order by measurement_name ASC"];
+    
+    while([results next])
+    {
+        Measurement *measurement = [Measurement new];
+        measurement.id = [NSNumber numberWithInt:[results intForColumn:@"id"]];
+        measurement.measurementName = [results stringForColumn:@"measurement_name"];
+        
+        [measurements addObject:measurement];
+    }
+    
+    [db close];
+    
+    return measurements;
+}
+
++ (BOOL) createMeasurement:(Measurement *) measurement
+{
+    FMDatabase *db = [FMDatabase databaseWithPath:utility.databasePath];
+    
+    [db open];
+    
+    BOOL success =  [db executeUpdate:@"INSERT INTO measurement (measurement_name) VALUES (?);",
+                     measurement.measurementName, nil];
+    
+    [db close];
+    
+    return success;
+}
+
++ (BOOL) updateMeasurement:(Measurement *) measurement
+{
+    FMDatabase *db = [FMDatabase databaseWithPath:utility.databasePath];
+    
+    [db open];
+    
+    BOOL success = [db executeUpdate:[NSString stringWithFormat:@"UPDATE measurement SET measurement_name = '%@' where id = %@", measurement.measurementName, measurement.id]];
+    
+    [db close];
+    
+    return success;
+}
+
++ (BOOL) deleteMeasurement:(Measurement *) measurement
+{
+    FMDatabase *db = [FMDatabase databaseWithPath:utility.databasePath];
+    
+    [db open];
+    
+    [db executeUpdate:[NSString stringWithFormat:@"delete from measurement_history where measurement_id = %@", measurement.id]];
+    
+    BOOL success = [db executeUpdate:[NSString stringWithFormat:@"delete from measurement where id = %@", measurement.id]];
+    
+    [db close];
+    
+    return success;
+}
+
++ (NSArray *) getWorkoutDates
+{
+    NSMutableArray *workouts = [NSMutableArray new];
+    
+    FMDatabase *db = [FMDatabase databaseWithPath:utility.databasePath];
+    
+    [db open];
+    
+    FMResultSet *results = [db executeQuery:@"SELECT DISTINCT workout_date FROM workout order by workout_date ASC"];
+    
+    while([results next])
+    {
+        [workouts addObject:[results stringForColumn:@"workout_date"]];
+    }
+    
+    [db close];
+    
+    return workouts;
+}
+
 + (NSMutableArray *) getWorkoutsByDate:(NSString *)date
 {
     NSMutableArray *workouts = [NSMutableArray new];
@@ -116,9 +202,9 @@ Utility *utility;
     while([results next])
     {
         LineChartVO *lineChartVO = [LineChartVO new];
-        lineChartVO.workoutSets = [NSNumber numberWithDouble:[results doubleForColumn:@"workout_set_1"] +               [results doubleForColumn:@"workout_set_2"] + [results doubleForColumn:@"workout_set_3"] +
+        lineChartVO.value = [NSNumber numberWithDouble:[results doubleForColumn:@"workout_set_1"] +               [results doubleForColumn:@"workout_set_2"] + [results doubleForColumn:@"workout_set_3"] +
                                    [results doubleForColumn:@"workout_set_4"] + [results doubleForColumn:@"workout_set_5"]];
-        lineChartVO.workoutDate = [results stringForColumn:@"workout_date"];
+        lineChartVO.date = [results stringForColumn:@"workout_date"];
         
         [workouts addObject:lineChartVO];
     }
@@ -212,6 +298,157 @@ Utility *utility;
     return success;
 }
 
+
++ (NSArray *) getMeasurementHistoryDates
+{
+    NSMutableArray *measurementHistories = [NSMutableArray new];
+    
+    FMDatabase *db = [FMDatabase databaseWithPath:utility.databasePath];
+    
+    [db open];
+    
+    FMResultSet *results = [db executeQuery:@"SELECT DISTINCT measurement_date FROM measurement_history order by measurement_date ASC"];
+    
+    while([results next])
+    {
+        [measurementHistories addObject:[results stringForColumn:@"measurement_date"]];
+    }
+    
+    [db close];
+    
+    return measurementHistories;
+}
+
++ (NSMutableArray *) getMeasurementHistoryByDate:(NSString *)date
+{
+    NSMutableArray *measurementHistories = [NSMutableArray new];
+    
+    FMDatabase *db = [FMDatabase databaseWithPath:utility.databasePath];
+    
+    [db open];
+    
+    FMResultSet *results = [db executeQuery:[NSString stringWithFormat:@"SELECT measurement_history.id as id, measurement_name, size FROM measurement_history, measurement where measurement_date = '%@' and measurement_history.measurement_id = measurement.id order by measurement_name ASC", date]];
+    
+    while([results next])
+    {
+        MeasurementHistory *measurementHistory = [MeasurementHistory new];
+        measurementHistory.id = [NSNumber numberWithDouble:[results intForColumn:@"id"]];
+        measurementHistory.size = [NSNumber numberWithDouble:[results doubleForColumn:@"size"]];
+        measurementHistory.measurementName = [results stringForColumn:@"measurement_name"];
+        
+        [measurementHistories addObject:measurementHistory];
+    }
+    
+    [db close];
+    
+    return measurementHistories;
+}
+
++ (NSMutableArray *) getMeasurementHistoryByMeasurementId:(NSNumber *)measurementId fromDate:(NSString *)strFromdate toDate:(NSString *)strToDate
+{
+    NSMutableArray *measurementHistories = [NSMutableArray new];
+    
+    FMDatabase *db = [FMDatabase databaseWithPath:utility.databasePath];
+    
+    [db open];
+    
+    FMResultSet *results = [db executeQuery:[NSString stringWithFormat:@"SELECT size, measurement_date FROM measurement_history where measurement_history.measurement_id = %@ AND measurement_date BETWEEN '%@' and '%@' order by measurement_date ASC", measurementId, strFromdate, strToDate]];
+    
+    while([results next])
+    {
+        LineChartVO *lineChartVO = [LineChartVO new];
+        lineChartVO.value = [NSNumber numberWithDouble:[results doubleForColumn:@"size"]];
+        lineChartVO.date = [results stringForColumn:@"measurement_date"];
+        
+        [measurementHistories addObject:lineChartVO];
+    }
+    
+    [db close];
+    
+    return measurementHistories;
+}
+
++ (MeasurementHistory *)loadMeasurementHistory:(MeasurementHistory *)measurementHistory
+{
+    FMDatabase *db = [FMDatabase databaseWithPath:utility.databasePath];
+    
+    [db open];
+    
+    FMResultSet *results = [db executeQuery:[NSString stringWithFormat:@"SELECT measurement_id, measurement_date from measurement_history where id = %@", measurementHistory.id]];
+    
+    while([results next])
+    {
+        measurementHistory.measurementDate = [results stringForColumn:@"measurement_date"];
+        measurementHistory.measurementId = [NSNumber numberWithDouble:[results intForColumn:@"measurement_id"]];
+    }
+    
+    [db close];
+    
+    return measurementHistory;
+}
+
++ (MeasurementHistory *)loadMeasurementHistoryByMeasurementIdAndDate:(NSNumber *)measurementId date:(NSString *)date
+{
+    FMDatabase *db = [FMDatabase databaseWithPath:utility.databasePath];
+    
+    [db open];
+    
+    FMResultSet *results = [db executeQuery:[NSString stringWithFormat:@"SELECT * from measurement_history where measurement_date = '%@' and measurement_history.measurement_id = %@", date, measurementId]];
+    MeasurementHistory *measurementHistory;
+    
+    while([results next])
+    {
+        measurementHistory = [MeasurementHistory new];
+        measurementHistory.id = [NSNumber numberWithDouble:[results intForColumn:@"id"]];
+        measurementHistory.size = [NSNumber numberWithDouble:[results doubleForColumn:@"size"]];
+        measurementHistory.measurementDate = [results stringForColumn:@"measurement_date"];
+        measurementHistory.measurementId = [NSNumber numberWithDouble:[results intForColumn:@"measurement_id"]];
+    }
+    
+    [db close];
+    
+    return measurementHistory;
+}
+
++ (BOOL)createMeasurementHistory:(MeasurementHistory *)measurementHistory
+{
+    FMDatabase *db = [FMDatabase databaseWithPath:utility.databasePath];
+    
+    [db open];
+    
+    BOOL success =  [db executeUpdate:@"INSERT INTO measurement_history (size, measurement_date, measurement_id) VALUES (?, ?, ?);", measurementHistory.size, measurementHistory.measurementDate, measurementHistory.measurementId, nil];
+    
+    [db close];
+    
+    return success;
+}
+
++ (BOOL)updateMeasurementHistory:(MeasurementHistory *)measurementHistory
+{
+    FMDatabase *db = [FMDatabase databaseWithPath:utility.databasePath];
+    
+    [db open];
+    
+    BOOL success = [db executeUpdate:[NSString stringWithFormat:@"UPDATE measurement_history SET size = %@  where id = %@", measurementHistory.size, measurementHistory.id]];
+    
+    [db close];
+    
+    return success;
+}
+
++ (BOOL)deleteMeasurementHistory:(MeasurementHistory *)measurementHistory
+{
+    FMDatabase *db = [FMDatabase databaseWithPath:utility.databasePath];
+    
+    [db open];
+    
+    BOOL success = [db executeUpdate:[NSString stringWithFormat:@"delete from measurement_history where id = %@", measurementHistory.id]];
+    
+    [db close];
+    
+    return success;
+}
+
 + (Settings *) getSettings
 {
     FMDatabase *db = [FMDatabase databaseWithPath:utility.databasePath];
@@ -227,6 +464,7 @@ Utility *utility;
         settings.id = [NSNumber numberWithInt:[results intForColumn:@"id"]];
         settings.weight = [results stringForColumn:@"weight"];
         settings.sets = [NSNumber numberWithInt:[results intForColumn:@"sets"]];
+        settings.measurement = [results stringForColumn:@"measurement"];
     }
     
     [db close];
@@ -240,31 +478,11 @@ Utility *utility;
     
     [db open];
     
-    BOOL success = [db executeUpdate:[NSString stringWithFormat:@"UPDATE settings SET weight = '%@', sets = %@ where id = %@", settings.weight, settings.sets, settings.id]];
+    BOOL success = [db executeUpdate:[NSString stringWithFormat:@"UPDATE settings SET weight = '%@', sets = %@, measurement = '%@' where id = %@", settings.weight, settings.sets, settings.measurement, settings.id]];
     
     [db close];
     
     return success;
-}
-
-+ (NSArray *) getWorkoutDates
-{
-    NSMutableArray *workouts = [NSMutableArray new];
-    
-    FMDatabase *db = [FMDatabase databaseWithPath:utility.databasePath];
-    
-    [db open];
-    
-    FMResultSet *results = [db executeQuery:@"SELECT DISTINCT workout_date FROM workout order by workout_date ASC"];
-    
-    while([results next])
-    {
-        [workouts addObject:[results stringForColumn:@"workout_date"]];
-    }
-    
-    [db close];
-    
-    return workouts;
 }
 
 @end

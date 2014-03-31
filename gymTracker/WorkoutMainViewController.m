@@ -12,6 +12,8 @@
 
 Utility *utility;
 NSDate *selectedDate;
+BOOL activityChecked;
+BOOL measureChecked;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -26,6 +28,8 @@ NSDate *selectedDate;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self activityCheckBoxClick:nil];
     
     self.dateCalenderView = [TKCalendarMonthView new];
     self.dateCalenderView.delegate = self;
@@ -48,7 +52,7 @@ NSDate *selectedDate;
     
     if(utility.equipmentsList.count < 1)
     {
-        [Utility showAlert:@"Error" message:@"Please add an Equipment first"];
+        [Utility showAlert:@"Info" message:@"Please add an Equipment first"];
         return;
     }
     
@@ -81,7 +85,11 @@ NSDate *selectedDate;
 - (NSArray *) populateCalendarThroughStartDate:(NSDate*)start endDate:(NSDate*)end
 {
 	NSMutableArray *marks = [NSMutableArray array];
-    NSArray *workoutDates = [FMDBDataAccess getWorkoutDates];
+    NSArray *dates;
+    if(activityChecked)
+        dates = [FMDBDataAccess getWorkoutDates];
+    else
+        dates = [FMDBDataAccess getMeasurementHistoryDates];
     
     NSDate *d = start;
     
@@ -89,7 +97,7 @@ NSDate *selectedDate;
     {
         NSString *simplifiedStart = [utility.dbDateFormat stringFromDate:d];
         
-		if ([workoutDates containsObject:simplifiedStart])
+		if ([dates containsObject:simplifiedStart])
         {
             [marks addObject:[NSNumber numberWithBool:YES]];
         }
@@ -133,6 +141,40 @@ NSDate *selectedDate;
         return YES;
     }
     return NO;
+}
+
+- (IBAction)activityCheckBoxClick:(id)sender
+{
+    if(!activityChecked)
+    {
+        [self.activityCheckBox setImage:[UIImage imageNamed:@"checkBoxMarked.png"] forState:UIControlStateNormal];
+        activityChecked = YES;
+        self.viewActivityBtn.hidden = NO;
+        self.viewMeasureBtn.hidden = YES;
+        if(measureChecked)
+        {
+            [self.measureCheckBox setImage:[UIImage imageNamed:@"checkBox.png"] forState:UIControlStateNormal];
+            measureChecked = NO;
+        }
+        [self.dateCalenderView reloadData];
+    }
+}
+
+- (IBAction)measureCheckBoxClick:(id)sender
+{
+    if(!measureChecked)
+    {
+        [self.measureCheckBox setImage:[UIImage imageNamed:@"checkBoxMarked.png"] forState:UIControlStateNormal];
+        measureChecked = YES;
+        self.viewMeasureBtn.hidden = NO;
+        self.viewActivityBtn.hidden = YES;
+        if(activityChecked)
+        {
+            [self.activityCheckBox setImage:[UIImage imageNamed:@"checkBox.png"] forState:UIControlStateNormal];
+            activityChecked = NO;
+        }
+        [self.dateCalenderView reloadData];
+    }
 }
 
 @end
