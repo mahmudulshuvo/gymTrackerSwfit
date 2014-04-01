@@ -1,12 +1,12 @@
-#import "MeasurementsViewController.h"
+#import "MeasureViewController.h"
 #import "Utility.h"
 #import "FMDBDataAccess.h"
 
-@interface MeasurementsViewController ()
+@interface MeasureViewController ()
 
 @end
 
-@implementation MeasurementsViewController
+@implementation MeasureViewController
 
 Utility *utility;
 

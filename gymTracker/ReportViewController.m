@@ -1,7 +1,7 @@
 #import "ReportViewController.h"
 #import "Equipment.h"
 #import "Utility.h"
-#import "EquipmentWiseReportViewController.h"
+#import "LineChartReportViewController.h"
 #import "FMDBDataAccess.h"
 #import "NSDate+TKCategory.h"
 
@@ -10,9 +10,13 @@
 @end
 
 @implementation ReportViewController
+{
+    BOOL equipmentChecked;
+    BOOL measurementChecked;
+}
+
 NSDate *selectedFromDate;
 NSDate *selectedToDate;
-
 Utility *utility;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -33,6 +37,8 @@ Utility *utility;
     selectedFromDate = [today dateByAddingDays:-15];
     selectedToDate = today;
     
+    [self equipmentCheckBoxClick:nil];
+    
     self.fromDateTextField.text = [utility.userFriendlyDateFormat stringFromDate: selectedFromDate];
     self.toDateTextField.text = [utility.userFriendlyDateFormat stringFromDate: selectedToDate];
     
@@ -44,7 +50,7 @@ Utility *utility;
 {
     [super viewDidAppear:animated];
     
-    [self.equipmentPicker reloadAllComponents];
+    [self.pickerView reloadAllComponents];
     
     if(utility.equipmentsList.count < 1)
     {
@@ -129,14 +135,28 @@ Utility *utility;
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if([segue.identifier isEqualToString:@"EquipmentWiseReportView"])
+    if([segue.identifier isEqualToString:@"LineChartReportView"])
     {
-        EquipmentWiseReportViewController *equipmentWiseReportView = [segue destinationViewController];
-        NSInteger row = [self.equipmentPicker selectedRowInComponent:0];
-        equipmentWiseReportView.selectedEquipment = utility.equipmentsList[row];
-        equipmentWiseReportView.selectedFromDate = selectedFromDate;
-        equipmentWiseReportView.selectedToDate = selectedToDate;
-        equipmentWiseReportView.title = equipmentWiseReportView.selectedEquipment.equipmentName;
+        LineChartReportViewController *lineChartReportView = [segue destinationViewController];
+        NSInteger row = [self.pickerView selectedRowInComponent:0];
+        lineChartReportView.selectedFromDate = selectedFromDate;
+        lineChartReportView.selectedToDate = selectedToDate;
+        if(equipmentChecked)
+        {
+            Equipment *equipment = utility.equipmentsList[row];
+            lineChartReportView.dbId = equipment.id;
+            lineChartReportView.title = equipment.equipmentName;
+            lineChartReportView.reportType = @"Workout";
+            lineChartReportView.imageName = @"legend_equipment.png";
+        }
+        else
+        {
+            Measurement *measurement = utility.measurementsList[row];
+            lineChartReportView.dbId = measurement.id;
+            lineChartReportView.title = measurement.measurementName;
+            lineChartReportView.reportType = @"Measurement";
+            lineChartReportView.imageName = @"legend_measurement.png";
+        }
     }
 }
 
@@ -176,8 +196,16 @@ Utility *utility;
 
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    Equipment *equipment = [utility.equipmentsList objectAtIndex:row];
-    return equipment.equipmentName;
+    if(equipmentChecked)
+    {
+        Equipment *equipment = [utility.equipmentsList objectAtIndex:row];
+        return equipment.equipmentName;
+    }
+    else
+    {
+        Measurement *measurement = [utility.measurementsList objectAtIndex:row];
+        return measurement.measurementName;
+    }
 }
 
 // returns the number of 'columns' to display.
@@ -189,12 +217,45 @@ Utility *utility;
 // returns the # of rows in each component..
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent: (NSInteger)component
 {
-    return utility.equipmentsList.count;
+    if(equipmentChecked)
+        return utility.equipmentsList.count;
+    else
+        return utility.measurementsList.count;
 }
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
     return NO;
+}
+
+- (IBAction)equipmentCheckBoxClick:(id)sender
+{
+    if(!equipmentChecked)
+    {
+        [self.equipmentCheckBox setImage:[UIImage imageNamed:@"checkBoxMarked.png"] forState:UIControlStateNormal];
+        equipmentChecked = YES;
+        if(measurementChecked)
+        {
+            [self.measurementCheckBox setImage:[UIImage imageNamed:@"checkBox.png"] forState:UIControlStateNormal];
+            measurementChecked = NO;
+        }
+        [self.pickerView reloadAllComponents];
+    }
+}
+
+- (IBAction)measurementCheckBoxClick:(id)sender
+{
+    if(!measurementChecked)
+    {
+        [self.measurementCheckBox setImage:[UIImage imageNamed:@"checkBoxMarked.png"] forState:UIControlStateNormal];
+        measurementChecked = YES;
+        if(equipmentChecked)
+        {
+            [self.equipmentCheckBox setImage:[UIImage imageNamed:@"checkBox.png"] forState:UIControlStateNormal];
+            equipmentChecked = NO;
+        }
+        [self.pickerView reloadAllComponents];
+    }
 }
 
 @end

@@ -1,4 +1,4 @@
-#import "EquipmentWiseReportViewController.h"
+#import "LineChartReportViewController.h"
 #import "PNLineChartData.h"
 #import "PNLineChartDataItem.h"
 #import "PNColor.h"
@@ -6,13 +6,13 @@
 #import "Utility.h"
 #import "LineChartVO.h"
 
-@interface EquipmentWiseReportViewController ()
+@interface LineChartReportViewController ()
 
 @end
 
-@implementation EquipmentWiseReportViewController
+@implementation LineChartReportViewController
 
-NSArray *workoutDataArray;
+NSArray *dbDataArray;
 NSMutableArray *chartXLabels;
 NSMutableArray *chartDatas;
 PNLineChartData *data;
@@ -34,23 +34,28 @@ Utility *utility;
     
     self.legendImageView.hidden = YES;
     
-    workoutDataArray = [FMDBDataAccess getWorkoutsByEquipmentId:self.selectedEquipment.id fromDate:[utility.dbDateFormat stringFromDate:self.selectedFromDate] toDate:[utility.dbDateFormat stringFromDate:self.selectedToDate]];
+    if([self.reportType isEqualToString:@"Workout"])
+        dbDataArray = [FMDBDataAccess getWorkoutsByEquipmentId:self.dbId fromDate:[utility.dbDateFormat stringFromDate:self.selectedFromDate] toDate:[utility.dbDateFormat stringFromDate:self.selectedToDate]];
+    else
+        dbDataArray = [FMDBDataAccess getMeasurementHistoryByMeasurementId:self.dbId fromDate:[utility.dbDateFormat stringFromDate:self.selectedFromDate] toDate:[utility.dbDateFormat stringFromDate:self.selectedToDate]];
     
-    if(workoutDataArray == nil || workoutDataArray.count < 1)
+    if(dbDataArray == nil || dbDataArray.count < 1)
     {
         self.legendImageView.hidden = YES;
         [Utility showAlert:@"Info" message:@"No data found"];
         return;
     }
     
-    int arrayCount = workoutDataArray.count;
+    [self.legendImageView setImage:[UIImage imageNamed:self.imageName]];
+    
+    int arrayCount = dbDataArray.count;
     chartXLabels = [NSMutableArray new];
     chartDatas = [NSMutableArray new];
     if(arrayCount < 19)
     {
         for(int i=0;i<arrayCount;i++)
         {
-            LineChartVO *lineChartVO = workoutDataArray[i];
+            LineChartVO *lineChartVO = dbDataArray[i];
             [chartXLabels addObject:[lineChartVO.date substringWithRange:NSMakeRange(8, 2)]];
             [chartDatas addObject:lineChartVO.value];
         }
@@ -59,16 +64,16 @@ Utility *utility;
     {
         for(int i=0;i<arrayCount;i++)
         {
-            LineChartVO *lineChartVO = workoutDataArray[i];
+            LineChartVO *lineChartVO = dbDataArray[i];
             [chartXLabels addObject:@""];
             [chartDatas addObject:lineChartVO.value];
         }
     }
     
-    NSDate *dbFromDate = [utility.dbDateFormat dateFromString:((LineChartVO *)workoutDataArray[0]).date];
+    NSDate *dbFromDate = [utility.dbDateFormat dateFromString:((LineChartVO *)dbDataArray[0]).date];
     if(arrayCount > 1)
     {
-        NSDate *dbToDate = [utility.dbDateFormat dateFromString:((LineChartVO *)workoutDataArray[workoutDataArray.count - 1]).date];
+        NSDate *dbToDate = [utility.dbDateFormat dateFromString:((LineChartVO *)dbDataArray[dbDataArray.count - 1]).date];
         self.chartHeader.text = [NSString stringWithFormat:@"%@ to %@", [utility.userFriendlyDateFormat stringFromDate:dbFromDate], [utility.userFriendlyDateFormat stringFromDate:dbToDate]];
     }
     else
@@ -105,7 +110,7 @@ Utility *utility;
 {
     [super viewDidAppear:animated];
     
-    if(workoutDataArray == nil || workoutDataArray.count < 1)
+    if(dbDataArray == nil || dbDataArray.count < 1)
     {
         [self.navigationController popViewControllerAnimated:YES];
     }

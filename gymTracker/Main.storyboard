@@ -71,7 +71,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rn7-Rl-ZjX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2152" y="1064"/>
+            <point key="canvasLocation" x="2100" y="974"/>
         </scene>
         <!--Workout Details View Controller-->
         <scene sceneID="eg3-DA-Xmo">
@@ -224,7 +224,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7P2-21-dCX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2696" y="731"/>
+            <point key="canvasLocation" x="2694" y="657"/>
         </scene>
         <!--Workout Main View Controller - Workout-->
         <scene sceneID="tTg-pM-rMu">
@@ -239,78 +239,79 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x0R-BS-OrE">
-                                <rect key="frame" x="0.0" y="66" width="320" height="284"/>
+                                <rect key="frame" x="0.0" y="107" width="320" height="284"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nqx-xX-cdq">
-                                <rect key="frame" x="230" y="398" width="70" height="33"/>
+                                <rect key="frame" x="125" y="434" width="70" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="View" backgroundImage="button_bg.png">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="eRO-xE-njN" kind="push" identifier="ViewDateWiseReport" id="aD6-tT-dx0"/>
+                                    <segue destination="eRO-xE-njN" kind="push" identifier="ViewDateWiseWorkoutReport" id="aD6-tT-dx0"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Activity" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eau-rQ-KRy">
-                                <rect key="frame" x="20" y="404" width="56" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Workout" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eau-rQ-KRy">
+                                <rect key="frame" x="40" y="75" width="65" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Measure" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fvy-Ue-Ojz">
-                                <rect key="frame" x="119" y="404" width="66" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Measurement" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fvy-Ue-Ojz">
+                                <rect key="frame" x="148" y="75" width="105" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1qU-Ub-cxf">
-                                <rect key="frame" x="84" y="404" width="20" height="22"/>
+                                <rect key="frame" x="113" y="75" width="20" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="checkBox.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="activityCheckBoxClick:" destination="yWM-EE-0oF" eventType="touchUpInside" id="ffm-rC-2SZ"/>
-                                    <action selector="lbsCheckBoxClick:" destination="rmm-Bv-0uN" eventType="touchUpInside" id="2tH-rj-Dca"/>
+                                    <action selector="workoutCheckBoxClick:" destination="yWM-EE-0oF" eventType="touchUpInside" id="4o2-Ou-pg9"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g4a-0g-6EW">
-                                <rect key="frame" x="193" y="404" width="20" height="22"/>
+                                <rect key="frame" x="261" y="75" width="20" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="checkBox.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="kgCheckBoxClick:" destination="rmm-Bv-0uN" eventType="touchUpInside" id="KBa-sI-yhT"/>
-                                    <action selector="measureCheckBoxClick:" destination="yWM-EE-0oF" eventType="touchUpInside" id="IPq-Wq-JX9"/>
+                                    <action selector="measurementCheckBoxClick:" destination="yWM-EE-0oF" eventType="touchUpInside" id="sPJ-dr-21U"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lBN-9X-IyV">
-                                <rect key="frame" x="230" y="398" width="70" height="33"/>
+                                <rect key="frame" x="125" y="434" width="70" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="View" backgroundImage="button_bg.png">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="xuQ-RV-ssW" kind="push" identifier="ViewDateWiseMeasurementReport" id="tDe-kw-OaV"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Workout" id="Uh9-Ih-Kb8"/>
                     <connections>
-                        <outlet property="activityCheckBox" destination="1qU-Ub-cxf" id="SPu-5P-5vU"/>
                         <outlet property="calendarContainer" destination="x0R-BS-OrE" id="CsT-QF-inN"/>
-                        <outlet property="measureCheckBox" destination="g4a-0g-6EW" id="4Ox-ez-0ME"/>
-                        <outlet property="viewActivityBtn" destination="Nqx-xX-cdq" id="9ST-ns-9sf"/>
-                        <outlet property="viewMeasureBtn" destination="lBN-9X-IyV" id="KKi-kY-mIE"/>
+                        <outlet property="measurementCheckBox" destination="g4a-0g-6EW" id="MEl-6A-Dto"/>
+                        <outlet property="viewMeasurementBtn" destination="lBN-9X-IyV" id="riH-M9-AGE"/>
+                        <outlet property="viewWorkoutBtn" destination="Nqx-xX-cdq" id="cLb-g6-794"/>
+                        <outlet property="workoutCheckBox" destination="1qU-Ub-cxf" id="0Ke-5x-dmc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xvQ-04-qxJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1053" y="718"/>
+            <point key="canvasLocation" x="1053" y="657"/>
         </scene>
         <!--Report View Controller - Report-->
         <scene sceneID="64l-Ae-vsU">
@@ -325,7 +326,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JPe-Tm-EuD">
-                                <rect key="frame" x="10" y="175" width="300" height="162"/>
+                                <rect key="frame" x="10" y="204" width="300" height="162"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <outlet property="dataSource" destination="0Ni-Nh-979" id="kUW-Mi-pRW"/>
@@ -333,25 +334,25 @@
                                 </connections>
                             </pickerView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pgr-0n-WMf">
-                                <rect key="frame" x="125" y="417" width="70" height="33"/>
+                                <rect key="frame" x="125" y="446" width="70" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="View" backgroundImage="button_bg.png">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="taj-iu-s8Y" kind="push" identifier="EquipmentWiseReportView" id="NKa-R2-Hxs"/>
+                                    <segue destination="taj-iu-s8Y" kind="push" identifier="LineChartReportView" id="NKa-R2-Hxs"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="From date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bVm-lR-ZWn">
-                                <rect key="frame" x="20" y="93" width="79" height="21"/>
+                                <rect key="frame" x="20" y="122" width="79" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6lZ-Xr-gVW">
-                                <rect key="frame" x="107" y="89" width="193" height="30"/>
+                                <rect key="frame" x="107" y="118" width="193" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -361,14 +362,14 @@
                                 </connections>
                             </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="To date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aNf-La-gUa">
-                                <rect key="frame" x="42" y="131" width="57" height="21"/>
+                                <rect key="frame" x="42" y="160" width="57" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c2Z-nJ-6FK">
-                                <rect key="frame" x="107" y="127" width="193" height="30"/>
+                                <rect key="frame" x="107" y="156" width="193" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -377,14 +378,48 @@
                                     <action selector="toDateTextFieldTouchDown:" destination="0Ni-Nh-979" eventType="touchDown" id="r8D-c6-6hz"/>
                                 </connections>
                             </textField>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Equipment" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lge-3r-rpu">
+                                <rect key="frame" x="31" y="78" width="83" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Measurement" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="exn-8M-Qos">
+                                <rect key="frame" x="157" y="78" width="105" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mRL-F0-9l6">
+                                <rect key="frame" x="122" y="78" width="20" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="checkBox.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="equipmentCheckBoxClick:" destination="0Ni-Nh-979" eventType="touchUpInside" id="c8y-OK-xr9"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1U3-Fv-SGP">
+                                <rect key="frame" x="270" y="78" width="20" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="checkBox.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="measurementCheckBoxClick:" destination="0Ni-Nh-979" eventType="touchUpInside" id="a1V-Y9-0Xc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Report" id="BRs-5s-hXW"/>
                     <connections>
-                        <outlet property="equipmentPicker" destination="JPe-Tm-EuD" id="tt2-0N-ZTW"/>
+                        <outlet property="equipmentCheckBox" destination="mRL-F0-9l6" id="hpJ-SX-dht"/>
                         <outlet property="equipmentWiseReportBtn" destination="pgr-0n-WMf" id="kmj-ha-MjA"/>
                         <outlet property="fromDateTextField" destination="6lZ-Xr-gVW" id="5ha-EO-I5o"/>
+                        <outlet property="measurementCheckBox" destination="1U3-Fv-SGP" id="8I4-Br-pGV"/>
+                        <outlet property="pickerView" destination="JPe-Tm-EuD" id="Gii-Yb-g4l"/>
                         <outlet property="searchDisplayController" destination="LDK-P4-MKL" id="xsp-LH-Hsu"/>
                         <outlet property="toDateTextField" destination="c2Z-nJ-6FK" id="JPp-St-atK"/>
                     </connections>
@@ -399,18 +434,148 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1053" y="2115"/>
+            <point key="canvasLocation" x="1053" y="2822"/>
         </scene>
-        <!--Date Wise Report View Controller-->
+        <!--Date Wise Measurement View Controller - Measurements-->
+        <scene sceneID="fgS-2o-hSL">
+            <objects>
+                <tableViewController id="xuQ-RV-ssW" customClass="DateWiseMeasurementViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="JwF-nY-dHE">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DateWiseMeasurementReportCell" rowHeight="44" id="76c-LD-5IR" customClass="DateWiseMeasurementReportCell">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="76c-LD-5IR" id="5gA-uW-X39">
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j8X-VP-pd7">
+                                            <rect key="frame" x="20" y="11" width="188" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PRE-yF-ONJ">
+                                            <rect key="frame" x="216" y="11" width="66" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="measurementNameLabel" destination="j8X-VP-pd7" id="Ph4-h3-7Kr"/>
+                                    <outlet property="sizeLabel" destination="PRE-yF-ONJ" id="Pfz-oM-FHj"/>
+                                    <segue destination="cU8-6F-tIz" kind="push" identifier="EditMeasurementView" id="JbC-HR-Yma"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="xuQ-RV-ssW" id="bxh-bX-x9U"/>
+                            <outlet property="delegate" destination="xuQ-RV-ssW" id="dEk-Jy-xJH"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Measurements" id="nyh-IW-WrL">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="wUP-Ql-7jy">
+                            <connections>
+                                <segue destination="dsy-hQ-iCo" kind="push" identifier="MeasurementView" id="DB8-t1-rf8"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KaV-U0-GRC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1491" y="1405"/>
+        </scene>
+        <!--Measurement History New View Controller-->
+        <scene sceneID="PNZ-5o-fvk">
+            <objects>
+                <tableViewController id="dsy-hQ-iCo" customClass="MeasurementHistoryNewViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="A9s-iI-yPN">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MeasurementNewCell" id="pnq-tl-VUY">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pnq-tl-VUY" id="Vdd-eD-Q2Z">
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="cU8-6F-tIz" kind="push" identifier="NewMeasurementView" id="UEn-QR-wOl"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="dsy-hQ-iCo" id="Ivk-x9-BRg"/>
+                            <outlet property="delegate" destination="dsy-hQ-iCo" id="5Ar-yK-afa"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="Ifa-m1-hwL"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uEO-BB-o1F" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2100" y="1671"/>
+        </scene>
+        <!--Measurement History Details View Controller-->
+        <scene sceneID="VUd-du-11p">
+            <objects>
+                <viewController id="cU8-6F-tIz" customClass="MeasurementHistoryDetailsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="HWx-uu-XLV"/>
+                        <viewControllerLayoutGuide type="bottom" id="DtC-0w-I9o"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4z7-pF-8Ak">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="b1P-tJ-I0K">
+                                <rect key="frame" x="61" y="87" width="198" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                            </textField>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Size" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BnJ-ie-ztM">
+                                <rect key="frame" x="20" y="91" width="33" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u4G-R7-bzK">
+                                <rect key="frame" x="267" y="90" width="33" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Cma-Iy-Tqv"/>
+                    <connections>
+                        <outlet property="measurementTypeLabel" destination="u4G-R7-bzK" id="6Yy-s1-9cn"/>
+                        <outlet property="sizeTextField" destination="b1P-tJ-I0K" id="ajs-TE-YNY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sIx-Mz-UNr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2694" y="1708"/>
+        </scene>
+        <!--Date Wise Workout Report View Controller-->
         <scene sceneID="l5s-BD-HFf">
             <objects>
-                <tableViewController id="eRO-xE-njN" customClass="DateWiseReportViewController" sceneMemberID="viewController">
+                <tableViewController id="eRO-xE-njN" customClass="DateWiseWorkoutReportViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" sectionHeaderHeight="22" sectionFooterHeight="22" id="8ad-YB-bvC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DateWiseReportCell" rowHeight="90" id="q3k-lF-6NM" customClass="DateWiseReportCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DateWiseWorkoutReportCell" rowHeight="90" id="q3k-lF-6NM" customClass="DateWiseWorkoutReportCell">
                                 <rect key="frame" x="0.0" y="86" width="320" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="q3k-lF-6NM" id="axI-IO-Viu">
@@ -556,12 +721,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HTE-cO-5DX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1491" y="718"/>
+            <point key="canvasLocation" x="1491" y="657"/>
         </scene>
-        <!--Equipment Wise Report View Controller-->
+        <!--Line Chart Report View Controller-->
         <scene sceneID="Hao-fG-y9N">
             <objects>
-                <viewController id="taj-iu-s8Y" customClass="EquipmentWiseReportViewController" sceneMemberID="viewController">
+                <viewController id="taj-iu-s8Y" customClass="LineChartReportViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="JPB-zr-li7"/>
                         <viewControllerLayoutGuide type="bottom" id="kzY-KP-cvy"/>
@@ -577,7 +742,7 @@
                                 <color key="textColor" red="0.068928618708991668" green="0.063974930216365758" blue="0.35536260190217395" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="legend.png" translatesAutoresizingMaskIntoConstraints="NO" id="kQ0-Ic-dSe">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kQ0-Ic-dSe">
                                 <rect key="frame" x="105" y="371" width="110" height="108"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -592,7 +757,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5LS-xd-7yQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1491" y="2115"/>
+            <point key="canvasLocation" x="1491" y="2822"/>
         </scene>
         <!--Equipment Main View Controller - Equipments-->
         <scene sceneID="43d-mi-9nS">
@@ -645,7 +810,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EUl-Zb-PTy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1053" y="1406"/>
+            <point key="canvasLocation" x="1053" y="2078"/>
         </scene>
         <!--Equipment Details View Controller-->
         <scene sceneID="hBG-Mm-SkV">
@@ -700,7 +865,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nLI-hj-GOf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1491" y="1406"/>
+            <point key="canvasLocation" x="1491" y="2078"/>
         </scene>
         <!--Settings View Controller - Settings-->
         <scene sceneID="5JG-V3-t8o">
@@ -825,7 +990,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J1n-vt-mGu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1053" y="2787"/>
+            <point key="canvasLocation" x="1053" y="3518"/>
         </scene>
         <!--Navigation Controller - Equipments-->
         <scene sceneID="Q4d-5Z-2Dd">
@@ -844,7 +1009,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fDu-gJ-s5q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="580" y="1406"/>
+            <point key="canvasLocation" x="580" y="2078"/>
         </scene>
         <!--Navigation Controller - Settings-->
         <scene sceneID="bdT-Fc-ESM">
@@ -863,7 +1028,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YTb-Ef-67g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="580" y="2787"/>
+            <point key="canvasLocation" x="580" y="3518"/>
         </scene>
         <!--Navigation Controller - Report-->
         <scene sceneID="9XP-jF-DeJ">
@@ -882,12 +1047,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7EG-UH-ct4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="580" y="2115"/>
+            <point key="canvasLocation" x="580" y="2822"/>
         </scene>
-        <!--Measurements Table View Controller - Measurements-->
+        <!--Measure Table View Controller - Measure-->
         <scene sceneID="Du5-0Y-E26">
             <objects>
-                <tableViewController id="Tfj-Gz-uQu" customClass="MeasurementsTableViewController" sceneMemberID="viewController">
+                <tableViewController id="Tfj-Gz-uQu" customClass="MeasureTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="RMb-fr-SjA">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -910,7 +1075,7 @@
                             <outlet property="delegate" destination="Tfj-Gz-uQu" id="oa8-bf-yWZ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Measurements" id="EYY-Y7-18b">
+                    <navigationItem key="navigationItem" title="Measure" id="EYY-Y7-18b">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="8Vg-cb-ypk">
                             <connections>
                                 <segue destination="XYZ-8j-TdL" kind="push" identifier="NewMeasurement" id="9bs-KY-eOD"/>
@@ -922,10 +1087,10 @@
             </objects>
             <point key="canvasLocation" x="1053" y="-28"/>
         </scene>
-        <!--Measurements View Controller-->
+        <!--Measure View Controller-->
         <scene sceneID="uwr-bo-OKL">
             <objects>
-                <viewController id="XYZ-8j-TdL" customClass="MeasurementsViewController" sceneMemberID="viewController">
+                <viewController id="XYZ-8j-TdL" customClass="MeasureViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="NPP-5f-k3c"/>
                         <viewControllerLayoutGuide type="bottom" id="OPQ-gG-Oft"/>
@@ -935,13 +1100,13 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tdX-Fl-77K">
-                                <rect key="frame" x="20" y="121" width="280" height="30"/>
+                                <rect key="frame" x="20" y="114" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eYd-kv-duI">
-                                <rect key="frame" x="229" y="169" width="71" height="33"/>
+                                <rect key="frame" x="229" y="162" width="71" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Save" backgroundImage="button_bg.png">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -953,7 +1118,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JkA-X7-G7i">
-                                <rect key="frame" x="20" y="92" width="46" height="21"/>
+                                <rect key="frame" x="20" y="85" width="46" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -988,7 +1153,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pDN-me-O0l" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="580" y="723"/>
+            <point key="canvasLocation" x="580" y="657"/>
         </scene>
         <!--Navigation Controller - Measure-->
         <scene sceneID="oCf-vI-AOE">
@@ -1014,7 +1179,6 @@
         <image name="addIcon.png" width="30" height="30"/>
         <image name="button_bg.png" width="495" height="167"/>
         <image name="checkBox.png" width="20" height="20"/>
-        <image name="legend.png" width="129" height="117"/>
         <image name="report.png" width="30" height="30"/>
         <image name="settings.png" width="30" height="30"/>
         <image name="workout.png" width="30" height="30"/>
@@ -1027,6 +1191,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="9bs-KY-eOD"/>
         <segue reference="4kU-ls-Xda"/>
+        <segue reference="JbC-HR-Yma"/>
         <segue reference="Idu-nc-d4i"/>
     </inferredMetricsTieBreakers>
 </document>

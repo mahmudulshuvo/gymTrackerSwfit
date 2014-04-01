@@ -1,17 +1,17 @@
-#import "DateWiseReportViewController.h"
+#import "DateWiseWorkoutReportViewController.h"
 #import "Utility.h"
 #import "Workout.h"
 #import "Equipment.h"
-#import "DateWiseReportCell.h"
+#import "DateWiseWorkoutReportCell.h"
 #import "FMDBDataAccess.h"
 #import "WorkoutDetailsViewController.h"
 #import "WorkoutNewViewController.h"
 
-@interface DateWiseReportViewController ()
+@interface DateWiseWorkoutReportViewController ()
 
 @end
 
-@implementation DateWiseReportViewController
+@implementation DateWiseWorkoutReportViewController
 
 int sets;
 NSString *strWeightLabelValue;
@@ -67,12 +67,12 @@ Utility *utility;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"DateWiseReportCell";
-    DateWiseReportCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    static NSString *CellIdentifier = @"DateWiseWorkoutReportCell";
+    DateWiseWorkoutReportCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     if(cell == nil)
     {
-        cell = [[DateWiseReportCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[DateWiseWorkoutReportCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
     Workout *workout = [self.workoutList objectAtIndex:[indexPath row]];

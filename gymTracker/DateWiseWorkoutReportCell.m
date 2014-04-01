@@ -1,6 +1,6 @@
-#import "DateWiseReportCell.h"
+#import "DateWiseWorkoutReportCell.h"
 
-@implementation DateWiseReportCell
+@implementation DateWiseWorkoutReportCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

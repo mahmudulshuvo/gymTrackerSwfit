@@ -1,6 +1,6 @@
 #import <UIKit/UIKit.h>
 
-@interface DateWiseReportViewController : UITableViewController
+@interface DateWiseWorkoutReportViewController : UITableViewController
 
 @property (nonatomic, strong) NSMutableArray *workoutList;
 

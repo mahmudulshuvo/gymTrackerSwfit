@@ -20,15 +20,15 @@
 		F323280D18D56D2D006C7E64 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F32327F518D56D2D006C7E64 /* UIKit.framework */; };
 		F323281518D56D2D006C7E64 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F323281318D56D2D006C7E64 /* InfoPlist.strings */; };
 		F323281718D56D2D006C7E64 /* gymTrackerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F323281618D56D2D006C7E64 /* gymTrackerTests.m */; };
-		F323288918D56DFB006C7E64 /* DateWiseReportCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F323282118D56DFB006C7E64 /* DateWiseReportCell.m */; };
-		F323288A18D56DFB006C7E64 /* DateWiseReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F323282318D56DFB006C7E64 /* DateWiseReportViewController.m */; };
+		F323288918D56DFB006C7E64 /* DateWiseWorkoutReportCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F323282118D56DFB006C7E64 /* DateWiseWorkoutReportCell.m */; };
+		F323288A18D56DFB006C7E64 /* DateWiseWorkoutReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F323282318D56DFB006C7E64 /* DateWiseWorkoutReportViewController.m */; };
 		F323288B18D56DFB006C7E64 /* Equipment.m in Sources */ = {isa = PBXBuildFile; fileRef = F323282618D56DFB006C7E64 /* Equipment.m */; };
 		F323288C18D56DFB006C7E64 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = F323282818D56DFB006C7E64 /* Settings.m */; };
 		F323288D18D56DFB006C7E64 /* Workout.m in Sources */ = {isa = PBXBuildFile; fileRef = F323282A18D56DFB006C7E64 /* Workout.m */; };
 		F32328A518D56DFB006C7E64 /* EquipmentDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F323284C18D56DFB006C7E64 /* EquipmentDetailsViewController.m */; };
 		F32328A618D56DFB006C7E64 /* EquipmentMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F323284E18D56DFB006C7E64 /* EquipmentMainViewController.m */; };
 		F32328A718D56DFB006C7E64 /* EquipmentTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F323285018D56DFB006C7E64 /* EquipmentTableCell.m */; };
-		F32328A818D56DFB006C7E64 /* EquipmentWiseReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F323285218D56DFB006C7E64 /* EquipmentWiseReportViewController.m */; };
+		F32328A818D56DFB006C7E64 /* LineChartReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F323285218D56DFB006C7E64 /* LineChartReportViewController.m */; };
 		F32328A918D56DFB006C7E64 /* addIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F323285418D56DFB006C7E64 /* addIcon.png */; };
 		F32328AA18D56DFB006C7E64 /* addIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F323285518D56DFB006C7E64 /* addIcon@2x.png */; };
 		F32328AB18D56DFB006C7E64 /* appIcon29pt.png in Resources */ = {isa = PBXBuildFile; fileRef = F323285618D56DFB006C7E64 /* appIcon29pt.png */; };
@@ -75,6 +75,8 @@
 		F3D2B6B218D8380400E85646 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = F3D2B6A518D8380300E85646 /* background.png */; };
 		F3D2B6B318D8380400E85646 /* background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F3D2B6A618D8380300E85646 /* background@2x.png */; };
 		F3D2B6B418D8380400E85646 /* default.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3D2B6A718D8380300E85646 /* default.plist */; };
+		F3DBD74018EACCBD0038A65A /* legend_equipment.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DBD73E18EACCBD0038A65A /* legend_equipment.png */; };
+		F3DBD74118EACCBD0038A65A /* legend_measurement.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DBD73F18EACCBD0038A65A /* legend_measurement.png */; };
 		F3DECBDD18E14BF2001B29BF /* report.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DECBDB18E14BF2001B29BF /* report.png */; };
 		F3DECBDE18E14BF2001B29BF /* report@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DECBDC18E14BF2001B29BF /* report@2x.png */; };
 		F3DECBEA18E16E0B001B29BF /* button_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DECBE918E16E0B001B29BF /* button_bg.png */; };
@@ -94,11 +96,14 @@
 		F3E07C5A18D6FF5E000DA9C4 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E07C5218D6FF5E000DA9C4 /* FMDatabasePool.m */; };
 		F3E07C5B18D6FF5E000DA9C4 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E07C5418D6FF5E000DA9C4 /* FMDatabaseQueue.m */; };
 		F3E07C5C18D6FF5E000DA9C4 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E07C5718D6FF5E000DA9C4 /* FMResultSet.m */; };
-		F3ED195D18E3DEBB00DC7F13 /* legend.png in Resources */ = {isa = PBXBuildFile; fileRef = F3ED195C18E3DEBB00DC7F13 /* legend.png */; };
+		F3E537E318EA966F009817F2 /* DateWiseMeasurementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E537E218EA966F009817F2 /* DateWiseMeasurementViewController.m */; };
+		F3E537E618EA9764009817F2 /* DateWiseMeasurementReportCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E537E518EA9764009817F2 /* DateWiseMeasurementReportCell.m */; };
+		F3E537E918EA9807009817F2 /* MeasurementHistoryDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E537E818EA9807009817F2 /* MeasurementHistoryDetailsViewController.m */; };
+		F3E537EF18EA9F7C009817F2 /* MeasurementHistoryNewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E537EE18EA9F7C009817F2 /* MeasurementHistoryNewViewController.m */; };
 		F3FE80D718E938E80051D4B2 /* Measurement.m in Sources */ = {isa = PBXBuildFile; fileRef = F3FE80D618E938E80051D4B2 /* Measurement.m */; };
 		F3FE80DA18E9393B0051D4B2 /* MeasurementHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = F3FE80D918E9393B0051D4B2 /* MeasurementHistory.m */; };
-		F3FE80DE18E947B70051D4B2 /* MeasurementsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3FE80DD18E947B70051D4B2 /* MeasurementsTableViewController.m */; };
-		F3FE80E118E9486F0051D4B2 /* MeasurementsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3FE80E018E9486F0051D4B2 /* MeasurementsViewController.m */; };
+		F3FE80DE18E947B70051D4B2 /* MeasureTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3FE80DD18E947B70051D4B2 /* MeasureTableViewController.m */; };
+		F3FE80E118E9486F0051D4B2 /* MeasureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3FE80E018E9486F0051D4B2 /* MeasureViewController.m */; };
 		F3FE80E318E949C70051D4B2 /* gymTracker.db in Resources */ = {isa = PBXBuildFile; fileRef = F3FE80E218E949A50051D4B2 /* gymTracker.db */; };
 /* End PBXBuildFile section */
 
@@ -131,10 +136,10 @@
 		F323281218D56D2D006C7E64 /* gymTrackerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "gymTrackerTests-Info.plist"; sourceTree = "<group>"; };
 		F323281418D56D2D006C7E64 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F323281618D56D2D006C7E64 /* gymTrackerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = gymTrackerTests.m; sourceTree = "<group>"; };
-		F323282018D56DFB006C7E64 /* DateWiseReportCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateWiseReportCell.h; sourceTree = "<group>"; };
-		F323282118D56DFB006C7E64 /* DateWiseReportCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateWiseReportCell.m; sourceTree = "<group>"; };
-		F323282218D56DFB006C7E64 /* DateWiseReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateWiseReportViewController.h; sourceTree = "<group>"; };
-		F323282318D56DFB006C7E64 /* DateWiseReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateWiseReportViewController.m; sourceTree = "<group>"; };
+		F323282018D56DFB006C7E64 /* DateWiseWorkoutReportCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateWiseWorkoutReportCell.h; sourceTree = "<group>"; };
+		F323282118D56DFB006C7E64 /* DateWiseWorkoutReportCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateWiseWorkoutReportCell.m; sourceTree = "<group>"; };
+		F323282218D56DFB006C7E64 /* DateWiseWorkoutReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateWiseWorkoutReportViewController.h; sourceTree = "<group>"; };
+		F323282318D56DFB006C7E64 /* DateWiseWorkoutReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateWiseWorkoutReportViewController.m; sourceTree = "<group>"; };
 		F323282518D56DFB006C7E64 /* Equipment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Equipment.h; sourceTree = "<group>"; };
 		F323282618D56DFB006C7E64 /* Equipment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Equipment.m; sourceTree = "<group>"; };
 		F323282718D56DFB006C7E64 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
@@ -147,8 +152,8 @@
 		F323284E18D56DFB006C7E64 /* EquipmentMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EquipmentMainViewController.m; sourceTree = "<group>"; };
 		F323284F18D56DFB006C7E64 /* EquipmentTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EquipmentTableCell.h; sourceTree = "<group>"; };
 		F323285018D56DFB006C7E64 /* EquipmentTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EquipmentTableCell.m; sourceTree = "<group>"; };
-		F323285118D56DFB006C7E64 /* EquipmentWiseReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EquipmentWiseReportViewController.h; sourceTree = "<group>"; };
-		F323285218D56DFB006C7E64 /* EquipmentWiseReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EquipmentWiseReportViewController.m; sourceTree = "<group>"; };
+		F323285118D56DFB006C7E64 /* LineChartReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineChartReportViewController.h; sourceTree = "<group>"; };
+		F323285218D56DFB006C7E64 /* LineChartReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineChartReportViewController.m; sourceTree = "<group>"; };
 		F323285418D56DFB006C7E64 /* addIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addIcon.png; sourceTree = "<group>"; };
 		F323285518D56DFB006C7E64 /* addIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "addIcon@2x.png"; sourceTree = "<group>"; };
 		F323285618D56DFB006C7E64 /* appIcon29pt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appIcon29pt.png; sourceTree = "<group>"; };
@@ -227,6 +232,8 @@
 		F3D2B6A518D8380300E85646 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		F3D2B6A618D8380300E85646 /* background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background@2x.png"; sourceTree = "<group>"; };
 		F3D2B6A718D8380300E85646 /* default.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = default.plist; sourceTree = "<group>"; };
+		F3DBD73E18EACCBD0038A65A /* legend_equipment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = legend_equipment.png; sourceTree = "<group>"; };
+		F3DBD73F18EACCBD0038A65A /* legend_measurement.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = legend_measurement.png; sourceTree = "<group>"; };
 		F3DECBDB18E14BF2001B29BF /* report.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = report.png; sourceTree = "<group>"; };
 		F3DECBDC18E14BF2001B29BF /* report@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "report@2x.png"; sourceTree = "<group>"; };
 		F3DECBE918E16E0B001B29BF /* button_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_bg.png; sourceTree = "<group>"; };
@@ -262,15 +269,22 @@
 		F3E07C5518D6FF5E000DA9C4 /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
 		F3E07C5618D6FF5E000DA9C4 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
 		F3E07C5718D6FF5E000DA9C4 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
-		F3ED195C18E3DEBB00DC7F13 /* legend.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = legend.png; sourceTree = "<group>"; };
+		F3E537E118EA966F009817F2 /* DateWiseMeasurementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateWiseMeasurementViewController.h; sourceTree = "<group>"; };
+		F3E537E218EA966F009817F2 /* DateWiseMeasurementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateWiseMeasurementViewController.m; sourceTree = "<group>"; };
+		F3E537E418EA9764009817F2 /* DateWiseMeasurementReportCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateWiseMeasurementReportCell.h; sourceTree = "<group>"; };
+		F3E537E518EA9764009817F2 /* DateWiseMeasurementReportCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateWiseMeasurementReportCell.m; sourceTree = "<group>"; };
+		F3E537E718EA9807009817F2 /* MeasurementHistoryDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeasurementHistoryDetailsViewController.h; sourceTree = "<group>"; };
+		F3E537E818EA9807009817F2 /* MeasurementHistoryDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeasurementHistoryDetailsViewController.m; sourceTree = "<group>"; };
+		F3E537ED18EA9F7C009817F2 /* MeasurementHistoryNewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeasurementHistoryNewViewController.h; sourceTree = "<group>"; };
+		F3E537EE18EA9F7C009817F2 /* MeasurementHistoryNewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeasurementHistoryNewViewController.m; sourceTree = "<group>"; };
 		F3FE80D518E938E80051D4B2 /* Measurement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Measurement.h; sourceTree = "<group>"; };
 		F3FE80D618E938E80051D4B2 /* Measurement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Measurement.m; sourceTree = "<group>"; };
 		F3FE80D818E9393B0051D4B2 /* MeasurementHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeasurementHistory.h; sourceTree = "<group>"; };
 		F3FE80D918E9393B0051D4B2 /* MeasurementHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeasurementHistory.m; sourceTree = "<group>"; };
-		F3FE80DC18E947B70051D4B2 /* MeasurementsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeasurementsTableViewController.h; sourceTree = "<group>"; };
-		F3FE80DD18E947B70051D4B2 /* MeasurementsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeasurementsTableViewController.m; sourceTree = "<group>"; };
-		F3FE80DF18E9486F0051D4B2 /* MeasurementsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeasurementsViewController.h; sourceTree = "<group>"; };
-		F3FE80E018E9486F0051D4B2 /* MeasurementsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeasurementsViewController.m; sourceTree = "<group>"; };
+		F3FE80DC18E947B70051D4B2 /* MeasureTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeasureTableViewController.h; sourceTree = "<group>"; };
+		F3FE80DD18E947B70051D4B2 /* MeasureTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeasureTableViewController.m; sourceTree = "<group>"; };
+		F3FE80DF18E9486F0051D4B2 /* MeasureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeasureViewController.h; sourceTree = "<group>"; };
+		F3FE80E018E9486F0051D4B2 /* MeasureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeasureViewController.m; sourceTree = "<group>"; };
 		F3FE80E218E949A50051D4B2 /* gymTracker.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = gymTracker.db; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -342,25 +356,33 @@
 				F3D2B68B18D8380300E85646 /* PMCalendar */,
 				F323280018D56D2D006C7E64 /* AppDelegate.h */,
 				F323280118D56D2D006C7E64 /* AppDelegate.m */,
-				F323282018D56DFB006C7E64 /* DateWiseReportCell.h */,
-				F323282118D56DFB006C7E64 /* DateWiseReportCell.m */,
-				F323282218D56DFB006C7E64 /* DateWiseReportViewController.h */,
-				F323282318D56DFB006C7E64 /* DateWiseReportViewController.m */,
+				F323282018D56DFB006C7E64 /* DateWiseWorkoutReportCell.h */,
+				F323282118D56DFB006C7E64 /* DateWiseWorkoutReportCell.m */,
+				F323282218D56DFB006C7E64 /* DateWiseWorkoutReportViewController.h */,
+				F323282318D56DFB006C7E64 /* DateWiseWorkoutReportViewController.m */,
 				F323284B18D56DFB006C7E64 /* EquipmentDetailsViewController.h */,
 				F323284C18D56DFB006C7E64 /* EquipmentDetailsViewController.m */,
+				F3E537E118EA966F009817F2 /* DateWiseMeasurementViewController.h */,
+				F3E537E218EA966F009817F2 /* DateWiseMeasurementViewController.m */,
+				F3E537E418EA9764009817F2 /* DateWiseMeasurementReportCell.h */,
+				F3E537E518EA9764009817F2 /* DateWiseMeasurementReportCell.m */,
+				F3E537E718EA9807009817F2 /* MeasurementHistoryDetailsViewController.h */,
+				F3E537E818EA9807009817F2 /* MeasurementHistoryDetailsViewController.m */,
+				F3E537ED18EA9F7C009817F2 /* MeasurementHistoryNewViewController.h */,
+				F3E537EE18EA9F7C009817F2 /* MeasurementHistoryNewViewController.m */,
 				F323284D18D56DFB006C7E64 /* EquipmentMainViewController.h */,
 				F323284E18D56DFB006C7E64 /* EquipmentMainViewController.m */,
 				F323284F18D56DFB006C7E64 /* EquipmentTableCell.h */,
 				F323285018D56DFB006C7E64 /* EquipmentTableCell.m */,
-				F323285118D56DFB006C7E64 /* EquipmentWiseReportViewController.h */,
-				F323285218D56DFB006C7E64 /* EquipmentWiseReportViewController.m */,
+				F323285118D56DFB006C7E64 /* LineChartReportViewController.h */,
+				F323285218D56DFB006C7E64 /* LineChartReportViewController.m */,
 				F3D2B68618D8273F00E85646 /* MyPMCalendarController.h */,
 				F3D2B68718D8273F00E85646 /* MyPMCalendarController.m */,
 				F323286418D56DFB006C7E64 /* Main.storyboard */,
-				F3FE80DF18E9486F0051D4B2 /* MeasurementsViewController.h */,
-				F3FE80E018E9486F0051D4B2 /* MeasurementsViewController.m */,
-				F3FE80DC18E947B70051D4B2 /* MeasurementsTableViewController.h */,
-				F3FE80DD18E947B70051D4B2 /* MeasurementsTableViewController.m */,
+				F3FE80DF18E9486F0051D4B2 /* MeasureViewController.h */,
+				F3FE80E018E9486F0051D4B2 /* MeasureViewController.m */,
+				F3FE80DC18E947B70051D4B2 /* MeasureTableViewController.h */,
+				F3FE80DD18E947B70051D4B2 /* MeasureTableViewController.m */,
 				F323287A18D56DFB006C7E64 /* ReportViewController.h */,
 				F323287B18D56DFB006C7E64 /* ReportViewController.m */,
 				F323287C18D56DFB006C7E64 /* SettingsViewController.h */,
@@ -433,7 +455,8 @@
 		F323285318D56DFB006C7E64 /* icons */ = {
 			isa = PBXGroup;
 			children = (
-				F3ED195C18E3DEBB00DC7F13 /* legend.png */,
+				F3DBD73E18EACCBD0038A65A /* legend_equipment.png */,
+				F3DBD73F18EACCBD0038A65A /* legend_measurement.png */,
 				F3DECBE918E16E0B001B29BF /* button_bg.png */,
 				F3DECBDB18E14BF2001B29BF /* report.png */,
 				F3DECBDC18E14BF2001B29BF /* report@2x.png */,
@@ -676,8 +699,8 @@
 				F32328AB18D56DFB006C7E64 /* appIcon29pt.png in Resources */,
 				F32328A918D56DFB006C7E64 /* addIcon.png in Resources */,
 				F32328AE18D56DFB006C7E64 /* checkBox.png in Resources */,
+				F3DBD74118EACCBD0038A65A /* legend_measurement.png in Resources */,
 				F32328B118D56DFB006C7E64 /* checkBoxMarked@2x.png in Resources */,
-				F3ED195D18E3DEBB00DC7F13 /* legend.png in Resources */,
 				F32328B818D56DFB006C7E64 /* workout@2x.png in Resources */,
 				F32328B918D56DFB006C7E64 /* Main.storyboard in Resources */,
 				F32328AF18D56DFB006C7E64 /* checkBox@2x.png in Resources */,
@@ -687,6 +710,7 @@
 				F3D2B6B118D8380400E85646 /* apple calendar.plist in Resources */,
 				F32327FC18D56D2D006C7E64 /* InfoPlist.strings in Resources */,
 				F3DECBEA18E16E0B001B29BF /* button_bg.png in Resources */,
+				F3DBD74018EACCBD0038A65A /* legend_equipment.png in Resources */,
 				F3DECBDD18E14BF2001B29BF /* report.png in Resources */,
 				F32328B018D56DFB006C7E64 /* checkBoxMarked.png in Resources */,
 				F323280418D56D2D006C7E64 /* Images.xcassets in Resources */,
@@ -715,6 +739,7 @@
 				F32328A718D56DFB006C7E64 /* EquipmentTableCell.m in Sources */,
 				F3E07C5C18D6FF5E000DA9C4 /* FMResultSet.m in Sources */,
 				F32328BF18D56DFB006C7E64 /* PNColor.m in Sources */,
+				F3E537EF18EA9F7C009817F2 /* MeasurementHistoryNewViewController.m in Sources */,
 				F3D2B6AD18D8380400E85646 /* PMPeriod.m in Sources */,
 				F32328BC18D56DFB006C7E64 /* PNBarChart.m in Sources */,
 				F3E07C4018D69FA0000DA9C4 /* UIImage+TKCategory.m in Sources */,
@@ -722,6 +747,7 @@
 				F3E07C4118D69FA0000DA9C4 /* UIImageView+TKCategory.m in Sources */,
 				F304C8B018DFFF5D009A27D3 /* WorkoutMainViewController.m in Sources */,
 				F3D2B68818D8273F00E85646 /* MyPMCalendarController.m in Sources */,
+				F3E537E918EA9807009817F2 /* MeasurementHistoryDetailsViewController.m in Sources */,
 				F3D2B6AE18D8380400E85646 /* PMSelectionView.m in Sources */,
 				F32328BB18D56DFB006C7E64 /* PNBar.m in Sources */,
 				F32328C218D56DFB006C7E64 /* PNLineChartDataItem.m in Sources */,
@@ -731,12 +757,12 @@
 				F3D2B6AB18D8380400E85646 /* PMCalendarView.m in Sources */,
 				F32328C618D56DFB006C7E64 /* Utility.m in Sources */,
 				F3E07C3B18D69FA0000DA9C4 /* NSDate+TKCategory.m in Sources */,
-				F323288918D56DFB006C7E64 /* DateWiseReportCell.m in Sources */,
-				F3FE80DE18E947B70051D4B2 /* MeasurementsTableViewController.m in Sources */,
+				F323288918D56DFB006C7E64 /* DateWiseWorkoutReportCell.m in Sources */,
+				F3FE80DE18E947B70051D4B2 /* MeasureTableViewController.m in Sources */,
 				F3D2B6AC18D8380400E85646 /* PMDimmingView.m in Sources */,
 				F3E07C3F18D69FA0000DA9C4 /* UIColor+TKCategory.m in Sources */,
 				F3E07C5818D6FF5E000DA9C4 /* FMDatabase.m in Sources */,
-				F32328A818D56DFB006C7E64 /* EquipmentWiseReportViewController.m in Sources */,
+				F32328A818D56DFB006C7E64 /* LineChartReportViewController.m in Sources */,
 				F3E07C5B18D6FF5E000DA9C4 /* FMDatabaseQueue.m in Sources */,
 				F323288D18D56DFB006C7E64 /* Workout.m in Sources */,
 				F3E07C4218D69FA0000DA9C4 /* UIView+TKCategory.m in Sources */,
@@ -751,7 +777,7 @@
 				F32328A518D56DFB006C7E64 /* EquipmentDetailsViewController.m in Sources */,
 				F3E07C3D18D69FA0000DA9C4 /* TKGlobal.m in Sources */,
 				F3E07C3C18D69FA0000DA9C4 /* TKCalendarMonthView.m in Sources */,
-				F323288A18D56DFB006C7E64 /* DateWiseReportViewController.m in Sources */,
+				F323288A18D56DFB006C7E64 /* DateWiseWorkoutReportViewController.m in Sources */,
 				F3E07C5A18D6FF5E000DA9C4 /* FMDatabasePool.m in Sources */,
 				F3D2B6A818D8380300E85646 /* NSDate+Helpers.m in Sources */,
 				F3D2B6B018D8380400E85646 /* PMThemeShadow.m in Sources */,
@@ -761,10 +787,12 @@
 				F32327FE18D56D2D006C7E64 /* main.m in Sources */,
 				F32328C818D56DFB006C7E64 /* WorkoutNewViewController.m in Sources */,
 				F32328C318D56DFB006C7E64 /* ReportViewController.m in Sources */,
+				F3E537E318EA966F009817F2 /* DateWiseMeasurementViewController.m in Sources */,
 				F3E02BBA18D5AB8D00767921 /* LineChartVO.m in Sources */,
-				F3FE80E118E9486F0051D4B2 /* MeasurementsViewController.m in Sources */,
+				F3FE80E118E9486F0051D4B2 /* MeasureViewController.m in Sources */,
 				F3E07C3E18D69FA0000DA9C4 /* TKGradientView.m in Sources */,
 				F32328C118D56DFB006C7E64 /* PNLineChartData.m in Sources */,
+				F3E537E618EA9764009817F2 /* DateWiseMeasurementReportCell.m in Sources */,
 				F32328BD18D56DFB006C7E64 /* PNChartLabel.m in Sources */,
 				F3E07C3A18D69FA0000DA9C4 /* NSDate+CalendarGrid.m in Sources */,
 				F3FE80D718E938E80051D4B2 /* Measurement.m in Sources */,

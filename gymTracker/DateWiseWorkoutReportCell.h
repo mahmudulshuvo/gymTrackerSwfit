@@ -1,6 +1,6 @@
 #import <UIKit/UIKit.h>
 
-@interface DateWiseReportCell : UITableViewCell
+@interface DateWiseWorkoutReportCell : UITableViewCell
 
 @property (strong, nonatomic) IBOutlet UIImageView *equipmentImageView;
 

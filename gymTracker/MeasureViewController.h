@@ -1,7 +1,7 @@
 #import <UIKit/UIKit.h>
 #import "Measurement.h"
 
-@interface MeasurementsViewController : UIViewController <UITextFieldDelegate>
+@interface MeasureViewController : UIViewController <UITextFieldDelegate>
 
 @property (strong, nonatomic) IBOutlet UITextField *measurementNameTextField;
 

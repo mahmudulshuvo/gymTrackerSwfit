@@ -2,18 +2,21 @@
 #import "FMDBDataAccess.h"
 #import "Utility.h"
 #import "NSDate+TKCategory.h"
-#import "DateWiseReportViewController.h"
+#import "DateWiseWorkoutReportViewController.h"
+#import "DateWiseMeasurementViewController.h"
 
 @interface WorkoutMainViewController ()
 
 @end
 
 @implementation WorkoutMainViewController
+{
+    BOOL workoutChecked;
+    BOOL measurementChecked;
+}
 
 Utility *utility;
 NSDate *selectedDate;
-BOOL activityChecked;
-BOOL measureChecked;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,7 +32,7 @@ BOOL measureChecked;
 {
     [super viewDidLoad];
     
-    [self activityCheckBoxClick:nil];
+    [self workoutCheckBoxClick:nil];
     
     self.dateCalenderView = [TKCalendarMonthView new];
     self.dateCalenderView.delegate = self;
@@ -86,7 +89,7 @@ BOOL measureChecked;
 {
 	NSMutableArray *marks = [NSMutableArray array];
     NSArray *dates;
-    if(activityChecked)
+    if(workoutChecked)
         dates = [FMDBDataAccess getWorkoutDates];
     else
         dates = [FMDBDataAccess getMeasurementHistoryDates];
@@ -118,19 +121,27 @@ BOOL measureChecked;
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if([segue.identifier isEqualToString:@"ViewDateWiseReport"])
+    if([segue.identifier isEqualToString:@"ViewDateWiseWorkoutReport"])
     {
-        DateWiseReportViewController *dateWiseReportView = [segue destinationViewController];
+        DateWiseWorkoutReportViewController *dateWiseWorkoutReportView = [segue destinationViewController];
         
-        dateWiseReportView.strSelectedDate = [utility.dbDateFormat stringFromDate:selectedDate];
+        dateWiseWorkoutReportView.strSelectedDate = [utility.dbDateFormat stringFromDate:selectedDate];
         
-        dateWiseReportView.title = [utility.userFriendlyDateFormat stringFromDate:selectedDate];
+        dateWiseWorkoutReportView.title = [utility.userFriendlyDateFormat stringFromDate:selectedDate];
+    }
+    else if([segue.identifier isEqualToString:@"ViewDateWiseMeasurementReport"])
+    {
+        DateWiseMeasurementViewController *dateWiseMeasurementReportView = [segue destinationViewController];
+        
+        dateWiseMeasurementReportView.strSelectedDate = [utility.dbDateFormat stringFromDate:selectedDate];
+        
+        dateWiseMeasurementReportView.title = [utility.userFriendlyDateFormat stringFromDate:selectedDate];
     }
 }
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
-    if([identifier isEqualToString:@"ViewDateWiseReport"])
+    if([identifier isEqualToString:@"ViewDateWiseWorkoutReport"] || [identifier isEqualToString:@"ViewDateWiseMeasurementReport"])
     {
         selectedDate = self.dateCalenderView.dateSelected;
         if(selectedDate == nil)
@@ -143,35 +154,35 @@ BOOL measureChecked;
     return NO;
 }
 
-- (IBAction)activityCheckBoxClick:(id)sender
+- (IBAction)workoutCheckBoxClick:(id)sender
 {
-    if(!activityChecked)
+    if(!workoutChecked)
     {
-        [self.activityCheckBox setImage:[UIImage imageNamed:@"checkBoxMarked.png"] forState:UIControlStateNormal];
-        activityChecked = YES;
-        self.viewActivityBtn.hidden = NO;
-        self.viewMeasureBtn.hidden = YES;
-        if(measureChecked)
+        [self.workoutCheckBox setImage:[UIImage imageNamed:@"checkBoxMarked.png"] forState:UIControlStateNormal];
+        workoutChecked = YES;
+        self.viewWorkoutBtn.hidden = NO;
+        self.viewMeasurementBtn.hidden = YES;
+        if(measurementChecked)
         {
-            [self.measureCheckBox setImage:[UIImage imageNamed:@"checkBox.png"] forState:UIControlStateNormal];
-            measureChecked = NO;
+            [self.measurementCheckBox setImage:[UIImage imageNamed:@"checkBox.png"] forState:UIControlStateNormal];
+            measurementChecked = NO;
         }
         [self.dateCalenderView reloadData];
     }
 }
 
-- (IBAction)measureCheckBoxClick:(id)sender
+- (IBAction)measurementCheckBoxClick:(id)sender
 {
-    if(!measureChecked)
+    if(!measurementChecked)
     {
-        [self.measureCheckBox setImage:[UIImage imageNamed:@"checkBoxMarked.png"] forState:UIControlStateNormal];
-        measureChecked = YES;
-        self.viewMeasureBtn.hidden = NO;
-        self.viewActivityBtn.hidden = YES;
-        if(activityChecked)
+        [self.measurementCheckBox setImage:[UIImage imageNamed:@"checkBoxMarked.png"] forState:UIControlStateNormal];
+        measurementChecked = YES;
+        self.viewMeasurementBtn.hidden = NO;
+        self.viewWorkoutBtn.hidden = YES;
+        if(workoutChecked)
         {
-            [self.activityCheckBox setImage:[UIImage imageNamed:@"checkBox.png"] forState:UIControlStateNormal];
-            activityChecked = NO;
+            [self.workoutCheckBox setImage:[UIImage imageNamed:@"checkBox.png"] forState:UIControlStateNormal];
+            workoutChecked = NO;
         }
         [self.dateCalenderView reloadData];
     }

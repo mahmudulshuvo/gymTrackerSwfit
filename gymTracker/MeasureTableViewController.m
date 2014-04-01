@@ -1,14 +1,14 @@
-#import "MeasurementsTableViewController.h"
-#import "MeasurementsViewController.h"
+#import "MeasureTableViewController.h"
+#import "MeasureViewController.h"
 #import "FMDBDataAccess.h"
 #import "Utility.h"
 #import "Measurement.h"
 
-@interface MeasurementsTableViewController ()
+@interface MeasureTableViewController ()
 
 @end
 
-@implementation MeasurementsTableViewController
+@implementation MeasureTableViewController
 
 Utility *utility;
 
@@ -80,18 +80,18 @@ Utility *utility;
 {
     if([segue.identifier isEqualToString:@"NewMeasurement"])
     {
-        MeasurementsViewController *measurementsView = [segue destinationViewController];
-        measurementsView.selectedMeasurement = nil;
-        measurementsView.title = @"New Measurement";
+        MeasureViewController *measureView = [segue destinationViewController];
+        measureView.selectedMeasurement = nil;
+        measureView.title = @"New Measurement";
     }
     
     else if([segue.identifier isEqualToString:@"EditMeasurement"])
     {
-        MeasurementsViewController *measurementsView = [segue destinationViewController];
+        MeasureViewController *measureView = [segue destinationViewController];
         NSIndexPath *myIndexPath = [self.tableView indexPathForSelectedRow];
         NSInteger row = [myIndexPath row];
-        measurementsView.selectedMeasurement = utility.measurementsList[row];
-        measurementsView.title = @"Edit Measurement";
+        measureView.selectedMeasurement = utility.measurementsList[row];
+        measureView.title = @"Edit Measurement";
     }
 }
 
