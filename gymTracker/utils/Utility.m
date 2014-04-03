@@ -28,6 +28,9 @@
         _sharedClient.userFriendlyDateFormat.dateFormat = @"MMM/dd/yyyy";
         
         _sharedClient.noImage = [UIImage imageNamed:@"no_image.jpg"];
+        
+        _sharedClient.checkBoxImage = [UIImage imageNamed:@"checkBox.png"];
+        _sharedClient.checkBoxMarkedImage = [UIImage imageNamed:@"checkBoxMarked.png"];
     });
     
     return _sharedClient;

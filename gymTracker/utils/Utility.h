@@ -11,6 +11,8 @@
 @property (nonatomic, strong) NSDateFormatter *userFriendlyDateFormat;
 @property (nonatomic, strong) NSDateFormatter *dateOnlyDateFormat;
 @property (nonatomic, strong) UIImage *noImage;
+@property (nonatomic, strong) UIImage *checkBoxImage;
+@property (nonatomic, strong) UIImage *checkBoxMarkedImage;
 @property (nonatomic, strong) NSMutableArray *equipmentsList;
 @property (nonatomic, strong) NSMutableArray *measurementsList;
 

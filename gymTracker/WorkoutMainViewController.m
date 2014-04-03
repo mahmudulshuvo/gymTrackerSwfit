@@ -158,13 +158,13 @@ NSDate *selectedDate;
 {
     if(!workoutChecked)
     {
-        [self.workoutCheckBox setImage:[UIImage imageNamed:@"checkBoxMarked.png"] forState:UIControlStateNormal];
+        [self.workoutCheckBox setImage:utility.checkBoxMarkedImage forState:UIControlStateNormal];
         workoutChecked = YES;
         self.viewWorkoutBtn.hidden = NO;
         self.viewMeasurementBtn.hidden = YES;
         if(measurementChecked)
         {
-            [self.measurementCheckBox setImage:[UIImage imageNamed:@"checkBox.png"] forState:UIControlStateNormal];
+            [self.measurementCheckBox setImage:utility.checkBoxImage forState:UIControlStateNormal];
             measurementChecked = NO;
         }
         [self.dateCalenderView reloadData];
@@ -175,13 +175,13 @@ NSDate *selectedDate;
 {
     if(!measurementChecked)
     {
-        [self.measurementCheckBox setImage:[UIImage imageNamed:@"checkBoxMarked.png"] forState:UIControlStateNormal];
+        [self.measurementCheckBox setImage:utility.checkBoxMarkedImage forState:UIControlStateNormal];
         measurementChecked = YES;
         self.viewMeasurementBtn.hidden = NO;
         self.viewWorkoutBtn.hidden = YES;
         if(workoutChecked)
         {
-            [self.workoutCheckBox setImage:[UIImage imageNamed:@"checkBox.png"] forState:UIControlStateNormal];
+            [self.workoutCheckBox setImage:utility.checkBoxImage forState:UIControlStateNormal];
             workoutChecked = NO;
         }
         [self.dateCalenderView reloadData];

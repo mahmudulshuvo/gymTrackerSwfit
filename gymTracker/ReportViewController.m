@@ -232,11 +232,11 @@ Utility *utility;
 {
     if(!equipmentChecked)
     {
-        [self.equipmentCheckBox setImage:[UIImage imageNamed:@"checkBoxMarked.png"] forState:UIControlStateNormal];
+        [self.equipmentCheckBox setImage:utility.checkBoxMarkedImage forState:UIControlStateNormal];
         equipmentChecked = YES;
         if(measurementChecked)
         {
-            [self.measurementCheckBox setImage:[UIImage imageNamed:@"checkBox.png"] forState:UIControlStateNormal];
+            [self.measurementCheckBox setImage:utility.checkBoxImage forState:UIControlStateNormal];
             measurementChecked = NO;
         }
         [self.pickerView reloadAllComponents];
@@ -247,11 +247,11 @@ Utility *utility;
 {
     if(!measurementChecked)
     {
-        [self.measurementCheckBox setImage:[UIImage imageNamed:@"checkBoxMarked.png"] forState:UIControlStateNormal];
+        [self.measurementCheckBox setImage:utility.checkBoxMarkedImage forState:UIControlStateNormal];
         measurementChecked = YES;
         if(equipmentChecked)
         {
-            [self.equipmentCheckBox setImage:[UIImage imageNamed:@"checkBox.png"] forState:UIControlStateNormal];
+            [self.equipmentCheckBox setImage:utility.checkBoxImage forState:UIControlStateNormal];
             equipmentChecked = NO;
         }
         [self.pickerView reloadAllComponents];

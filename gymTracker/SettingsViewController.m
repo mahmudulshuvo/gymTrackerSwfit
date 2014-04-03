@@ -31,22 +31,22 @@ Utility *utility;
     [super viewDidLoad];
     if([utility.settings.measurement isEqualToString:@"cm"])
     {
-        [self.cmCheckBox setImage:[UIImage imageNamed:@"checkBoxMarked.png"] forState:UIControlStateNormal];
+        [self.cmCheckBox setImage:utility.checkBoxMarkedImage forState:UIControlStateNormal];
         cmChecked = YES;
     }
     else
     {
-        [self.inchCheckBox setImage:[UIImage imageNamed:@"checkBoxMarked.png"] forState:UIControlStateNormal];
+        [self.inchCheckBox setImage:utility.checkBoxMarkedImage forState:UIControlStateNormal];
         inchChecked = YES;
     }
     if([utility.settings.weight isEqualToString:@"lbs"])
     {
-        [self.lbsCheckBox setImage:[UIImage imageNamed:@"checkBoxMarked.png"] forState:UIControlStateNormal];
+        [self.lbsCheckBox setImage:utility.checkBoxMarkedImage forState:UIControlStateNormal];
         lbsChecked = YES;
     }
     else
     {
-        [self.kgCheckBox setImage:[UIImage imageNamed:@"checkBoxMarked.png"] forState:UIControlStateNormal];
+        [self.kgCheckBox setImage:utility.checkBoxMarkedImage forState:UIControlStateNormal];
         kgChecked = YES;
     }
     int sets = utility.settings.sets.intValue;
@@ -64,11 +64,11 @@ Utility *utility;
 {
     if(!cmChecked)
     {
-        [self.cmCheckBox setImage:[UIImage imageNamed:@"checkBoxMarked.png"] forState:UIControlStateNormal];
+        [self.cmCheckBox setImage:utility.checkBoxMarkedImage forState:UIControlStateNormal];
         cmChecked = YES;
         if(inchChecked)
         {
-            [self.inchCheckBox setImage:[UIImage imageNamed:@"checkBox.png"] forState:UIControlStateNormal];
+            [self.inchCheckBox setImage:utility.checkBoxImage forState:UIControlStateNormal];
             inchChecked = NO;
         }
         
@@ -81,11 +81,11 @@ Utility *utility;
 {
     if(!inchChecked)
     {
-        [self.inchCheckBox setImage:[UIImage imageNamed:@"checkBoxMarked.png"] forState:UIControlStateNormal];
+        [self.inchCheckBox setImage:utility.checkBoxMarkedImage forState:UIControlStateNormal];
         inchChecked = YES;
         if(cmChecked)
         {
-            [self.cmCheckBox setImage:[UIImage imageNamed:@"checkBox.png"] forState:UIControlStateNormal];
+            [self.cmCheckBox setImage:utility.checkBoxImage forState:UIControlStateNormal];
             cmChecked = NO;
         }
         
@@ -98,11 +98,11 @@ Utility *utility;
 {
     if(!lbsChecked)
     {
-        [self.lbsCheckBox setImage:[UIImage imageNamed:@"checkBoxMarked.png"] forState:UIControlStateNormal];
+        [self.lbsCheckBox setImage:utility.checkBoxMarkedImage forState:UIControlStateNormal];
         lbsChecked = YES;
         if(kgChecked)
         {
-            [self.kgCheckBox setImage:[UIImage imageNamed:@"checkBox.png"] forState:UIControlStateNormal];
+            [self.kgCheckBox setImage:utility.checkBoxImage forState:UIControlStateNormal];
             kgChecked = NO;
         }
         
@@ -115,11 +115,11 @@ Utility *utility;
 {
     if(!kgChecked)
     {
-        [self.kgCheckBox setImage:[UIImage imageNamed:@"checkBoxMarked.png"] forState:UIControlStateNormal];
+        [self.kgCheckBox setImage:utility.checkBoxMarkedImage forState:UIControlStateNormal];
         kgChecked = YES;
         if(lbsChecked)
         {
-            [self.lbsCheckBox setImage:[UIImage imageNamed:@"checkBox.png"] forState:UIControlStateNormal];
+            [self.lbsCheckBox setImage:utility.checkBoxImage forState:UIControlStateNormal];
             lbsChecked = NO;
         }
         
