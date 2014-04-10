@@ -4,6 +4,7 @@
 #import "LineChartReportViewController.h"
 #import "FMDBDataAccess.h"
 #import "NSDate+TKCategory.h"
+#import "PMCalendar.h"
 
 @interface ReportViewController ()
 
@@ -144,7 +145,21 @@ Utility *utility;
         if(equipmentChecked)
         {
             Equipment *equipment = utility.equipmentsList[row];
-            lineChartReportView.dbId = equipment.id;
+            lineChartReportView.equipmentId = equipment.id;
+            lineChartReportView.measurementId = equipment.measurementId;
+            NSString *strMeasurementName;
+            NSUInteger totalMeasurementsCount = utility.measurementsList.count;
+            for(int i=0;i<totalMeasurementsCount;i++)
+            {
+                Measurement *measurementFromArray = [utility.measurementsList objectAtIndex:i];
+                if(measurementFromArray.id == equipment.measurementId)
+                {
+                    strMeasurementName = measurementFromArray.measurementName;
+                    break;
+                }
+            }
+            lineChartReportView.measurementName = strMeasurementName;
+            [lineChartReportView.bodyPartButton setTitle:strMeasurementName forState:UIControlStateNormal];
             lineChartReportView.title = equipment.equipmentName;
             lineChartReportView.reportType = @"Workout";
             lineChartReportView.imageName = @"legend_equipment.png";
@@ -152,7 +167,7 @@ Utility *utility;
         else
         {
             Measurement *measurement = utility.measurementsList[row];
-            lineChartReportView.dbId = measurement.id;
+            lineChartReportView.measurementId = measurement.id;
             lineChartReportView.title = measurement.measurementName;
             lineChartReportView.reportType = @"Measurement";
             lineChartReportView.imageName = @"legend_measurement.png";

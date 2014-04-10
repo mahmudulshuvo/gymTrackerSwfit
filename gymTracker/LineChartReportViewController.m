@@ -5,6 +5,7 @@
 #import "FMDBDataAccess.h"
 #import "Utility.h"
 #import "LineChartVO.h"
+#import "LineChartMeasureOnlyViewController.h"
 
 @interface LineChartReportViewController ()
 
@@ -35,9 +36,9 @@ Utility *utility;
     self.legendImageView.hidden = YES;
     
     if([self.reportType isEqualToString:@"Workout"])
-        dbDataArray = [FMDBDataAccess getWorkoutsByEquipmentId:self.dbId fromDate:[utility.dbDateFormat stringFromDate:self.selectedFromDate] toDate:[utility.dbDateFormat stringFromDate:self.selectedToDate]];
+        dbDataArray = [FMDBDataAccess getWorkoutsByEquipmentId:self.equipmentId fromDate:[utility.dbDateFormat stringFromDate:self.selectedFromDate] toDate:[utility.dbDateFormat stringFromDate:self.selectedToDate]];
     else
-        dbDataArray = [FMDBDataAccess getMeasurementHistoryByMeasurementId:self.dbId fromDate:[utility.dbDateFormat stringFromDate:self.selectedFromDate] toDate:[utility.dbDateFormat stringFromDate:self.selectedToDate]];
+        dbDataArray = [FMDBDataAccess getMeasurementHistoryByMeasurementId:self.measurementId fromDate:[utility.dbDateFormat stringFromDate:self.selectedFromDate] toDate:[utility.dbDateFormat stringFromDate:self.selectedToDate]];
     
     if(dbDataArray == nil || dbDataArray.count < 1)
     {
@@ -114,12 +115,35 @@ Utility *utility;
     {
         [self.navigationController popViewControllerAnimated:YES];
     }
+    else
+    {
+        if(self.measurementName == nil)
+        {
+            self.bodyPartButton.hidden = YES;
+        }
+        else
+        {
+            self.bodyPartButton.hidden = NO;
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"LineChartMeasureMentView"])
+    {
+        LineChartMeasureOnlyViewController *lineChartReportView = [segue destinationViewController];
+        lineChartReportView.measurementId = self.measurementId;
+        lineChartReportView.title = self.measurementName;
+        lineChartReportView.selectedFromDate = self.selectedFromDate;
+        lineChartReportView.selectedToDate = self.selectedToDate;
+    }
 }
 
 @end

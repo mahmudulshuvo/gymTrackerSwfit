@@ -22,6 +22,7 @@ Utility *utility;
         equipment.id = [NSNumber numberWithInt:[results intForColumn:@"id"]];
         equipment.equipmentName = [results stringForColumn:@"equipment_name"];
         equipment.imageName = [results stringForColumn:@"image_name"];
+        equipment.measurementId = [NSNumber numberWithInt:[results intForColumn:@"measurement_id"]];
         
         [equipments addObject:equipment];
     }
@@ -37,8 +38,8 @@ Utility *utility;
     
     [db open];
     
-    BOOL success =  [db executeUpdate:@"INSERT INTO equipment (equipment_name, image_name) VALUES (?,?);",
-                     equipment.equipmentName, equipment.imageName, nil];
+    BOOL success =  [db executeUpdate:@"INSERT INTO equipment (equipment_name, image_name, measurement_id) VALUES (?, ?, ?);",
+                     equipment.equipmentName, equipment.imageName, equipment.measurementId, nil];
     
     [db close];
     
@@ -51,7 +52,7 @@ Utility *utility;
     
     [db open];
     
-    BOOL success = [db executeUpdate:[NSString stringWithFormat:@"UPDATE equipment SET equipment_name = '%@', image_name = '%@' where id = %@", equipment.equipmentName, equipment.imageName, equipment.id]];
+    BOOL success = [db executeUpdate:[NSString stringWithFormat:@"UPDATE equipment SET equipment_name = '%@', image_name = '%@', measurement_id = %@ where id = %@", equipment.equipmentName, equipment.imageName, equipment.measurementId, equipment.id]];
     
     [db close];
     
@@ -132,6 +133,8 @@ Utility *utility;
     
     [db executeUpdate:[NSString stringWithFormat:@"delete from measurement_history where measurement_id = %@", measurement.id]];
     
+    [db executeUpdate:[NSString stringWithFormat:@"UPDATE equipment SET measurement_id = NULL where measurement_id = %@", measurement.id]];
+    
     BOOL success = [db executeUpdate:[NSString stringWithFormat:@"delete from measurement where id = %@", measurement.id]];
     
     [db close];
@@ -139,7 +142,7 @@ Utility *utility;
     return success;
 }
 
-+ (NSArray *) getWorkoutDates
++ (NSArray *) getWorkoutDatesByRange:(NSString *)strFromdate toDate:(NSString *)strToDate
 {
     NSMutableArray *workouts = [NSMutableArray new];
     
@@ -147,7 +150,7 @@ Utility *utility;
     
     [db open];
     
-    FMResultSet *results = [db executeQuery:@"SELECT DISTINCT workout_date FROM workout order by workout_date ASC"];
+    FMResultSet *results = [db executeQuery:[NSString stringWithFormat:@"SELECT DISTINCT workout_date FROM workout where workout_date BETWEEN '%@' and '%@' order by workout_date ASC", strFromdate, strToDate]];
     
     while([results next])
     {
@@ -298,8 +301,7 @@ Utility *utility;
     return success;
 }
 
-
-+ (NSArray *) getMeasurementHistoryDates
++ (NSArray *) getMeasurementHistoryDatesByRange:(NSString *)strFromdate toDate:(NSString *)strToDate
 {
     NSMutableArray *measurementHistories = [NSMutableArray new];
     
@@ -307,7 +309,7 @@ Utility *utility;
     
     [db open];
     
-    FMResultSet *results = [db executeQuery:@"SELECT DISTINCT measurement_date FROM measurement_history order by measurement_date ASC"];
+    FMResultSet *results = [db executeQuery:[NSString stringWithFormat:@"SELECT DISTINCT measurement_date FROM measurement_history where measurement_date BETWEEN '%@' and '%@' order by measurement_date ASC", strFromdate, strToDate]];
     
     while([results next])
     {

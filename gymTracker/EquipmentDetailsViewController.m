@@ -1,6 +1,7 @@
 #import "EquipmentDetailsViewController.h"
 #import "Utility.h"
 #import "FMDBDataAccess.h"
+#import "Measurement.h"
 
 @interface EquipmentDetailsViewController ()
 
@@ -26,6 +27,10 @@ Utility *utility;
     [super viewDidLoad];
     hasChosenImage = false;
 	self.equipmentNameTextField.delegate = self;
+    
+    self.bodyPartsPickerView.delegate = self;
+    self.bodyPartsPickerView.dataSource = self;
+    
     if(_selectedEquipment != nil)
     {
         self.equipmentNameTextField.text = [NSString stringWithFormat:@"%@", _selectedEquipment.equipmentName];
@@ -45,6 +50,26 @@ Utility *utility;
     }
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [self.bodyPartsPickerView reloadAllComponents];
+    
+    if(_selectedEquipment == nil) return;
+    
+    NSUInteger totalMeasurementsCount = utility.measurementsList.count;
+    for(int i=0;i<totalMeasurementsCount;i++)
+    {
+        Measurement *measurementFromArray = [utility.measurementsList objectAtIndex:i];
+        if(measurementFromArray.id == _selectedEquipment.measurementId)
+        {
+            [self.bodyPartsPickerView selectRow:i inComponent:0 animated:YES];
+            break;
+        }
+    }
+}
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
@@ -59,6 +84,12 @@ Utility *utility;
 
 - (IBAction)saveBtn:(id)sender
 {
+    if(utility.measurementsList.count < 1)
+    {
+        [Utility showAlert:@"Info" message:@"Please add a body part from Measure section"];
+        return;
+    }
+    
     NSString *strEquipmentName = [self.equipmentNameTextField.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
     
     if(strEquipmentName.length == 0)
@@ -90,6 +121,9 @@ Utility *utility;
     }
     
     _selectedEquipment.equipmentName = strEquipmentName;
+    
+    NSInteger row = [self.bodyPartsPickerView selectedRowInComponent:0];
+    _selectedEquipment.measurementId = ((Measurement *)utility.measurementsList[row]).id;
     
     if(hasChosenImage)
     {
@@ -128,6 +162,24 @@ Utility *utility;
 {
     [self.equipmentImageView setImage:[info objectForKey:UIImagePickerControllerOriginalImage]];
     hasChosenImage = true;
+}
+
+-(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    Measurement *measurement = [utility.measurementsList objectAtIndex:row];
+    return measurement.measurementName;
+}
+
+// returns the number of 'columns' to display.
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 1;
+}
+
+// returns the # of rows in each component..
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent: (NSInteger)component
+{
+    return utility.measurementsList.count;
 }
 
 /*- (IBAction)browseBtn:(id)sender

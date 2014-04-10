@@ -61,6 +61,7 @@
 		F32328C918D56DFB006C7E64 /* WorkoutTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F323288818D56DFB006C7E64 /* WorkoutTableCell.m */; };
 		F32328DF18D577B7006C7E64 /* FMDBDataAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = F32328DE18D577B7006C7E64 /* FMDBDataAccess.m */; };
 		F32328E118D58FA6006C7E64 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F32328E018D58FA6006C7E64 /* libsqlite3.dylib */; };
+		F33039EC18F663890056C44F /* LineChartMeasureOnlyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F33039EB18F663890056C44F /* LineChartMeasureOnlyViewController.m */; };
 		F3D2B68818D8273F00E85646 /* MyPMCalendarController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3D2B68718D8273F00E85646 /* MyPMCalendarController.m */; };
 		F3D2B6A818D8380300E85646 /* NSDate+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = F3D2B68F18D8380300E85646 /* NSDate+Helpers.m */; };
 		F3D2B6A918D8380300E85646 /* PMCalendarBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = F3D2B69118D8380300E85646 /* PMCalendarBackgroundView.m */; };
@@ -81,6 +82,7 @@
 		F3DECBDE18E14BF2001B29BF /* report@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DECBDC18E14BF2001B29BF /* report@2x.png */; };
 		F3DECBEA18E16E0B001B29BF /* button_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DECBE918E16E0B001B29BF /* button_bg.png */; };
 		F3E02BBA18D5AB8D00767921 /* LineChartVO.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E02BB918D5AB8D00767921 /* LineChartVO.m */; };
+		F3E02D4618F51250000E5984 /* gymTracker.db in Resources */ = {isa = PBXBuildFile; fileRef = F3E02D4518F5122B000E5984 /* gymTracker.db */; };
 		F3E07C3A18D69FA0000DA9C4 /* NSDate+CalendarGrid.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E07C2918D69FA0000DA9C4 /* NSDate+CalendarGrid.m */; };
 		F3E07C3B18D69FA0000DA9C4 /* NSDate+TKCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E07C2B18D69FA0000DA9C4 /* NSDate+TKCategory.m */; };
 		F3E07C3C18D69FA0000DA9C4 /* TKCalendarMonthView.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E07C2D18D69FA0000DA9C4 /* TKCalendarMonthView.m */; };
@@ -104,7 +106,6 @@
 		F3FE80DA18E9393B0051D4B2 /* MeasurementHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = F3FE80D918E9393B0051D4B2 /* MeasurementHistory.m */; };
 		F3FE80DE18E947B70051D4B2 /* MeasureTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3FE80DD18E947B70051D4B2 /* MeasureTableViewController.m */; };
 		F3FE80E118E9486F0051D4B2 /* MeasureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3FE80E018E9486F0051D4B2 /* MeasureViewController.m */; };
-		F3FE80E318E949C70051D4B2 /* gymTracker.db in Resources */ = {isa = PBXBuildFile; fileRef = F3FE80E218E949A50051D4B2 /* gymTracker.db */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -204,6 +205,8 @@
 		F32328DD18D577B7006C7E64 /* FMDBDataAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDBDataAccess.h; sourceTree = "<group>"; };
 		F32328DE18D577B7006C7E64 /* FMDBDataAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDBDataAccess.m; sourceTree = "<group>"; };
 		F32328E018D58FA6006C7E64 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		F33039EA18F663890056C44F /* LineChartMeasureOnlyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineChartMeasureOnlyViewController.h; sourceTree = "<group>"; };
+		F33039EB18F663890056C44F /* LineChartMeasureOnlyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineChartMeasureOnlyViewController.m; sourceTree = "<group>"; };
 		F3D2B68618D8273F00E85646 /* MyPMCalendarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPMCalendarController.h; sourceTree = "<group>"; };
 		F3D2B68718D8273F00E85646 /* MyPMCalendarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPMCalendarController.m; sourceTree = "<group>"; };
 		F3D2B68C18D8380300E85646 /* PMCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMCalendar.h; sourceTree = "<group>"; };
@@ -239,6 +242,7 @@
 		F3DECBE918E16E0B001B29BF /* button_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_bg.png; sourceTree = "<group>"; };
 		F3E02BB818D5AB8D00767921 /* LineChartVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineChartVO.h; sourceTree = "<group>"; };
 		F3E02BB918D5AB8D00767921 /* LineChartVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineChartVO.m; sourceTree = "<group>"; };
+		F3E02D4518F5122B000E5984 /* gymTracker.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = gymTracker.db; sourceTree = "<group>"; };
 		F3E07C2818D69FA0000DA9C4 /* NSDate+CalendarGrid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+CalendarGrid.h"; sourceTree = "<group>"; };
 		F3E07C2918D69FA0000DA9C4 /* NSDate+CalendarGrid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+CalendarGrid.m"; sourceTree = "<group>"; };
 		F3E07C2A18D69FA0000DA9C4 /* NSDate+TKCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+TKCategory.h"; sourceTree = "<group>"; };
@@ -285,7 +289,6 @@
 		F3FE80DD18E947B70051D4B2 /* MeasureTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeasureTableViewController.m; sourceTree = "<group>"; };
 		F3FE80DF18E9486F0051D4B2 /* MeasureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeasureViewController.h; sourceTree = "<group>"; };
 		F3FE80E018E9486F0051D4B2 /* MeasureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeasureViewController.m; sourceTree = "<group>"; };
-		F3FE80E218E949A50051D4B2 /* gymTracker.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = gymTracker.db; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -376,6 +379,8 @@
 				F323285018D56DFB006C7E64 /* EquipmentTableCell.m */,
 				F323285118D56DFB006C7E64 /* LineChartReportViewController.h */,
 				F323285218D56DFB006C7E64 /* LineChartReportViewController.m */,
+				F33039EA18F663890056C44F /* LineChartMeasureOnlyViewController.h */,
+				F33039EB18F663890056C44F /* LineChartMeasureOnlyViewController.m */,
 				F3D2B68618D8273F00E85646 /* MyPMCalendarController.h */,
 				F3D2B68718D8273F00E85646 /* MyPMCalendarController.m */,
 				F323286418D56DFB006C7E64 /* Main.storyboard */,
@@ -404,7 +409,7 @@
 		F32327F818D56D2D006C7E64 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				F3FE80E218E949A50051D4B2 /* gymTracker.db */,
+				F3E02D4518F5122B000E5984 /* gymTracker.db */,
 				F3E07C4418D6A172000DA9C4 /* TapkuLibrary.bundle */,
 				F323285318D56DFB006C7E64 /* icons */,
 				F32327F918D56D2D006C7E64 /* gymTracker-Info.plist */,
@@ -690,7 +695,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F3FE80E318E949C70051D4B2 /* gymTracker.db in Resources */,
+				F3E02D4618F51250000E5984 /* gymTracker.db in Resources */,
 				F3D2B6B418D8380400E85646 /* default.plist in Resources */,
 				F32328AD18D56DFB006C7E64 /* appIcon60pt.png in Resources */,
 				F32328B218D56DFB006C7E64 /* no_image.jpg in Resources */,
@@ -792,6 +797,7 @@
 				F3FE80E118E9486F0051D4B2 /* MeasureViewController.m in Sources */,
 				F3E07C3E18D69FA0000DA9C4 /* TKGradientView.m in Sources */,
 				F32328C118D56DFB006C7E64 /* PNLineChartData.m in Sources */,
+				F33039EC18F663890056C44F /* LineChartMeasureOnlyViewController.m in Sources */,
 				F3E537E618EA9764009817F2 /* DateWiseMeasurementReportCell.m in Sources */,
 				F32328BD18D56DFB006C7E64 /* PNChartLabel.m in Sources */,
 				F3E07C3A18D69FA0000DA9C4 /* NSDate+CalendarGrid.m in Sources */,

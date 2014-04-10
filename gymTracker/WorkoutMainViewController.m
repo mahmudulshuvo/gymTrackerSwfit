@@ -90,9 +90,9 @@ NSDate *selectedDate;
 	NSMutableArray *marks = [NSMutableArray array];
     NSArray *dates;
     if(workoutChecked)
-        dates = [FMDBDataAccess getWorkoutDates];
+        dates = [FMDBDataAccess getWorkoutDatesByRange:[utility.dbDateFormat stringFromDate:start] toDate:[utility.dbDateFormat stringFromDate:end]];
     else
-        dates = [FMDBDataAccess getMeasurementHistoryDates];
+        dates = [FMDBDataAccess getMeasurementHistoryDatesByRange:[utility.dbDateFormat stringFromDate:start] toDate:[utility.dbDateFormat stringFromDate:end]];
     
     NSDate *d = start;
     

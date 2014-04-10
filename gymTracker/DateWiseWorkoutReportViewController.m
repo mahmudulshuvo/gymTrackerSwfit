@@ -93,39 +93,49 @@ Utility *utility;
     {
         cell.set3Label.hidden = YES;
         cell.set3ValueLabel.hidden = YES;
+        cell.weightValueLabel3.hidden = YES;
         
         cell.set4Label.hidden = YES;
         cell.set4ValueLabel.hidden = YES;
+        cell.weightValueLabel4.hidden = YES;
         
         cell.set5Label.hidden = YES;
         cell.set5ValueLabel.hidden = YES;
+        cell.weightValueLabel5.hidden = YES;
     }
     else if(sets == 3)
     {
         cell.set3Label.hidden = NO;
         cell.set3ValueLabel.hidden = NO;
+        cell.weightValueLabel3.hidden = NO;
         
         cell.set4Label.hidden = YES;
         cell.set4ValueLabel.hidden = YES;
+        cell.weightValueLabel4.hidden = YES;
         
         cell.set5Label.hidden = YES;
         cell.set5ValueLabel.hidden = YES;
+        cell.weightValueLabel5.hidden = YES;
     }
     else if(sets == 4)
     {
         cell.set4Label.hidden = NO;
         cell.set4ValueLabel.hidden = NO;
+        cell.weightValueLabel4.hidden = NO;
         
         cell.set5Label.hidden = YES;
         cell.set5ValueLabel.hidden = YES;
+        cell.weightValueLabel5.hidden = YES;
     }
     else if(sets == 5)
     {
         cell.set4Label.hidden = NO;
         cell.set4ValueLabel.hidden = NO;
+        cell.weightValueLabel4.hidden = NO;
         
         cell.set5Label.hidden = NO;
         cell.set5ValueLabel.hidden = NO;
+        cell.weightValueLabel5.hidden = NO;
     }
     if(workout.equipmentImageName == nil || [workout.equipmentImageName isEqualToString:@"(null)"])
         [cell.equipmentImageView setImage:utility.noImage];

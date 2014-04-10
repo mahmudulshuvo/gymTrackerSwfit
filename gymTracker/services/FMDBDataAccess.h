@@ -18,7 +18,7 @@
 + (BOOL) updateMeasurement:(Measurement *) measurement;
 + (BOOL) deleteMeasurement:(Measurement *) measurement;
 
-+ (NSArray *) getWorkoutDates;
++ (NSArray *) getWorkoutDatesByRange:(NSString *)strFromdate toDate:(NSString *)strToDate;
 + (NSMutableArray *) getWorkoutsByDate:(NSString *)date;
 + (NSMutableArray *) getWorkoutsByEquipmentId:(NSNumber *) equipmentId fromDate:(NSString *)strFromdate toDate:(NSString *)strToDate;
 + (Workout *) loadWorkoutByEquipmentIdAndDate:(NSNumber *) equipmentId date:(NSString *) date;
@@ -27,7 +27,7 @@
 + (BOOL) updateWorkout:(Workout *) workout;
 + (BOOL) deleteWorkout:(Workout *) workout;
 
-+ (NSArray *) getMeasurementHistoryDates;
++ (NSArray *) getMeasurementHistoryDatesByRange:(NSString *)strFromdate toDate:(NSString *)strToDate;
 + (NSMutableArray *) getMeasurementHistoryByDate:(NSString *)date;
 + (NSMutableArray *) getMeasurementHistoryByMeasurementId:(NSNumber *) measurementId fromDate:(NSString *)strFromdate toDate:(NSString *)strToDate;
 + (MeasurementHistory *) loadMeasurementHistoryByMeasurementIdAndDate:(NSNumber *) measurementId date:(NSString *) date;
